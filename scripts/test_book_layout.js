@@ -74,7 +74,9 @@ function send(method, params = {}, sessionId) {
       ? document.fonts.ready.then(() => resolve(true)) : setTimeout(ready, 20);
     ready();
   })`);
-  await evaluate("document.getElementById('next').click()");
+  await evaluate(`(() => {
+    while (!document.querySelector('.story:not([hidden])')) document.getElementById('next').click();
+  })()`);
   const results = [];
   const viewports = [[1280,800],[1366,768],[1440,900],[1920,1080],[768,1024],[768,680],[375,812]];
   for (const [width, height] of viewports) {
@@ -101,6 +103,42 @@ function send(method, params = {}, sessionId) {
     } else assert.ok(measurement.narrationSize >= 20, 'Mobile narration remains readable');
     const shot = await call('Page.captureScreenshot', {format:'png', captureBeyondViewport:false});
     fs.writeFileSync(path.join(output, `${width}x${height}.png`), Buffer.from(shot.data, 'base64'));
+  }
+  await evaluate(`(() => {
+    while (!document.getElementById('next').disabled) document.getElementById('next').click();
+  })()`);
+  for (const [width, height] of viewports) {
+    await call('Emulation.setDeviceMetricsOverride', {width, height, deviceScaleFactor:1, mobile:false});
+    const measurement = await evaluate(`new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(() => {
+      const page = document.querySelector('.child-page:not([hidden])');
+      const input = page.querySelector('#child-words').getBoundingClientRect();
+      const prompts = [...page.querySelectorAll('[data-follow]')].map(button => {
+        const rect = button.getBoundingClientRect();
+        return {top:rect.top, bottom:rect.bottom, left:rect.left, right:rect.right};
+      });
+      resolve({kind:'ending', width:innerWidth, height:innerHeight, scrollY,
+        scrollWidth:document.documentElement.scrollWidth, inputTop:input.top, inputBottom:input.bottom,
+        inputHeight:input.height, prompts,
+        promptSize:parseFloat(getComputedStyle(page.querySelector('[data-follow]')).fontSize),
+        inputSize:parseFloat(getComputedStyle(page.querySelector('#child-words')).fontSize)});
+    })))`);
+    results.push(measurement);
+    console.log(JSON.stringify(measurement));
+    assert.equal(measurement.width, width); assert.equal(measurement.height, height);
+    assert.equal(measurement.scrollY, 0, 'Ending starts without scrolling');
+    assert.ok(measurement.scrollWidth <= width, 'Ending has no horizontal overflow');
+    assert.ok(measurement.inputHeight >= 100, 'Child words retain a large input');
+    assert.ok(measurement.promptSize < measurement.inputSize, 'Prompts are visually secondary');
+    for (const button of measurement.prompts) {
+      assert.ok(button.top >= measurement.inputBottom, 'Child words come before prompts');
+      assert.ok(button.left >= 0 && button.right <= width, 'Prompt fits horizontally');
+    }
+    if (width >= 768) {
+      assert.ok(measurement.inputTop >= 0 && measurement.inputBottom <= height, 'Child input visible without scrolling');
+      assert.ok(measurement.prompts.every(button => button.bottom <= height), 'All prompt buttons visible without scrolling');
+    }
+    const shot = await call('Page.captureScreenshot', {format:'png', captureBeyondViewport:false});
+    fs.writeFileSync(path.join(output, `ending-${width}x${height}.png`), Buffer.from(shot.data, 'base64'));
   }
   fs.writeFileSync(path.join(output, 'results.json'), JSON.stringify(results, null, 2));
   console.log(`通过：实际浏览器布局；截图和数据：${output}`);

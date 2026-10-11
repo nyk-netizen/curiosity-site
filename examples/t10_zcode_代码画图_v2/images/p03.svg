@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1536 1024" width="1536" height="1024">
+  <defs>
+    <g id="guide">
+      <rect x="132" y="112" width="46" height="52" rx="10" fill="#8B5E3C"/>
+      <rect x="132" y="112" width="46" height="14" rx="7" fill="#7A4E2D"/>
+      <rect x="40" y="66" width="120" height="118" rx="16" fill="#F5862E"/>
+      <rect x="44" y="150" width="112" height="30" rx="14" fill="#E87724" opacity="0.5"/>
+      <rect x="14" y="96" width="30" height="60" rx="15" fill="#3E7BC4"/>
+      <rect x="156" y="96" width="30" height="60" rx="15" fill="#3E7BC4"/>
+      <path d="M 140 72 L 164 124" stroke="#7A4E2D" stroke-width="11" stroke-linecap="round" fill="none"/>
+      <path d="M 52 66 A 48 44 0 0 1 148 66 Z" fill="#F7C325"/>
+      <rect x="34" y="58" width="132" height="14" rx="7" fill="#F7C325"/>
+      <rect x="34" y="66" width="132" height="6" rx="3" fill="#E3AD12"/>
+      <circle cx="82" cy="112" r="10" fill="#1F1F1F"/>
+      <circle cx="118" cy="112" r="10" fill="#1F1F1F"/>
+      <circle cx="78.5" cy="108.5" r="3.4" fill="#FFFFFF"/>
+      <circle cx="114.5" cy="108.5" r="3.4" fill="#FFFFFF"/>
+      <path d="M 88 138 Q 100 148 112 138" stroke="#1F1F1F" stroke-width="5" stroke-linecap="round" fill="none"/>
+    </g>
+  </defs>
+
+  <rect x="0" y="0" width="1536" height="1024" fill="#EDF6F1"/>
+
+  <!-- 窗户 -->
+  <rect x="140" y="120" width="350" height="350" rx="16" fill="#C9E4F2"/>
+  <rect x="158" y="138" width="314" height="314" rx="10" fill="#DDF0FA"/>
+  <line x1="315" y1="138" x2="315" y2="452" stroke="#C9E4F2" stroke-width="10"/>
+  <line x1="158" y1="295" x2="472" y2="295" stroke="#C9E4F2" stroke-width="10"/>
+
+  <!-- 台面 -->
+  <rect x="0" y="786" width="1536" height="20" rx="4" fill="#D9B384"/>
+  <rect x="0" y="806" width="1536" height="218" fill="#E8C9A0"/>
+
+  <!-- 标注 -->
+  <text x="580" y="105" font-family="PingFang SC, Hiragino Sans GB, Heiti SC, sans-serif" font-size="46" font-weight="bold" fill="#4E6E5D">孢子像小灰尘</text>
+
+  <!-- 飘着的小圆点（孢子） -->
+  <g>
+    <circle cx="250" cy="230" r="24" fill="#A8C7E8"/>
+    <circle cx="241.5" cy="226" r="3.5" fill="#1F1F1F"/><circle cx="258.5" cy="226" r="3.5" fill="#1F1F1F"/>
+    <path d="M 241.5 238 Q 250 245 258.5 238" stroke="#1F1F1F" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <circle cx="430" cy="165" r="18" fill="#BFE3C8"/>
+    <circle cx="423.5" cy="162" r="3" fill="#1F1F1F"/><circle cx="436.5" cy="162" r="3" fill="#1F1F1F"/>
+    <path d="M 423.5 171 Q 430 176 436.5 171" stroke="#1F1F1F" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <circle cx="600" cy="265" r="28" fill="#F2D8A0"/>
+    <circle cx="590" cy="260" r="4" fill="#1F1F1F"/><circle cx="610" cy="260" r="4" fill="#1F1F1F"/>
+    <path d="M 590 274 Q 600 282 610 274" stroke="#1F1F1F" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <circle cx="760" cy="155" r="16" fill="#A8C7E8"/>
+    <circle cx="754.5" cy="152" r="2.8" fill="#1F1F1F"/><circle cx="765.5" cy="152" r="2.8" fill="#1F1F1F"/>
+    <path d="M 754.5 160 Q 760 164 765.5 160" stroke="#1F1F1F" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <circle cx="905" cy="305" r="22" fill="#D9C7EE"/>
+    <circle cx="897" cy="301" r="3.4" fill="#1F1F1F"/><circle cx="913" cy="301" r="3.4" fill="#1F1F1F"/>
+    <path d="M 897 312 Q 905 318 913 312" stroke="#1F1F1F" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <circle cx="1055" cy="185" r="18" fill="#BFE3C8"/>
+    <circle cx="1048.5" cy="182" r="3" fill="#1F1F1F"/><circle cx="1061.5" cy="182" r="3" fill="#1F1F1F"/>
+    <path d="M 1048.5 191 Q 1055 196 1061.5 191" stroke="#1F1F1F" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <circle cx="1205" cy="265" r="26" fill="#A8C7E8"/>
+    <circle cx="1196" cy="260" r="3.8" fill="#1F1F1F"/><circle cx="1214" cy="260" r="3.8" fill="#1F1F1F"/>
+    <path d="M 1196 273 Q 1205 280 1214 273" stroke="#1F1F1F" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <circle cx="1340" cy="430" r="16" fill="#F2D8A0"/>
+    <circle cx="1334.5" cy="427" r="2.8" fill="#1F1F1F"/><circle cx="1345.5" cy="427" r="2.8" fill="#1F1F1F"/>
+    <circle cx="340" cy="425" r="20" fill="#D9C7EE"/>
+    <circle cx="333" cy="421" r="3.2" fill="#1F1F1F"/><circle cx="347" cy="421" r="3.2" fill="#1F1F1F"/>
+    <path d="M 333 432 Q 340 437 347 432" stroke="#1F1F1F" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <circle cx="520" cy="505" r="16" fill="#BFE3C8"/>
+    <circle cx="514.5" cy="502" r="2.8" fill="#1F1F1F"/><circle cx="525.5" cy="502" r="2.8" fill="#1F1F1F"/>
+    <circle cx="700" cy="445" r="24" fill="#A8C7E8"/>
+    <circle cx="691.5" cy="440" r="3.6" fill="#1F1F1F"/><circle cx="708.5" cy="440" r="3.6" fill="#1F1F1F"/>
+    <path d="M 691.5 452 Q 700 459 708.5 452" stroke="#1F1F1F" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <circle cx="880" cy="545" r="18" fill="#BFE3C8"/>
+    <circle cx="873.5" cy="542" r="3" fill="#1F1F1F"/><circle cx="886.5" cy="542" r="3" fill="#1F1F1F"/>
+    <circle cx="1085" cy="465" r="22" fill="#F2D8A0"/>
+    <circle cx="1077" cy="461" r="3.4" fill="#1F1F1F"/><circle cx="1093" cy="461" r="3.4" fill="#1F1F1F"/>
+    <path d="M 1077 472 Q 1085 478 1093 472" stroke="#1F1F1F" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <circle cx="1250" cy="565" r="16" fill="#A8C7E8"/>
+    <circle cx="1244.5" cy="562" r="2.8" fill="#1F1F1F"/><circle cx="1255.5" cy="562" r="2.8" fill="#1F1F1F"/>
+  </g>
+
+  <!-- 飘动轨迹 -->
+  <g stroke="#B8CCC0" stroke-width="5" stroke-linecap="round" fill="none" stroke-dasharray="2 16">
+    <path d="M 160 300 Q 200 280 240 245"/>
+    <path d="M 660 200 Q 700 180 745 162"/>
+    <path d="M 1130 320 Q 1170 295 1195 285"/>
+  </g>
+
+  <!-- 小方举放大镜 -->
+  <use xlink:href="#guide" href="#guide" transform="translate(1120 560) scale(1.55)"/>
+  <line x1="1078" y1="612" x2="1158" y2="686" stroke="#8B5E3C" stroke-width="16" stroke-linecap="round"/>
+  <circle cx="985" cy="520" r="128" fill="#FFFFFF" opacity="0.35"/>
+  <circle cx="985" cy="520" r="128" fill="none" stroke="#8B5E3C" stroke-width="14"/>
+  <circle cx="948" cy="478" r="40" fill="#A8C7E8"/>
+  <circle cx="934" cy="470" r="5" fill="#1F1F1F"/><circle cx="962" cy="470" r="5" fill="#1F1F1F"/>
+  <path d="M 934 490 Q 948 500 962 490" stroke="#1F1F1F" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <circle cx="1022" cy="545" r="32" fill="#BFE3C8"/>
+  <circle cx="1011" cy="539" r="4.4" fill="#1F1F1F"/><circle cx="1033" cy="539" r="4.4" fill="#1F1F1F"/>
+  <path d="M 1011 556 Q 1022 564 1033 556" stroke="#1F1F1F" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <circle cx="952" cy="578" r="26" fill="#F2D8A0"/>
+  <circle cx="943" cy="573" r="3.8" fill="#1F1F1F"/><circle cx="961" cy="573" r="3.8" fill="#1F1F1F"/>
+  <path d="M 943 587 Q 952 593 961 587" stroke="#1F1F1F" stroke-width="4" fill="none" stroke-linecap="round"/>
+</svg>

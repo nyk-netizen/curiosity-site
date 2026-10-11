@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1536 1024" width="1536" height="1024">
+  <defs>
+    <g id="guide">
+      <rect x="132" y="112" width="46" height="52" rx="10" fill="#8B5E3C"/>
+      <rect x="132" y="112" width="46" height="14" rx="7" fill="#7A4E2D"/>
+      <rect x="40" y="66" width="120" height="118" rx="16" fill="#F5862E"/>
+      <rect x="44" y="150" width="112" height="30" rx="14" fill="#E87724" opacity="0.5"/>
+      <rect x="14" y="96" width="30" height="60" rx="15" fill="#3E7BC4"/>
+      <rect x="156" y="96" width="30" height="60" rx="15" fill="#3E7BC4"/>
+      <path d="M 140 72 L 164 124" stroke="#7A4E2D" stroke-width="11" stroke-linecap="round" fill="none"/>
+      <path d="M 52 66 A 48 44 0 0 1 148 66 Z" fill="#F7C325"/>
+      <rect x="34" y="58" width="132" height="14" rx="7" fill="#F7C325"/>
+      <rect x="34" y="66" width="132" height="6" rx="3" fill="#E3AD12"/>
+      <circle cx="82" cy="112" r="10" fill="#1F1F1F"/>
+      <circle cx="118" cy="112" r="10" fill="#1F1F1F"/>
+      <circle cx="78.5" cy="108.5" r="3.4" fill="#FFFFFF"/>
+      <circle cx="114.5" cy="108.5" r="3.4" fill="#FFFFFF"/>
+      <path d="M 88 138 Q 100 148 112 138" stroke="#1F1F1F" stroke-width="5" stroke-linecap="round" fill="none"/>
+    </g>
+  </defs>
+
+  <rect x="0" y="0" width="1536" height="1024" fill="#FFF6E9"/>
+  <rect x="0" y="940" width="1536" height="84" fill="#F2D8B8"/>
+
+  <!-- 冰箱 -->
+  <rect x="360" y="110" width="820" height="830" rx="36" fill="#FFFFFF" stroke="#C5D8E8" stroke-width="10"/>
+  <rect x="392" y="142" width="756" height="766" rx="24" fill="#EAF2F8"/>
+  <rect x="1180" y="110" width="150" height="830" rx="28" fill="#DCE9F3" stroke="#C5D8E8" stroke-width="10"/>
+  <rect x="1160" y="300" width="14" height="200" rx="7" fill="#9FB8CC"/>
+  <rect x="1196" y="300" width="118" height="26" rx="8" fill="#FFFFFF"/>
+  <rect x="1196" y="560" width="118" height="26" rx="8" fill="#FFFFFF"/>
+  <rect x="1216" y="240" width="42" height="56" rx="6" fill="#F5A623"/>
+  <rect x="1276" y="240" width="42" height="56" rx="6" fill="#D94F3D"/>
+  <rect x="1216" y="500" width="42" height="56" rx="6" fill="#6FA84C"/>
+
+  <!-- 隔两层，下面留空给小方 -->
+  <rect x="392" y="340" width="756" height="20" fill="#FFFFFF" stroke="#D3E2EF" stroke-width="4"/>
+  <rect x="392" y="560" width="756" height="20" fill="#FFFFFF" stroke="#D3E2EF" stroke-width="4"/>
+
+  <!-- 上层水果 -->
+  <circle cx="520" cy="292" r="48" fill="#D94F3D"/>
+  <ellipse cx="536" cy="240" rx="20" ry="9" fill="#6FA84C" transform="rotate(-24 536 240)"/>
+  <circle cx="640" cy="296" r="44" fill="#E86A4F"/>
+  <circle cx="760" cy="296" r="44" fill="#F5A623"/>
+  <circle cx="880" cy="292" r="48" fill="#D94F3D"/>
+  <ellipse cx="896" cy="240" rx="20" ry="9" fill="#6FA84C" transform="rotate(-24 896 240)"/>
+
+  <!-- 中层水果 -->
+  <circle cx="560" cy="516" r="46" fill="#F5A623"/>
+  <circle cx="680" cy="516" r="46" fill="#F5A623"/>
+  <circle cx="800" cy="518" r="44" fill="#F2B04E"/>
+  <circle cx="930" cy="512" r="48" fill="#D94F3D"/>
+
+  <!-- 冷气与雪花 -->
+  <g stroke="#CFE6F5" stroke-width="8" fill="none" stroke-linecap="round">
+    <path d="M 430 230 q 35 -18 70 0 q 35 18 70 0"/>
+    <path d="M 860 230 q 35 -18 70 0 q 35 18 70 0"/>
+    <path d="M 600 640 q 35 -18 70 0 q 35 18 70 0"/>
+  </g>
+  <g stroke="#BFE0F5" stroke-width="5" stroke-linecap="round">
+    <g transform="translate(960 190)">
+      <line x1="-16" y1="0" x2="16" y2="0"/><line x1="-8" y1="-14" x2="8" y2="14"/><line x1="-8" y1="14" x2="8" y2="-14"/>
+    </g>
+    <g transform="translate(430 300)">
+      <line x1="-13" y1="0" x2="13" y2="0"/><line x1="-6.5" y1="-11" x2="6.5" y2="11"/><line x1="-6.5" y1="11" x2="6.5" y2="-11"/>
+    </g>
+  </g>
+
+  <!-- 动作慢吞吞的小圆点 -->
+  <g>
+    <circle cx="470" cy="468" r="20" fill="#A8C7E8"/>
+    <line x1="452" y1="458" x2="438" y2="452" stroke="#A8C7E8" stroke-width="4" stroke-linecap="round"/>
+    <line x1="452" y1="474" x2="434" y2="474" stroke="#A8C7E8" stroke-width="4" stroke-linecap="round"/>
+    <line x1="463" y1="462" x2="477" y2="462" stroke="#1F1F1F" stroke-width="3.4" stroke-linecap="round"/>
+    <line x1="479" y1="462" x2="493" y2="462" stroke="#1F1F1F" stroke-width="3.4" stroke-linecap="round"/>
+    <circle cx="562" cy="450" r="16" fill="#BFE3C8"/>
+    <line x1="556" y1="446" x2="568" y2="446" stroke="#1F1F1F" stroke-width="3" stroke-linecap="round"/>
+    <line x1="570" y1="446" x2="582" y2="446" stroke="#1F1F1F" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="628" cy="500" r="18" fill="#D9C7EE"/>
+    <line x1="621" y1="495" x2="634" y2="495" stroke="#1F1F1F" stroke-width="3.2" stroke-linecap="round"/>
+    <line x1="637" y1="495" x2="650" y2="495" stroke="#1F1F1F" stroke-width="3.2" stroke-linecap="round"/>
+  </g>
+  <text x="502" y="428" font-family="PingFang SC, Hiragino Sans GB, Heiti SC, sans-serif" font-size="34" font-style="italic" fill="#8FA8C4">z</text>
+  <text x="540" y="398" font-family="PingFang SC, Hiragino Sans GB, Heiti SC, sans-serif" font-size="27" font-style="italic" fill="#8FA8C4">z</text>
+
+  <!-- 温度计 -->
+  <rect x="1076" y="200" width="30" height="140" rx="15" fill="#FFFFFF" stroke="#C5D8E8" stroke-width="6"/>
+  <circle cx="1091" cy="360" r="22" fill="#E86A4F"/>
+  <rect x="1087" y="306" width="8" height="52" fill="#E86A4F"/>
+  <line x1="1064" y1="230" x2="1076" y2="230" stroke="#9FB8CC" stroke-width="4"/>
+  <line x1="1064" y1="260" x2="1076" y2="260" stroke="#9FB8CC" stroke-width="4"/>
+  <line x1="1064" y1="290" x2="1076" y2="290" stroke="#9FB8CC" stroke-width="4"/>
+
+  <!-- 底层水果（左侧） -->
+  <circle cx="480" cy="862" r="44" fill="#D94F3D"/>
+  <circle cx="578" cy="866" r="40" fill="#E86A4F"/>
+
+  <!-- 标注 -->
+  <text x="410" y="690" font-family="PingFang SC, Hiragino Sans GB, Heiti SC, sans-serif" font-size="44" font-weight="bold" fill="#6E8BA8">冷冷的，慢吞吞</text>
+
+  <!-- 小方（竖大拇指） -->
+  <use xlink:href="#guide" href="#guide" transform="translate(700 660) scale(1.3)"/>
+  <circle cx="928" cy="778" r="16" fill="#3E7BC4"/>
+  <rect x="936" y="746" width="13" height="28" rx="6" fill="#3E7BC4"/>
+</svg>

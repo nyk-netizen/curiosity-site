@@ -98,7 +98,7 @@ def render_book(book, book_path):
                      + parent_card(book, opened=True) + '</section>')
     narrations = {}
     art_index = 0
-    for ci, chapter in enumerate(book["chapters"]):
+    for chapter in book["chapters"]:
         for page in chapter["pages"]:
             art_index += 1
             visual = page["visual"]
@@ -114,18 +114,18 @@ def render_book(book, book_path):
 <p class="eyebrow">{esc(chapter['name'])}</p><div class="picture">{illustration}</div>
 <p class="narration">{esc(page['narration'])}</p>{english}
 <button class="read-button" type="button" data-read="{number}">读给我听</button><p class="speech-status" role="status"></p></section>''')
-        follow = chapter["follow_up"]["question"]
-        pages.append(f'''<section class="page follow-up" aria-label="追问口">
-<p class="eyebrow">追问口 · {esc(chapter['name'])}</p><div class="follow-symbol" aria-hidden="true">?</div>
-<h2>{esc(follow)}</h2><p>这个问题，也让你好奇吗？</p>
-<button class="follow-button" type="button" data-follow="{ci}" aria-pressed="false">我也想知道这个！</button>
-<p class="hint">把好奇心留在这里，下次再一起看看。</p></section>''')
+    follow_buttons = ''.join(
+        f'<button class="follow-button" type="button" data-follow="{ci}" aria-pressed="false">'
+        f'{esc(chapter["follow_up"]["question"])}</button>'
+        for ci, chapter in enumerate(book["chapters"]))
     reaction_options = [('loved', '喜欢'), ('ok', '一般'), ('bored', '没兴趣'), ('scared', '害怕了'), ('confused', '没听懂')]
     radios = ''.join(f'<label><input type="radio" name="reaction" value="{value}">{label}</label>' for value, label in reaction_options)
-    pages.append(f'''<section class="page child-page" aria-label="留给孩子的一页">
-<p class="eyebrow">这一页，留给你</p><h2>{esc(book['child_page']['prompt'])}</h2>
-<label class="field-label" for="child-words">孩子的原话（爸爸妈妈帮忙写）</label>
-<textarea id="child-words" rows="5" placeholder="把孩子说的话，原样记在这里……">{esc(book['child_page']['child_words'])}</textarea>
+    pages.append(f'''<section class="page child-page" aria-label="读完啦">
+<p class="eyebrow">读完啦</p><h2>{esc(book['child_page']['prompt'])}</h2>
+<label class="field-label" for="child-words">孩子自己说的话，家长帮忙写下来，原话照录</label>
+<textarea id="child-words" rows="4" placeholder="孩子自己说的话，家长帮忙写下来，原话照录">{esc(book['child_page']['child_words'])}</textarea>
+<div class="follow-prompts" role="group" aria-labelledby="follow-prompts-label">
+<p id="follow-prompts-label">说不出来的话，看看这些？</p><div class="follow-buttons">{follow_buttons}</div></div>
 <fieldset><legend>家长记录：孩子这次的反应</legend><div class="reactions">{radios}</div></fieldset>
 <label class="field-label" for="parent-note">家长补充</label><textarea id="parent-note" rows="3"></textarea>
 <button type="button" id="export-feedback">保存这次的反馈</button><p id="save-status" role="status"></p>

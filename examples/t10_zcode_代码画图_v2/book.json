@@ -1,0 +1,161 @@
+{
+  "schema_version": "1.0",
+  "title": "谁在拆水果的甜房子？",
+  "mode": "new",
+  "continues_from": null,
+  "language": "zh",
+  "question": {
+    "original": "水果为什么会腐烂？",
+    "age": "5岁"
+  },
+  "guide": {
+    "name": "小方",
+    "look": "一个橙色的方块小工人，戴黄色安全帽，圆圆的黑眼睛，两只短短的蓝胳膊，背着一个工具包",
+    "colors": ["橙色", "黄色", "蓝色"],
+    "catchphrase": "戴好安全帽，我们进去看看！",
+    "image_anchor": "a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag",
+    "reference_image": "images/guide.svg"
+  },
+  "render": {
+    "route": "code",
+    "style": "积木画风",
+    "agent": "ZCode · GLM-5.3-Flash"
+  },
+  "chapters": [
+    {
+      "name": "第一章 · 水果是一座甜房子",
+      "role": "discover",
+      "pages": [
+        {
+          "narration": "苹果放了好多天，皮上长出软软的斑。小方说：“戴好安全帽，我们进去看看它怎么了！”",
+          "visual": {
+            "description": "厨房台面上，一个放了好几天的大红苹果，皮上有几块软软的褐斑。小方拿着放大镜站在苹果旁边，正要凑近看。",
+            "image_prompt": "A cozy kitchen counter in warm morning light, a big red apple with soft brown spots sits on a wooden cutting board, a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag stands next to the apple holding a magnifying glass and getting ready to explore, simple geometric flat shapes, warm cream background, friendly children's picture book style",
+            "image": "images/p01.svg"
+          }
+        },
+        {
+          "narration": "放大看：水果是一座甜味小房子。果皮是外墙，果肉是房间，房间里藏着一仓一仓的糖。",
+          "visual": {
+            "description": "大苹果的剖面图，画成一座小房子：红色的果皮是外墙，奶白色的果肉是房间，房间里堆着一格一格金黄的糖块。小方举着小锤子指着糖仓。",
+            "image_prompt": "Architectural cutaway view of a big red apple drawn as a little house, thick red peel as the outer wall, pale juicy flesh rooms inside, stacks of golden sugar blocks stored in the rooms, a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag points at the sugar storage with a small hammer, section drawing style, clean geometric blocks, warm reds oranges and creams",
+            "image": "images/p02.svg"
+          }
+        }
+      ],
+      "follow_up": {
+        "question": "糖是给谁准备的呀？",
+        "why": "通向果实为什么是甜的：甜是果子请动物帮忙吃、帮种子去旅行的礼物。"
+      }
+    },
+    {
+      "name": "第二章 · 小小拆迁队进来了",
+      "role": "structure",
+      "pages": [
+        {
+          "narration": "空气里、水里、我们手上，住着看不见的小小居民——细菌和霉菌。它们的孢子像小灰尘，飘呀飘。",
+          "visual": {
+            "description": "明亮的厨房里，空气里飘着许多带小眼睛的彩色小圆点（细菌和霉菌的孢子），像小灰尘。小方举着放大镜仰头看它们。",
+            "image_prompt": "A bright kitchen scene with many tiny colorful round microbes floating in the air like dust motes, each with simple happy eyes, a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag looks up at them through a big magnifying glass, soft blue and green background, flat geometric shapes, gentle curious mood, children's picture book style",
+            "image": "images/p03.svg"
+          }
+        },
+        {
+          "narration": "果皮被碰出一个小口，孢子正好落在这里。它钻进去安家，吃甜甜的糖，吃饱了就分家，越吃越多。",
+          "visual": {
+            "description": "苹果小房子的剖面：果皮上有一道小口，小圆点孢子正从空中落下来钻进去；小口里面，一群小圆点围着一堆金黄的糖块在吃。小方提着小灯在旁边仔细看。",
+            "image_prompt": "Cutaway of the red apple house with a small crack in its peel wall, tiny round spore dots falling from the air and entering through the crack, inside the crack cute round microbe dots gather and eat golden sugar blocks, a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag holds a little lamp and watches closely from the side, warm colors, clean flat geometric style",
+            "image": "images/p04.svg"
+          }
+        },
+        {
+          "narration": "小居民边吃边拆，把房间的墙一点点化软。果肉变软、变色，长出的毛茸茸的霉，是霉菌盖的新房子。",
+          "visual": {
+            "description": "苹果房子的房间墙壁变得软软的、发黄发褐，果肉上长出一朵朵毛茸茸的灰蓝色霉，像小棉花云。小方拿小尺子量软墙，在本子上做记录。",
+            "image_prompt": "Inside the apple house, soft wobbly walls turning pale brown, patches of fluffy grey-blue mold growing like small cotton clouds on the flesh, a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag measures the soft wall with a ruler and writes notes on a small clipboard, calm and curious mood, muted warm colors, flat geometric children's picture book style",
+            "image": "images/p05.svg"
+          }
+        }
+      ],
+      "follow_up": {
+        "question": "霉是水果自己长出来的吗？",
+        "why": "通向微生物无处不在、孢子靠空气传播；纠正「霉是东西自己长出来的」的直觉。"
+      }
+    },
+    {
+      "name": "第三章 · 拆下来的砖去哪儿了",
+      "role": "magic",
+      "pages": [
+        {
+          "narration": "烂掉的水果落进土里，小居民把甜房子拆成一块块营养小砖。小树的根把砖捡走，长出新的嫩叶子！",
+          "visual": {
+            "description": "土壤剖面：绿色草地下面是暖棕色的土，地上的老苹果正变成一块块金色营养小砖，顺着虚线箭头落进土里；小树的根把砖捡走，旁边长出两片叶子的绿芽。小方站在根旁边递砖。",
+            "image_prompt": "Sunny cross-section of warm brown garden soil under green grass, a soft old apple lying on the ground turning into small golden nutrient bricks that flow down into the soil, young tree roots picking up the bricks, a green sprout with two leaves growing nearby, a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag stands beside the roots handing over a brick, hopeful warm light, geometric storybook style",
+            "image": "images/p06.svg"
+          }
+        },
+        {
+          "narration": "冰箱里冷冷的，小小居民动作变慢了。把水果放进冰箱，它们拆得慢，水果就能多放好几天。",
+          "visual": {
+            "description": "打开的冰箱里透着凉凉的光，架子上摆着苹果和橘子，几个小圆点动作很慢，后面跟着「z z」的线。小方站在最下层竖起大拇指，旁边墙上挂着小温度计。",
+            "image_prompt": "Inside a clean open refrigerator glowing with soft cool light, red apples and oranges sitting neatly on shelves, a few tiny round microbe dots moving very slowly with sleepy motion lines, a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag stands on the bottom shelf giving a thumbs up next to a small thermometer, light blue and cream palette, tidy flat geometric style, safe and cozy feeling",
+            "image": "images/p07.svg"
+          }
+        }
+      ],
+      "follow_up": {
+        "question": "那葡萄干为什么放不坏？",
+        "why": "通向食物保存：水分少了小小居民难安家——还有冷冻、腌制、做果酱。"
+      }
+    }
+  ],
+  "child_page": {
+    "prompt": "你还想知道水果小房子的什么秘密？说给爸爸妈妈听，他们会帮你写在这里。",
+    "child_words": ""
+  },
+  "parent_card": {
+    "hard_notes": [
+      "水果腐烂的主力是微生物：霉菌和细菌分泌果胶酶、纤维素酶等胞外酶，把细胞壁拆开，吸收流出来的糖分和养分，造成软腐、变色和异味；果子自身的成熟酶在过熟阶段也让组织变软，更容易被微生物攻破。",
+      "软质水果（桃、草莓等）发霉时，菌丝已经深入果肉内部、肉眼看不见，USDA 建议整颗丢弃，不要只切掉霉斑；冷藏（4°C 以下）不能杀死微生物，但能明显减缓它们的生长。",
+      "落果被分解者拆解后，氮磷钾等营养回到土壤，再被植物根系吸收——分解是生态系统营养循环的一环，书里把它讲成「拆下来的砖盖新房子」。"
+    ],
+    "sources": [
+      {
+        "title": "USDA FSIS《Molds on Food: Are They Dangerous?》",
+        "where": "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/molds-food-are-they-dangerous",
+        "used_for": "霉菌的菌丝深入果肉、软质水果发霉整颗丢弃；霉菌在冷藏温度下也能缓慢生长（已打开核对原文）"
+      },
+      {
+        "title": "USDA FSIS《Refrigeration & Food Safety》",
+        "where": "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/refrigeration",
+        "used_for": "冷藏减缓细菌生长、冰箱应设 4°C（40°F）以下（已打开核对原文）"
+      },
+      {
+        "title": "Cornell 大学堆肥站《Compost Microorganisms》（Trautmann & Olynciw）",
+        "where": "https://compost.css.cornell.edu/microorg.html",
+        "used_for": "细菌和霉菌等分解者靠酶把死亡的动植物残体拆开、营养回到土壤（对应第六页「营养小砖」；已打开核对原文）"
+      },
+      {
+        "title": "其余科学表述：微生物分泌果胶酶等胞外酶分解细胞壁导致软腐、果实过熟自身酶使组织变软",
+        "where": "模型自有知识，经搜索结果交叉印证，未打开原始论文页面核对",
+        "used_for": "家长卡 hard_notes 第 1 条"
+      }
+    ],
+    "uncertain": [
+      "书里把「酶分解细胞壁」简化成「小居民把房间的墙一点点化软」，没有区分霉菌和细菌谁先来：软质水果上通常是霉菌先长，细菌多从伤口进入。",
+      "「冰箱让小小居民动作变慢」：冷藏是减缓、不是停止生长，霉菌在冰箱里也能慢慢长；另外香蕉等热带水果不宜冷藏，低温反而会冻伤。家长按水果种类把握。",
+      "腐烂快慢还受氧气、湿度和伤口影响，书里只讲了「从破口进入」这条主要路径。",
+      "苹果上的褐斑也可能是碰伤后氧化变色，不一定是霉斑；书里把「变软变色」合在一起讲，家长可以借周末小实验帮孩子分一分。"
+    ],
+    "sensitive": {
+      "level": "notice",
+      "topics": ["death", "fear"],
+      "how_handled": "腐烂和家里的「家长先看」话题死亡相邻（果子会被拆掉、消失），所以按 notice 提醒：全书不出现「死」字，不渲染失去或可怕的场景，重点放在「拆下来的材料回到土壤、长出新芽」的回收上（类似老房子拆了、砖还能盖新房子）。孩子怕黑：全书没有夜晚和黑暗场景，画面全是暖色，霉菌画成毛茸茸的中性小居民，不说「细菌是坏的」。本次家长预览即放行前的审看。"
+    },
+    "weekend_project": "「甜房子观察」：家长把一个苹果切成两半（用刀由家长操作），一半放在盘子里、一半装盒放进冰箱，每天和孩子看一眼、轻轻按一按比软硬，把哪半先变软长斑画在小本子上；第三天一起找斑点出现的位置，聊聊为什么冰箱里那半慢。全程不用火、不碰电。",
+    "approval": {
+      "status": "pending",
+      "note": "v2：已按家长意见把背带改为从右肩斜挂到身后、不再挡脸，并收紧家长卡 sources；等家长复查放行"
+    }
+  }
+}

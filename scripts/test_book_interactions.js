@@ -6,6 +6,31 @@ const assert = require('node:assert/strict');
 const documentText = fs.readFileSync(process.argv[2] || '/tmp/sample.html', 'utf8');
 const payload = JSON.parse(documentText.match(/<script id="book-data" type="application\/json">([\s\S]*?)<\/script>/)[1]);
 const source = documentText.match(/<script>\s*([\s\S]*?)<\/script>/)[1];
+const decode = text => text.replace(/&(amp|lt|gt|quot|#x27);/g,
+  (_, entity) => ({amp:'&', lt:'<', gt:'>', quot:'"', '#x27':"'"}[entity]));
+const sections = [...documentText.matchAll(/<section (?:hidden )?class="page[^>]*>[\s\S]*?<\/section>/g)].map(match => match[0]);
+const followMarkup = [...documentText.matchAll(/<button class="follow-button"[^>]*data-follow="(\d+)"[^>]*>([\s\S]*?)<\/button>/g)];
+const initialWords = decode(documentText.match(/<textarea id="child-words"[^>]*>([\s\S]*?)<\/textarea>/)[1]);
+const firstStory = sections.findIndex(section => /class="page story"/.test(section));
+const storyCount = Object.keys(payload.narrations).length;
+assert.equal(firstStory, documentText.includes('id="preview-banner"') ? 2 : 1);
+assert.equal(sections.length, firstStory + storyCount + 1, 'No chapter follow-up pages');
+assert.match(sections.at(-1), /aria-label="读完啦"/);
+assert.equal(followMarkup.length, payload.followUps.length);
+for (let i = 0; i < storyCount; i++) {
+  assert.match(sections[firstStory + i], /class="page story"/);
+  assert.ok(payload.narrations[String(firstStory + i)], 'Continuous narration indices');
+  assert.doesNotMatch(sections[firstStory + i], /data-follow=/);
+}
+const ending = sections.at(-1);
+assert.ok(ending.indexOf('id="child-words"') < ending.indexOf('class="follow-prompts"'), 'Child words come first');
+assert.ok(ending.indexOf('class="follow-prompts"') < ending.indexOf('<fieldset>'), 'Feedback comes after prompts');
+assert.doesNotMatch(ending, /data-read=/, 'Prompts have no read-aloud buttons');
+followMarkup.forEach((match, i) => {
+  assert.equal(Number(match[1]), i);
+  assert.equal(decode(match[2]), payload.followUps[i], 'Button displays the question');
+  assert.ok(ending.includes(match[0]), 'All prompts are on the ending page');
+});
 
 class Element {
   constructor() { this.listeners = {}; this.value = ''; this.checked = false; this.disabled = false; this.attributes = {}; this.dataset = {}; this.textContent = ''; }
@@ -20,9 +45,9 @@ function start({saved = {}, deniedStorage = false, data = payload} = {}) {
   const ids = Object.fromEntries(['previous','next','child-words','parent-note','page-count','book-pages','export-feedback','save-status','book-data'].map(id => [id, new Element()]));
   ids['book-data'].textContent = JSON.stringify(data);
   ids.previous.disabled = true;
-  ids['child-words'].value = '原先的话';
+  ids['child-words'].value = initialWords;
   const pages = [...documentText.matchAll(/<section (?:hidden )?class="page[^>]*>/g)].map((match, i) => ({hidden: i !== 0, querySelector: () => null}));
-  const follows = data.followUps.map((_, i) => { const e = new Element(); e.dataset.follow = String(i); return e; });
+  const follows = followMarkup.map(match => { const e = new Element(); e.dataset.follow = match[1]; e.textContent = decode(match[2]); return e; });
   const reads = Object.keys(data.narrations).map(index => { const e = new Element(); e.dataset.read = index; e.nextElementSibling = new Element(); return e; });
   const radios = ['loved','ok','bored','scared','confused'].map(value => { const e = new Element(); e.value = value; return e; });
   const storage = new Map(Object.entries(saved));
@@ -47,30 +72,35 @@ function start({saved = {}, deniedStorage = false, data = payload} = {}) {
 (async () => {
   const test = start();
   const {ids, pages, follows, reads, radios} = test;
-  assert.equal(pages.length, 12);
+  const total = sections.length;
+  assert.equal(ids['child-words'].value, initialWords, 'Book child_words are prefilled');
+  assert.equal(pages.length, total);
   assert.equal(test.spoken.length, 0, 'No automatic speech on load');
-  ids.next.click(); assert.equal(ids['page-count'].textContent, '2 / 12'); assert.equal(pages[1].hidden, false);
+  ids.next.click(); assert.equal(ids['page-count'].textContent, `2 / ${total}`); assert.equal(pages[1].hidden, false);
   reads[0].click(); assert.equal(test.spoken[0].lang, 'zh-CN'); assert.equal(test.spoken[0].rate, 0.9);
-  assert.equal(test.spoken[0].text, payload.narrations['1'][0].text);
+  assert.equal(test.spoken[0].text, payload.narrations[String(firstStory)][0].text);
   const key = (value, target = new Element()) => test.doc.fire('keydown', {key: value, target, preventDefault() {}});
-  key('ArrowRight'); assert.equal(ids['page-count'].textContent, '3 / 12');
+  key('ArrowRight'); assert.equal(ids['page-count'].textContent, `3 / ${total}`);
   const input = new Element(); input.closest = () => input;
-  key('ArrowRight', input); assert.equal(ids['page-count'].textContent, '3 / 12', 'Typing does not turn pages');
-  key('ArrowLeft'); assert.equal(ids['page-count'].textContent, '2 / 12');
+  key('ArrowRight', input); assert.equal(ids['page-count'].textContent, `3 / ${total}`, 'Typing does not turn pages');
+  key('ArrowLeft'); assert.equal(ids['page-count'].textContent, `2 / ${total}`);
   ids['book-pages'].fire('touchstart', {touches: [{clientX: 300, clientY: 100}]});
   ids['book-pages'].fire('touchend', {changedTouches: [{clientX: 100, clientY: 110}]});
-  assert.equal(ids['page-count'].textContent, '3 / 12');
+  assert.equal(ids['page-count'].textContent, `3 / ${total}`);
   ids['book-pages'].fire('touchstart', {touches: [{clientX: 100, clientY: 100}]});
   ids['book-pages'].fire('touchend', {changedTouches: [{clientX: 170, clientY: 300}]});
-  assert.equal(ids['page-count'].textContent, '3 / 12', 'Vertical scroll does not turn pages');
-  ids.next.click(); follows[0].click(); follows[0].click();
+  assert.equal(ids['page-count'].textContent, `3 / ${total}`, 'Vertical scroll does not turn pages');
+  while (!ids.next.disabled) ids.next.click();
+  assert.equal(pages.at(-1).hidden, false);
+  follows[0].click(); follows[0].click();
   assert.equal(follows[0].attributes['aria-pressed'], 'true');
   assert.match(follows[0].textContent, /已选/);
+  assert.equal(follows[0].textContent, `已选 · ${payload.followUps[0]}`);
+  assert.equal(follows[1].textContent, payload.followUps[1]);
   ids['child-words'].value = ' 孩子的原话\n'; ids['child-words'].fire('input');
   ids['parent-note'].value = '明天再看看'; ids['parent-note'].fire('input');
   radios[0].checked = true; radios[0].fire('change');
-  while (!ids.next.disabled) ids.next.click();
-  assert.equal(ids['page-count'].textContent, '12 / 12');
+  assert.equal(ids['page-count'].textContent, `${total} / ${total}`);
   ids['export-feedback'].click();
   const feedback = await test.feedback();
   assert.deepEqual(Object.keys(feedback), ['book_title','question','date','follow_ups_tapped','child_words','reaction','parent_note']);
@@ -81,9 +111,12 @@ function start({saved = {}, deniedStorage = false, data = payload} = {}) {
   assert.equal(feedback.parent_note, '明天再看看'); assert.deepEqual(test.downloads, ['feedback.json']);
   const reload = start({saved: Object.fromEntries(test.storage)});
   assert.equal(reload.follows[0].attributes['aria-pressed'], 'true');
+  assert.equal(reload.follows[0].textContent, `已选 · ${payload.followUps[0]}`);
   assert.equal(reload.ids['child-words'].value, ' 孩子的原话\n'); assert.equal(reload.radios[0].checked, true);
   const blocked = start({deniedStorage: true}); blocked.follows[1].click(); blocked.ids['export-feedback'].click();
-  assert.deepEqual((await blocked.feedback()).follow_ups_tapped, [payload.followUps[1]]);
+  const blockedFeedback = await blocked.feedback();
+  assert.deepEqual(blockedFeedback.follow_ups_tapped, [payload.followUps[1]]);
+  assert.equal(blockedFeedback.child_words, initialWords, 'Prefilled child_words export unchanged');
   const english = start({data: {...payload, narrations: {'1': [{text:'Hello', lang:'en-US'}]}}});
   english.reads[0].click(); assert.equal(english.spoken[0].lang, 'en-US');
   const bilingual = start({data: {...payload, narrations: {'1': [{text:'你好', lang:'zh-CN'}, {text:'Hello', lang:'en-US'}]}}});

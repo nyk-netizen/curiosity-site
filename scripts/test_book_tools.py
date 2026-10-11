@@ -140,7 +140,7 @@ class BookToolsTests(unittest.TestCase):
         result = self.run_cli("render_book.py", SAMPLE, output)
         self.assertEqual(result.returncode, 0, result.stderr)
         document = output.read_text(encoding="utf-8")
-        self.assertIn('1 / 12', document)
+        self.assertIn('1 / 9', document)
         self.assertNotIn('id="preview-banner"', document)
         self.assertIn('<details class="parent-card" >', document)
         self.assertNotIn('<script src=', document)
@@ -155,6 +155,39 @@ class BookToolsTests(unittest.TestCase):
         self.assertIn('这本书涉及：恐惧、身体', document)
         self.assertIn('<details class="parent-card" open>', document)
         self.assertLess(document.index('<details'), document.index('aria-label="正文第 1 页"'))
+        self.assertIn('1 / 10', document)
+
+    def test_ending_combines_child_words_and_chapter_prompts(self):
+        self.book["child_page"]["child_words"] = ' 孩子的原话\n还想看 <云> & 闪电 '
+        self.book["chapters"][0]["follow_up"]["question"] = '云里有 <冰> & 水吗？'
+        for status in ("approved", "pending", "changes_requested"):
+            with self.subTest(status=status):
+                self.book["parent_card"]["approval"]["status"] = status
+                document = render_book(self.book, self.input)
+                sections = document.split('<section ')[1:]
+                expected = 9 if status == "approved" else 10
+                self.assertEqual(len(sections), expected)
+                self.assertIn(f'1 / {expected}', document)
+                self.assertNotIn('class="page follow-up"', document)
+                ending = sections[-1].split('</section>')[0]
+                self.assertIn('aria-label="读完啦"', ending)
+                self.assertIn(' 孩子的原话\n还想看 &lt;云&gt; &amp; 闪电 </textarea>', ending)
+                self.assertIn('云里有 &lt;冰&gt; &amp; 水吗？</button>', ending)
+                self.assertEqual(ending.count('data-follow='), 3)
+                self.assertLess(ending.index('id="child-words"'), ending.index('class="follow-prompts"'))
+                self.assertLess(ending.index('class="follow-prompts"'), ending.index('<fieldset>'))
+                self.assertNotIn('data-read=', ending)
+                story_start = 1 if status == "approved" else 2
+                for index, section in enumerate(sections[story_start:-1], story_start):
+                    self.assertIn('class="page story"', section)
+                    self.assertIn(f'data-read="{index}"', section)
+                    self.assertNotIn('data-follow=', section)
+                self.assertEqual(document.count('<details class="parent-card"'), 1)
+                if status == "approved":
+                    self.assertIn('<details class="parent-card" >', ending)
+                else:
+                    self.assertIn('<details class="parent-card" open>', sections[1])
+                    self.assertNotIn('<details', ending)
 
     def test_cover_question_modes(self):
         cases = [("new", "你问：", None),
@@ -364,9 +397,9 @@ class BookToolsTests(unittest.TestCase):
         self.book["language"] = "zh"
         self.assertTrue(validate_book(self.book, self.input)["ok"])
 
-    def test_existing_four_books_validate_and_render(self):
+    def test_existing_books_validate_and_render(self):
         books = [SAMPLE, *sorted((ROOT / "examples").glob("*/book.json"))]
-        self.assertEqual(len(books), 4)
+        self.assertGreaterEqual(len(books), 5)
         for index, book_path in enumerate(books):
             with self.subTest(book=str(book_path.relative_to(ROOT))):
                 result = self.run_cli("validate_book.py", book_path, "--json")

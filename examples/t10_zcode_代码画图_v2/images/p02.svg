@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1536 1024" width="1536" height="1024">
+  <defs>
+    <g id="guide">
+      <rect x="132" y="112" width="46" height="52" rx="10" fill="#8B5E3C"/>
+      <rect x="132" y="112" width="46" height="14" rx="7" fill="#7A4E2D"/>
+      <rect x="40" y="66" width="120" height="118" rx="16" fill="#F5862E"/>
+      <rect x="44" y="150" width="112" height="30" rx="14" fill="#E87724" opacity="0.5"/>
+      <rect x="14" y="96" width="30" height="60" rx="15" fill="#3E7BC4"/>
+      <rect x="156" y="96" width="30" height="60" rx="15" fill="#3E7BC4"/>
+      <path d="M 140 72 L 164 124" stroke="#7A4E2D" stroke-width="11" stroke-linecap="round" fill="none"/>
+      <path d="M 52 66 A 48 44 0 0 1 148 66 Z" fill="#F7C325"/>
+      <rect x="34" y="58" width="132" height="14" rx="7" fill="#F7C325"/>
+      <rect x="34" y="66" width="132" height="6" rx="3" fill="#E3AD12"/>
+      <circle cx="82" cy="112" r="10" fill="#1F1F1F"/>
+      <circle cx="118" cy="112" r="10" fill="#1F1F1F"/>
+      <circle cx="78.5" cy="108.5" r="3.4" fill="#FFFFFF"/>
+      <circle cx="114.5" cy="108.5" r="3.4" fill="#FFFFFF"/>
+      <path d="M 88 138 Q 100 148 112 138" stroke="#1F1F1F" stroke-width="5" stroke-linecap="round" fill="none"/>
+    </g>
+  </defs>
+
+  <rect x="0" y="0" width="1536" height="1024" fill="#FFF6E9"/>
+  <ellipse cx="700" cy="895" rx="450" ry="42" fill="#F2D8B8"/>
+
+  <!-- 苹果剖面（小房子） -->
+  <rect x="662" y="122" width="20" height="64" rx="9" fill="#7A4E2D" transform="rotate(-4 672 154)"/>
+  <ellipse cx="730" cy="150" rx="56" ry="26" fill="#6FA84C" transform="rotate(-18 730 150)"/>
+  <circle cx="680" cy="520" r="345" fill="#D94F3D" stroke="#B23A2E" stroke-width="10"/>
+  <circle cx="680" cy="520" r="280" fill="#FBE9C8"/>
+
+  <!-- 三个房间 -->
+  <rect x="445" y="350" width="130" height="300" rx="22" fill="#FFF7E2" stroke="#E8C9A0" stroke-width="6"/>
+  <rect x="615" y="350" width="130" height="300" rx="22" fill="#FFF7E2" stroke="#E8C9A0" stroke-width="6"/>
+  <rect x="785" y="350" width="130" height="300" rx="22" fill="#FFF7E2" stroke="#E8C9A0" stroke-width="6"/>
+
+  <!-- 糖块 -->
+  <g fill="#F5C24B" stroke="#E3AD12" stroke-width="3">
+    <rect x="458" y="560" width="42" height="42" rx="9"/><rect x="508" y="560" width="42" height="42" rx="9"/>
+    <rect x="458" y="510" width="42" height="42" rx="9"/><rect x="508" y="510" width="42" height="42" rx="9"/>
+    <rect x="458" y="460" width="42" height="42" rx="9"/><rect x="508" y="460" width="42" height="42" rx="9"/>
+    <rect x="628" y="560" width="42" height="42" rx="9"/><rect x="678" y="560" width="42" height="42" rx="9"/>
+    <rect x="628" y="510" width="42" height="42" rx="9"/><rect x="678" y="510" width="42" height="42" rx="9"/>
+    <rect x="628" y="460" width="42" height="42" rx="9"/>
+    <rect x="798" y="560" width="42" height="42" rx="9"/><rect x="848" y="560" width="42" height="42" rx="9"/>
+    <rect x="798" y="510" width="42" height="42" rx="9"/><rect x="848" y="510" width="42" height="42" rx="9"/>
+    <rect x="798" y="460" width="42" height="42" rx="9"/><rect x="848" y="460" width="42" height="42" rx="9"/>
+    <rect x="798" y="410" width="42" height="42" rx="9"/>
+  </g>
+
+  <!-- 标注：果皮外墙 -->
+  <text x="90" y="330" font-family="PingFang SC, Hiragino Sans GB, Heiti SC, sans-serif" font-size="46" font-weight="bold" fill="#7A4E2D">果皮外墙</text>
+  <line x1="300" y1="345" x2="385" y2="435" stroke="#B08968" stroke-width="5"/>
+  <circle cx="390" cy="440" r="8" fill="#B23A2E"/>
+
+  <!-- 标注：果肉房间 -->
+  <text x="90" y="700" font-family="PingFang SC, Hiragino Sans GB, Heiti SC, sans-serif" font-size="46" font-weight="bold" fill="#7A4E2D">果肉房间</text>
+  <line x1="300" y1="680" x2="455" y2="700" stroke="#B08968" stroke-width="5"/>
+  <circle cx="462" cy="701" r="8" fill="#E8C9A0"/>
+
+  <!-- 标注：糖仓 -->
+  <text x="1075" y="400" font-family="PingFang SC, Hiragino Sans GB, Heiti SC, sans-serif" font-size="46" font-weight="bold" fill="#7A4E2D">糖仓</text>
+  <line x1="1068" y1="415" x2="930" y2="470" stroke="#B08968" stroke-width="5"/>
+  <circle cx="922" cy="474" r="8" fill="#E3AD12"/>
+
+  <!-- 小方举锤子 -->
+  <use xlink:href="#guide" href="#guide" transform="translate(1120 560) scale(1.55)"/>
+  <line x1="1348" y1="692" x2="1240" y2="600" stroke="#8B5E3C" stroke-width="12" stroke-linecap="round"/>
+  <rect x="1188" y="552" width="76" height="48" rx="10" fill="#9AA7B8" transform="rotate(-38 1226 576)"/>
+</svg>

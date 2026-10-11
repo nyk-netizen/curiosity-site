@@ -121,3 +121,44 @@ node scripts/test_book_layout.js /tmp/curiosity-fix1.html
 本节取代前文关于 SVG 黑名单/ID 改写及「双语英文可缺省」的旧说明。SVG 在图片中显示，依赖外部资源的内容不会加载；本次检查的是产物结构、引用字节和脚本逻辑，没有新增真实浏览器截图、实际听音或下载验收。
 
 本次仅修改 `scripts/validate_book.py`、`scripts/render_book.py`、`scripts/test_book_tools.py`、`assets/book.schema.json` 的校验约束，并追加本节。未修改样例、examples、blocklist、模板、README、SKILL 或 references；未读取 `_runs/`，未安装包，未 commit/push，未写 Codex 记忆、设置或密钥。
+
+## fix3
+
+### 修改
+
+- `scripts/render_book.py`：删除正文之间的独立追问卡，全部正文连续翻页；将追问合并到最后的「读完啦」页。标题使用 `child_page.prompt`，第一位为预填 `child_words` 的大输入框，提示「孩子自己说的话，家长帮忙写下来，原话照录」。第二位为小字「说不出来的话，看看这些？」及每章追问按钮；之后保留 reaction、parent_note 和反馈下载。样例总页数从 12 减为 9；未放行样例为 10 页。
+- `assets/book_template.html`：提示按钮使用较小字号、浅色背景，点击后保留问题文字并显示「已选」，继续用原有 localStorage 和 `follow_ups_tapped` 导出逻辑；输入框文字仍原样进入 `child_words`，反馈字段不变。移除旧追问卡样式，为「读完啦」页增加紧凑排版及宽度 ≥ 768、高度 680–800 的适配，输入框最低保留 100px；反馈控件仍可向下滚动。提示按钮没有朗读按钮。
+- 封面、放行横幅、家长卡位置和展开逻辑保持原有行为：已放行家长卡折叠在最后一页反馈区之后；未放行家长卡在封面之后默认展开。键盘、滑动和正文朗读逻辑未变；正文朗读索引随实际页序连续生成。
+- `scripts/test_book_interactions.js`：从实际 HTML 检查连续正文、减少后的页数、追问按钮文字及所在页、输入框优先顺序、末页无朗读按钮；翻到「读完啦」后点击提示按钮、录入原话并检查下载的反馈全部字段，覆盖已选文字、去重、保存/恢复及拒绝存储时的导出。
+- `scripts/test_book_tools.py`：增加三种放行状态的末页结构、页序、原话预填、HTML 转义和家长卡回归；遍历样例和全部 examples 校验、渲染，数量要求改为至少五本，允许后续新增示例。`scripts/test_book_layout.js` 增加末页输入框及全部提示按钮不滚动可见、小字号和无横向溢出的真实浏览器断言，并兼容未放行书的第一页正文位置。
+
+### 自测结果
+
+- `PYTHONDONTWRITEBYTECODE=1 python3 scripts/test_book_tools.py`：**18 项全部通过，退出码 0**。
+- 任务指定五本书逐本 CLI 渲染及 JavaScript 交互回归通过。执行期间工作区新增 `examples/t10_zcode_代码画图_v2/book.json`，额外检查也通过；没有修改任何书的 JSON。
+
+| 书 | 正文页数 | 翻页总数 | 校验 / 渲染 / 交互回归 |
+| --- | --- | --- | --- |
+| `assets/sample_book.json` | 7 | 9 | 全部通过 |
+| `examples/t10_claude-code_代码画图/book.json` | 8 | 10 | 全部通过 |
+| `examples/t10_codex_图片书/book.json` | 7 | 9 | 全部通过 |
+| `examples/t10_zcode_代码画图/book.json` | 7 | 10 | 全部通过 |
+| `examples/t22_codex_孩子当主角/book.json` | 6 | 9 | 全部通过 |
+| `examples/t10_zcode_代码画图_v2/book.json`（额外） | 7 | 10 | 全部通过 |
+
+- 另用 `/tmp/curiosity-fix3-books/prefilled.json` 检查包含空格、换行、`<` 和 `&` 的已有孩子原话：HTML 正确转义，交互回归确认预填及不编辑时的反馈导出保留原话。临时 JSON/HTML 全部放在 `/tmp/`，样例 HTML 为 `/tmp/curiosity-fix3.html`。
+- `node --check scripts/test_book_layout.js`、`git diff --check` 均通过。
+- **真实视口布局验收未完成**：实际运行 `node scripts/test_book_layout.js /tmp/curiosity-fix3.html`，Chrome 启动即以 `SIGABRT` 退出，脚本退出码 1，没有取得截图或几何数据。备用浏览器通道拒绝 `file:///tmp/curiosity-fix3.html`，说明 URL 策略仅允许 http/https，禁止绕过；本次没有绕过此限制。因此不能声称已实测满足 1280×800 等视口下的输入框和提示按钮可见要求。JavaScript 回归使用 DOM 替身，也不代表实际听音或浏览器下载已验收。
+
+可复跑命令：
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/test_book_tools.py
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/render_book.py assets/sample_book.json /tmp/curiosity-fix3.html
+node scripts/test_book_interactions.js /tmp/curiosity-fix3.html
+node scripts/test_book_layout.js /tmp/curiosity-fix3.html
+```
+
+### 范围
+
+本次仅修改 `scripts/render_book.py`、`assets/book_template.html`、三个 `scripts/test_*` 文件，并按要求追加本节。未修改 schema 或任何 book.json，未读取 `_runs/`，未安装包，未 commit/push。工作区同时出现 README、SKILL、references 和新增示例等其他变动，均非本任务写入，未还原或覆盖。
