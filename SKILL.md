@@ -83,7 +83,7 @@ metadata:
 ```
 curiosity-site-books/
 ├─ _family/profile.json          家庭档案（含向导角色卡、历史记录）
-└─ 2026-10-11_水果为什么会腐烂/
+└─ 2026-10-11_为什么会打雷/
    ├─ book.json                  这本书的全部内容，通过校验
    ├─ images/                    每页的画面（.png 或 .svg）和角色参考图
    ├─ book.html                  单文件绘本，断网也能翻、能朗读

@@ -1,19 +1,23 @@
 {
   "schema_version": "1.0",
-  "title": "水果城堡被谁拆了？",
+  "title": "云里的大鼓是谁敲的？",
   "mode": "new",
   "continues_from": null,
   "language": "zh",
   "question": {
-    "original": "水果为什么会腐烂？",
+    "original": "为什么会打雷？",
     "age": "5岁"
   },
   "guide": {
-    "name": "小方",
-    "look": "一个橙色的方块小工人，戴黄色安全帽，圆圆的黑眼睛，两只短短的蓝胳膊，背着一个工具包",
-    "colors": ["橙色", "黄色", "蓝色"],
-    "catchphrase": "戴好安全帽，我们进去看看！",
-    "image_anchor": "a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag",
+    "name": "阿尺",
+    "look": "一把会走路的黄色折尺，身体是一节一节的，最上面一节有两只圆眼睛，穿一双小红靴子，身后别着一支铅笔",
+    "colors": [
+      "黄色",
+      "红色",
+      "黑色"
+    ],
+    "catchphrase": "量一量，就知道了！",
+    "image_anchor": "a walking yellow folding ruler with zigzag body segments, two round eyes on the top segment, small red boots and a pencil tucked behind it",
     "reference_image": null
   },
   "render": {
@@ -23,89 +27,89 @@
   },
   "chapters": [
     {
-      "name": "第一章 · 水果城堡出事了",
+      "name": "第一章 · 天上有人在敲鼓",
       "role": "discover",
       "pages": [
         {
-          "narration": "桌上的香蕉长出了黑点点，苹果变得软软的。小方说：「戴好安全帽，我们进去看看！」",
+          "narration": "轰隆隆！窗外打雷了。阿尺把自己折成一架望远镜：「别怕，我们去云里看看是谁在敲鼓。」",
           "visual": {
-            "description": "厨房桌面，一根带黑点的香蕉和一个有软塌塌凹坑的苹果，小方站在苹果旁边，正在扣安全帽",
-            "image_prompt": "A kitchen table with a spotted banana and a soft dented apple, a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag stands beside the apple buckling its helmet, warm morning light, simple geometric shapes, clean flat colors",
+            "description": "雨天的窗边，窗外是一大团灰色的云，阿尺把身体折成望远镜的样子，趴在窗台上往云里看",
+            "image_prompt": "A cozy window on a rainy day with a big grey cloud outside, a walking yellow folding ruler with zigzag body segments, two round eyes on the top segment, small red boots and a pencil tucked behind it folds itself into a telescope shape on the windowsill to look at the cloud, warm indoor light, simple geometric shapes",
             "image": null
           }
         },
         {
-          "narration": "原来水果是一座城堡：果皮是外墙，里面装满了糖和水，是给种子准备的粮仓。",
+          "narration": "雷雨云像一座很高很高的塔。塔里的小冰粒被风吹上去、又掉下来，互相撞来撞去。",
           "visual": {
-            "description": "苹果被剖开成一座城堡的剖面：红色外墙是果皮，里面一格格是装糖和水的仓库，正中间是种子房间，小方举着手电筒站在门口",
-            "image_prompt": "Cutaway view of an apple drawn as a castle, red outer wall as the peel, rooms full of sugar and water, seeds in a central chamber, a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag holds a flashlight at the gate, architectural section drawing style, soft colors",
+            "description": "雷雨云画成一座很高的塔的剖面，塔里有向上和向下的箭头表示风，很多小冰粒在里面碰撞，阿尺站在塔底仰头看",
+            "image_prompt": "Cutaway of a tall thundercloud drawn as a tower, arrows showing wind carrying tiny ice grains up and down, grains bumping into each other inside, a walking yellow folding ruler with zigzag body segments, two round eyes on the top segment, small red boots and a pencil tucked behind it stands at the base looking up, architectural section style, soft blues and greys",
             "image": null
           }
         }
       ],
       "follow_up": {
-        "question": "为什么香蕉比苹果坏得快？",
-        "why": "通向果皮厚薄、含水量和成熟速度"
+        "question": "云那么软，冰粒是从哪里来的？",
+        "why": "通向高空温度低、水汽结冰"
       }
     },
     {
-      "name": "第二章 · 谁在拆城堡",
+      "name": "第二章 · 云里攒了好多电",
       "role": "structure",
       "pages": [
         {
-          "narration": "空气里飘着看不见的霉菌孢子和细菌。它们落在果皮上，想进去吃里面的糖。",
+          "narration": "冰粒撞得多了，就带上了电。塔顶攒了一种电，塔底攒了另一种电，越攒越多。",
           "visual": {
-            "description": "城堡外墙上空飘着很多小圆点和小毛球，有的落在墙上排队，小方举着放大镜看它们",
-            "image_prompt": "Tiny floating dots and fuzzy spores drifting in the air and landing on a red castle wall made of apple peel, a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag looks at them through a magnifying glass, playful geometric style, bright daylight",
+            "description": "云塔的顶部聚着很多带加号的小粒子，底部聚着很多带减号的小粒子，阿尺用自己的身体当尺子量塔顶到塔底的距离",
+            "image_prompt": "A thundercloud tower with many small particles marked plus gathered at the top and particles marked minus gathered at the bottom, a walking yellow folding ruler with zigzag body segments, two round eyes on the top segment, small red boots and a pencil tucked behind it stretches out to measure the tower, clean diagram style, gentle colors",
             "image": null
           }
         },
         {
-          "narration": "外墙好好的，它们进不去。可一旦磕破了、裂开了，城墙就有了大门，它们就冲进去啦。",
+          "narration": "电攒得太多，就会一下子冲出去，变成一道闪电，像在天上搭了一座发光的桥。",
           "visual": {
-            "description": "城墙上有一道磕出来的裂缝，小圆点和小毛球排着队从裂缝钻进去，小方指着裂缝，表情吃惊",
-            "image_prompt": "A crack in a red castle wall made of apple peel, tiny dots and fuzzy spores marching through the opening into the castle, a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag points at the crack looking surprised, simple shapes, clear colors",
+            "description": "一道亮黄色的闪电从云塔底部一直连到远处的另一朵云，像一座发光的桥，阿尺在远处的小山坡上用铅笔把这座桥画下来",
+            "image_prompt": "A bright yellow lightning bolt connecting the bottom of a cloud tower to another cloud like a glowing bridge in the sky, a walking yellow folding ruler with zigzag body segments, two round eyes on the top segment, small red boots and a pencil tucked behind it sketches the bridge with its pencil from a faraway hill, dramatic but friendly lighting, geometric style",
             "image": null
           }
         },
         {
-          "narration": "霉菌一边吃一边长出毛茸茸的丝，细菌一个变两个。城堡慢慢变软、变色、变味了。",
+          "narration": "闪电特别特别烫，旁边的空气一下子被烫得猛地鼓起来，「嘭」地推开。这个声音，就是雷。",
           "visual": {
-            "description": "城堡内部，白绿色的毛茸茸细丝在房间里蔓延，小圆点一个分成两个，墙壁变成褐色、塌下去一点，小方捂着鼻子",
-            "image_prompt": "Inside the apple castle, white and green fuzzy threads spreading through the rooms, tiny round dots splitting into two, walls turning brown and sagging, a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag holds its nose, gentle humor, geometric children's book style",
+            "description": "闪电旁边的空气画成一圈一圈向外推开的波纹，波纹上写着「嘭」，阿尺用两只手捂着耳朵但在笑",
+            "image_prompt": "Rings of air pushing outward from a lightning bolt drawn as expanding circles, a big sound word in the middle, a walking yellow folding ruler with zigzag body segments, two round eyes on the top segment, small red boots and a pencil tucked behind it covers its ears while smiling, playful flat colors, simple shapes",
             "image": null
           }
         }
       ],
       "follow_up": {
-        "question": "那冰箱里的水果为什么坏得慢？",
-        "why": "通向温度和微生物生长速度"
+        "question": "为什么总是先看到闪电，后听到雷？",
+        "why": "通向光速和声速"
       }
     },
     {
-      "name": "第三章 · 拆下来的城堡去哪了",
+      "name": "第三章 · 数一数，雷有多远",
       "role": "magic",
       "pages": [
         {
-          "narration": "坏掉的水果落到土里，被细菌和小虫子拆成很小很小的碎块，变成泥土里的养分。",
+          "narration": "光跑得比声音快得多。看到闪电以后开始数数，每数到3，雷就离我们大约1公里。",
           "visual": {
-            "description": "地面剖面：上面是一个塌掉的苹果，下面土层里有小虫子和小圆点在搬运碎块，碎块流向一棵小苗的根，小方蹲在土里看",
-            "image_prompt": "Ground section drawing, a collapsed apple on the soil surface, below it earthworms and tiny dots carrying small pieces down to the roots of a young seedling, a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag crouches in the soil watching, earthy warm colors, simple geometric shapes",
+            "description": "画面左边一道闪电，右边一串声音波纹慢慢追过来，中间阿尺举着手指在数「1、2、3」，地上画着一段刻度尺标着「1公里」",
+            "image_prompt": "A lightning flash on the left and sound waves slowly travelling toward the right, a walking yellow folding ruler with zigzag body segments, two round eyes on the top segment, small red boots and a pencil tucked behind it counts on its fingers in the middle, a measuring scale on the ground marked in steps, clear diagram style, warm colors",
             "image": null
           }
         },
         {
-          "narration": "所以水果要轻拿轻放，放在凉快的地方。小方说：「拆城堡的工人，也是盖新家的工人。」",
+          "narration": "打雷的时候，待在屋里就很安全。阿尺说：「雷是空气在打鼓，我们在家里听就好。」",
           "visual": {
-            "description": "回到厨房，小方小心地把一个完好的苹果放进果篮，旁边的窗台上有一盆刚冒芽的小苗",
-            "image_prompt": "Back in the kitchen, a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag gently places a shiny whole apple into a fruit basket, a small sprouting plant on the windowsill behind, calm afternoon light, clean flat geometric style",
+            "description": "温暖的房间里，窗外还在下雨，阿尺坐在小凳子上，手里拿着纸和铅笔，在纸上记下这次数到了几",
+            "image_prompt": "A warm room with rain outside the window, a walking yellow folding ruler with zigzag body segments, two round eyes on the top segment, small red boots and a pencil tucked behind it sits on a little stool writing numbers on a sheet of paper, calm cozy lighting, clean flat geometric style",
             "image": null
           }
         }
       ],
       "follow_up": {
-        "question": "霉菌是从哪里来的？",
-        "why": "通向孢子、真菌和它们在自然里的分解作用"
+        "question": "闪电打到地上会怎么样？",
+        "why": "通向避雷针和户外防雷常识"
       }
     }
   ],
@@ -115,24 +119,34 @@
   },
   "parent_card": {
     "hard_notes": [
-      "水果腐烂主要是微生物（霉菌、酵母、细菌）在分解果肉里的糖和细胞壁。",
-      "果皮是物理屏障，磕碰和裂口让微生物更容易进入；水果自身的酶和乙烯也会让它继续成熟、变软，熟过头后更容易被侵入。",
-      "低温能同时减慢微生物生长和水果自身的代谢，所以冰箱里坏得慢。"
+      "雷雨云里冰晶和霰粒在上升气流中碰撞，造成电荷分离，云顶和云底积累相反的电荷，电压大到一定程度就放电，形成闪电。",
+      "闪电通道的温度最高可达约 2.8 万摄氏度（NWS：5 万华氏度，约为太阳表面的 5 倍），空气被瞬间加热、急剧膨胀又迅速收缩，产生的声波就是雷声。",
+      "光速远大于声速（声音在空气里约每秒 340 米），所以先见闪电、后闻雷声；秒数除以 3 约等于公里数。"
     ],
     "sources": [
-      { "title": "Food spoilage（Wikipedia）", "where": "https://en.wikipedia.org/wiki/Food_spoilage", "used_for": "微生物导致腐败、温度的作用" },
-      { "title": "Ethylene as a plant hormone（Wikipedia）", "where": "https://en.wikipedia.org/wiki/Ethylene_as_a_plant_hormone", "used_for": "乙烯与果实成熟" }
+      {
+        "title": "Understanding Lightning: Thunder（美国国家气象局 NWS）",
+        "where": "https://www.weather.gov/safety/lightning-science-thunder",
+        "used_for": "雷声的成因"
+      },
+      {
+        "title": "Understanding Lightning（美国国家气象局 NWS）",
+        "where": "https://www.weather.gov/safety/lightning-science-overview",
+        "used_for": "云中起电与放电"
+      }
     ],
     "uncertain": [
-      "书里把「拆城堡」都算在外来的微生物头上，其实水果自己的酶也在分解自己，为了讲清楚省掉了这一层。",
-      "没有区分霉菌和细菌，两者都画成了「工人」；孩子追问时可以再分开讲。"
+      "云里为什么会起电，主流解释是冰晶和霰粒碰撞起电，但细节学界仍在研究；书里简化成「撞多了就带电」。",
+      "「数到 3 约 1 公里」是近似，声速随温度变化，只适合估算。"
     ],
     "sensitive": {
-      "level": "none",
-      "topics": [],
-      "how_handled": "不涉及敏感话题。"
+      "level": "notice",
+      "topics": [
+        "fear"
+      ],
+      "how_handled": "很多孩子怕打雷。书里讲清楚雷是怎么来的，最后落到「在屋里很安全」，没有描写雷击伤人。给家长的户外常识：听得到雷声，就说明在雷击范围内，应尽快进屋；不在大树下躲雨、远离水边。这些按孩子的情况由家长来讲。"
     },
-    "weekend_project": "拿两个苹果，一个轻轻磕一下，一个完好，都放在室温下，每天拍一张照片，看哪个先出现褐色斑点。",
+    "weekend_project": "下次打雷时和孩子一起数秒：看到闪电开始数，听到雷停下，把数字除以 3，记在纸上，看雷是越来越近还是越来越远。",
     "approval": {
       "status": "approved",
       "note": "样例书",

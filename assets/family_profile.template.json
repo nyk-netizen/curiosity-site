@@ -1,0 +1,40 @@
+{
+  "profile_version": "1.0",
+  "child": {
+    "nickname": "小名或昵称，不写真名",
+    "age": "5岁",
+    "language": "zh",
+    "reading": "不认字"
+  },
+  "interests": ["车与工程机械"],
+  "fears": [],
+  "parent_first_topics": ["death", "body"],
+  "guide": {
+    "name": "",
+    "look": "",
+    "colors": [],
+    "catchphrase": "",
+    "image_anchor": "",
+    "reference_image": null,
+    "made_with_child": true,
+    "child_words": "孩子描述角色时的原话，照录",
+    "created": "YYYY-MM-DD"
+  },
+  "reading_mode": "家长读",
+  "output": "看当前 agent 能做什么",
+  "length": "standard",
+  "approval": "every_book",
+  "sharing": "family_only",
+  "history": [
+    {
+      "date": "YYYY-MM-DD",
+      "folder": "2026-10-11_为什么会打雷",
+      "title": "书名",
+      "mode": "new",
+      "reaction": "loved",
+      "follow_ups_tapped": [],
+      "child_words": "",
+      "parent_note": ""
+    }
+  ]
+}
