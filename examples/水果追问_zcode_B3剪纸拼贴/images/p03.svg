@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1536 1024" width="1536" height="1024">
+  <defs>
+    <filter id="cut" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="5" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="6" result="d"/>
+      <feGaussianBlur in="d" stdDeviation="5" result="b"/>
+      <feOffset in="b" dx="5" dy="7" result="o"/>
+      <feColorMatrix in="o" values="0 0 0 0 0.25  0 0 0 0 0.18  0 0 0 0 0.1  0 0 0 0.35 0" result="s"/>
+      <feMerge><feMergeNode in="s"/><feMergeNode in="d"/></feMerge>
+    </filter>
+    <filter id="fiber"><feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3" seed="11"/><feColorMatrix values="0 0 0 0 0.5  0 0 0 0 0.42  0 0 0 0 0.32  0 0 0 0.13 0"/></filter>
+    <g id="guide">
+      <ellipse cx="0" cy="97" rx="110" ry="16" fill="#000" opacity=".08"/>
+      <rect x="60" y="-35" width="44" height="70" rx="10" fill="#A07C55"/>
+      <path d="M-83,-25 L-160,-115" stroke="#4A82C4" stroke-width="30" stroke-linecap="round" fill="none"/>
+      <path d="M89,-13 L97,67" stroke="#4A82C4" stroke-width="30" stroke-linecap="round" fill="none"/>
+      <rect x="-85" y="-85" width="170" height="170" rx="18" fill="#EE8A3A"/>
+      <path d="M-97,-77 L97,-77 L97,-89 C97,-150 53,-177 0,-177 C-53,-177 -97,-150 -97,-89 Z" fill="#F3C64E"/>
+      <rect x="-15" y="-165" width="30" height="80" rx="10" fill="#F3C64E" opacity=".6"/>
+      <circle cx="-30" cy="-13" r="13" fill="#2B2018"/><circle cx="30" cy="-13" r="13" fill="#2B2018"/>
+      <circle cx="-26" cy="-18" r="4" fill="#fff"/><circle cx="34" cy="-18" r="4" fill="#fff"/>
+      <path d="M-20,27 Q0,43 20,27" stroke="#2B2018" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <rect x="-60" y="81" width="36" height="16" rx="6" fill="#4A82C4"/>
+      <rect x="25" y="81" width="36" height="16" rx="6" fill="#4A82C4"/>
+    </g>
+  </defs>
+
+  <rect width="1536" height="1024" fill="#F4EBDD"/>
+  <rect width="1536" height="1024" filter="url(#fiber)"/>
+  <path d="M0,860 C300,840 700,880 1000,850 C1250,830 1400,860 1536,845 L1536,1024 L0,1024 Z" fill="#E6D3B4" filter="url(#cut)"/>
+
+  <!-- 冰箱（装满水果） -->
+  <g filter="url(#cut)">
+    <rect x="850" y="150" width="560" height="700" rx="26" fill="#DCE9F3"/>
+  </g>
+  <g filter="url(#cut)">
+    <rect x="882" y="182" width="496" height="636" rx="18" fill="#F7F3EA"/>
+  </g>
+  <g filter="url(#cut)">
+    <rect x="882" y="420" width="496" height="24" rx="10" fill="#DCE9F3"/>
+  </g>
+  <g filter="url(#cut)">
+    <rect x="882" y="620" width="496" height="24" rx="10" fill="#DCE9F3"/>
+  </g>
+  <g filter="url(#cut)">
+    <path d="M960,398 C954,352 980,328 1012,328 C1044,328 1070,352 1064,398 C1060,422 1040,430 1012,430 C984,430 964,422 960,398 Z" fill="#D4574C"/>
+    <path d="M998,328 C1004,312 1018,308 1026,314 C1020,328 1006,332 998,328 Z" fill="#7FA86A"/>
+    <path d="M1110,394 C1105,354 1130,332 1162,332 C1194,332 1219,354 1214,394 C1211,416 1192,424 1162,424 C1132,424 1113,416 1110,394 Z" fill="#E9705F"/>
+    <circle cx="1290" cy="396" r="32" fill="#F2D38E"/>
+    <ellipse cx="980" cy="590" rx="44" ry="52" fill="#D4574C"/>
+    <circle cx="1090" cy="596" r="32" fill="#F2D38E"/>
+    <circle cx="1180" cy="600" r="30" fill="#F2D38E"/>
+    <ellipse cx="1290" cy="596" rx="42" ry="50" fill="#E9705F"/>
+  </g>
+  <!-- 冰箱上的小雪花 -->
+  <g filter="url(#cut)">
+    <g transform="translate(1130 260)" stroke="#A9C8E8" stroke-width="7" stroke-linecap="round">
+      <line x1="-20" y1="0" x2="20" y2="0"/>
+      <line x1="-10" y1="-17" x2="10" y2="17"/>
+      <line x1="-10" y1="17" x2="10" y2="-17"/>
+    </g>
+  </g>
+
+  <!-- 桌上的香蕉（暖和的家） -->
+  <g filter="url(#cut)">
+    <ellipse cx="360" cy="700" rx="250" ry="36" fill="#F8E6BE"/>
+  </g>
+  <g filter="url(#cut)">
+    <path d="M200,660 C230,590 330,570 420,600 C500,626 540,660 530,680 C520,700 460,690 400,678 C330,664 240,680 200,660 Z" fill="#F2D38E"/>
+    <path d="M215,655 C250,600 330,585 400,605" stroke="#E3C77E" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <path d="M195,662 C230,610 320,596 410,622" stroke="#F8E9B8" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <rect x="500" y="640" width="34" height="34" rx="8" fill="#6B4A2B" transform="rotate(18 517 657)"/>
+  </g>
+
+  <!-- 标注 -->
+  <text x="140" y="150" font-family="PingFang SC, Hiragino Sans GB, Heiti SC, sans-serif" font-size="54" font-weight="bold" fill="#4A3B2C">香蕉怕冷</text>
+
+  <!-- 小方在香蕉和冰箱之间 -->
+  <g filter="url(#cut)"><use xlink:href="#guide" href="#guide" transform="translate(640 790) scale(0.82)"/></g>
+</svg>

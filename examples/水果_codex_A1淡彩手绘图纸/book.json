@@ -1,0 +1,188 @@
+{
+  "schema_version": "1.0",
+  "title": "水果小房子的慢工地",
+  "mode": "new",
+  "continues_from": null,
+  "language": "zh",
+  "age_band": "large",
+  "question": {
+    "original": "水果为什么会腐烂？",
+    "age": "5岁",
+    "understood_as": "家长转述孩子在当场回应后又问「为什么冰箱里的不容易坏」。本书一并回答腐烂原因和冷藏减慢变化；没有上一册。"
+  },
+  "guide": {
+    "name": "小方",
+    "look": "一个橙色的方块小工人，戴黄色安全帽，圆圆的黑眼睛，两只短短的蓝胳膊，背着一个工具包",
+    "colors": [
+      "橙色",
+      "黄色",
+      "蓝色"
+    ],
+    "catchphrase": "戴好安全帽，我们进去看看！",
+    "image_anchor": "a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag",
+    "reference_image": "images/guide_ref.jpg"
+  },
+  "protagonist": null,
+  "render": {
+    "route": "image",
+    "style": "A1 淡彩手绘图纸",
+    "agent": "Codex"
+  },
+  "chapters": [
+    {
+      "name": "第一章 · 发现与走进去",
+      "role": "discover",
+      "pages": [
+        {
+          "narration": "桌上的梨，放几天会变软，有时还会长霉。小方拿来图纸：我们看看，变化从哪里开始。",
+          "visual": {
+            "description": "干净桌面上同一种梨的两种状态：左边新鲜、右边稍软并有一小块温和的浅色霉斑；小方在右下角拿空白图纸，不触摸梨。",
+            "image_prompt": "Two pears on a simple tabletop, one fresh and one softened with a tiny pale mold patch. Beside them, a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag holds a blank drawing sheet without touching fruit. Child-height view, quiet daylight, restrained red, yellow and green accents, ample ivory margins, gentle educational illustration.",
+            "image": "images/p01.jpg"
+          }
+        },
+        {
+          "narration": "把梨想成小房子：果皮像外墙，保护里面。梨里没有真的房间；这是帮我们看懂的图。",
+          "visual": {
+            "description": "一个大梨剖面，果皮成为薄外墙，果肉内部两间空房是明确的想象图；小方指着外墙，画面不出现挖洞操作。",
+            "image_prompt": "A large pear cutaway imagined as a tiny house, with a thin protective skin surrounding two simple empty rooms and a visible seed core. a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag points toward its outer skin from the lower right. Child-height architectural section, warm pale yellow flesh, delicate contours, quiet ivory paper and generous empty margins.",
+            "image": "images/p02.jpg"
+          }
+        }
+      ],
+      "follow_up": {
+        "question": "果皮破了，水果就一定会坏吗？",
+        "why": "通向果皮的保护作用与感染条件，强调破损增加风险但非必然。"
+      }
+    },
+    {
+      "name": "第二章 · 结构与它怎么工作",
+      "role": "structure",
+      "pages": [
+        {
+          "narration": "梨摘下来，里面也还在变化。让它变熟的小帮手，会把果肉的连接松开，梨就慢慢变软。",
+          "visual": {
+            "description": "梨剖面里的放大圈展示相邻果肉细胞之间的连接由紧密到松散；不用剪刀、工人或有脸的酶，小方只拿指示棒。",
+            "image_prompt": "A pear section with a connected magnifying circle showing rounded fruit cells, firmly joined on one side and more loosely joined on the other. a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag observes with a pointer beside the diagram. No literal workers inside the fruit. Quiet daylight, pale yellow and muted green, airy sepia pen detail on ivory.",
+            "image": "images/p03.jpg"
+          }
+        },
+        {
+          "narration": "霉菌也是很小的生物。它能利用果肉里的养分长大，把果肉分解；水果就可能腐烂。",
+          "visual": {
+            "description": "梨皮一处小裂口连向放大圈，圈内只有温和的细菌丝伸入果肉；菌丝没有脸和工具。小方站旁边看，不摸。",
+            "image_prompt": "A pear skin detail connected by a fine leader to a magnified circle of delicate branching mold filaments extending into fruit tissue, with a small area of softened flesh. a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag watches from beside the pear without touching it. Gentle botanical detail, no faces on mold, muted green, pale yellow and ivory paper.",
+            "image": "images/p04.jpg"
+          }
+        },
+        {
+          "narration": "冰箱里比较冷。梨里面的变化慢了，许多微生物也长得慢了，所以水果能多放一阵。",
+          "visual": {
+            "description": "打开的冷藏冰箱轴测图：一个大梨剖面放在冷藏架上；两处小放大圈显示连接较完整的果肉与少量菌丝。小方在冰箱外指向梨。",
+            "image_prompt": "An open refrigerator drawn as a simple architectural cutaway, containing one large pear on a shelf. Two small connected circles show intact fruit cells and sparse mold filaments, suggesting slower change in cool air. a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag points from outside. Pale blue wash, warm yellow pear, quiet daylight, wide ivory margins; no ice on the fruit.",
+            "image": "images/p05.jpg"
+          }
+        }
+      ],
+      "follow_up": {
+        "question": "这些小霉菌是从哪里来的？",
+        "why": "通向微生物在环境中分布以及霉菌孢子的传播。"
+      }
+    },
+    {
+      "name": "第三章 · 魔法时刻与回到生活",
+      "role": "magic",
+      "pages": [
+        {
+          "narration": "冰箱让它慢慢变，不是永远不变。放得太久，冷藏的水果也会坏。小房子的图纸看到这里啦。",
+          "visual": {
+            "description": "同一个冷藏架上的梨与温和的小霉斑，放大圈里仍有少量生长菌丝；小方收起空白图纸，画面明亮，不画全冰箱霉变。",
+            "image_prompt": "A single pear on a refrigerator shelf with one tiny pale mold patch, linked to a small circle showing a few continuing mold filaments. a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag rolls up a blank drawing beside the open refrigerator, remaining outside it. Bright reassuring scene, sparse pale blue and yellow washes, generous ivory paper; no rotten clutter.",
+            "image": "images/p06.jpg"
+          }
+        },
+        {
+          "narration": "回到家，轻轻拿水果。成熟的梨可以冷藏。看到发霉的，叫大人处理：不摸、不凑近闻、不尝。",
+          "visual": {
+            "description": "回到真实明亮厨房：大人的手把干净成熟的梨放到冷藏架的浅盘里；小方站在台边带路，没有孩子肖像、霉果或刀具。",
+            "image_prompt": "Back in a bright simple kitchen, adult hands gently place clean ripe pears in a shallow tray on an open refrigerator shelf. a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag stands beside the counter, retiring from the tour. Real fruit without imaginary rooms, child-height view, delicate sepia lines, pale yellow and blue washes, large quiet ivory margins.",
+            "image": "images/p07.jpg"
+          }
+        }
+      ],
+      "follow_up": {
+        "question": "每种水果都喜欢住冰箱吗？",
+        "why": "通向不同水果的适宜保存方式与冷害。"
+      }
+    }
+  ],
+  "child_page": {
+    "prompt": "你还想知道什么？说给爸爸妈妈听，他们会帮你写在这里。",
+    "child_words": ""
+  },
+  "parent_card": {
+    "hard_notes": [
+      "采后的水果仍有代谢与酶促变化；例如梨的成熟软化会改变组织结构。成熟、软化与微生物腐败不是同一件事，不能仅凭软或变色判断是否安全。",
+      "霉菌、酵母和细菌可引起果蔬腐败；书中以霉菌为可视化例子。受伤果皮常给腐败微生物提供进入机会，但部分真菌也能侵染完整组织。",
+      "适当冷藏能减慢水果代谢、酶促变化和许多腐败微生物的生长，并非灭菌或无限延长保存；本书日常例子限定为成熟的梨。"
+    ],
+    "sources": [
+      {
+        "title": "How to freeze fruit safely｜University of Minnesota Extension（2025 审阅）",
+        "where": "https://extension.umn.edu/food/preparing/cooking-at-home/food-preservation/freezing/freezing-fruit",
+        "used_for": "酶促变化；冷藏减慢酶活性与细菌生长。注意此页将苹果列为非跃变果有误，本书不采用其果类分类。"
+      },
+      {
+        "title": "Microbiological Spoilage of Fruits and Vegetables｜Barth 等，USDA ARS 收录，印刷页 145–146",
+        "where": "https://www.ars.usda.gov/ARSUserFiles/60701000/Pickle%20Pubs/p363.pdf",
+        "used_for": "果皮损伤、微生物侵入与分解；低温减慢代谢及腐败微生物生长（PDF 第 10–11 页）。"
+      },
+      {
+        "title": "Storing Garden Fruits and Vegetables｜University of Maryland Extension",
+        "where": "https://stage.extension.umd.edu/resource/storing-garden-fruits-and-vegetables",
+        "used_for": "梨可室温成熟后冷藏；不同果蔬保存方式不同；出现霉变等明显腐败迹象应丢弃。"
+      },
+      {
+        "title": "Growing strawberries in the home garden｜University of Minnesota Extension",
+        "where": "https://extension.umn.edu/garden-and-home/yard-and-garden/gardening-in-minnesota/growing-strawberries-in-the-home-garden",
+        "used_for": "核对霉菌导致果实腐烂、产生孢子，以及冷藏仍只有有限保存期；草莓资料仅支撑机制边界，不套用到梨的期限。"
+      }
+    ],
+    "uncertain": [
+      "水果小房子是比喻：果皮像保护墙，果肉并非砖墙，水果里没有房间、工人或施工意图；第 2 页已明说。第 3 页「小帮手」指参与成熟软化的酶，不是霉菌或有生命的小人。",
+      "第 3 页把果胶等细胞壁变化简化为「连接松开」；第 4 页只展示霉菌，现实腐败还涉及其他微生物及多种物理化学变化。图中的放大圈不是精确尺度或显微照片。",
+      "冷藏效果取决于水果品种、成熟度、初始污染、温湿度和保存方式。不承诺多放几天，不暗示所有水果适合冷藏；外观正常也不能保证食品安全。",
+      "观察不是已做过的实验，不保证两天出现明显差异。书中任何追问提示均由 AI 提供，未被当作孩子原话。"
+    ],
+    "sensitive": {
+      "level": "none",
+      "topics": [],
+      "how_handled": "主题为水果保存，不涉及档案中的死亡、身体与性别或黑暗恐惧。画面始终明亮；微生物为温和的无脸菌丝，没有尖牙或坏蛋意图。只画很小的霉斑；末页由大人处理食品，孩子不触摸、闻嗅或尝霉果。"
+    },
+    "weekend_project": "做一次短时间保存观察：大人选两只同批、成熟、完整的新鲜梨，一只按正常方式冷藏，另一只放室温阴凉处。先画下外观，24 小时后在大人陪同下再看一次；若仍完好，可轻轻触摸比较软硬，再观察到 48 小时内结束。孩子只画记录，不尝观察用的梨，不故意等到长霉；一旦有霉变或渗液，孩子不再接触、不凑近闻，由大人及时丢弃并清洁接触处。刀具和冰箱操作由家长负责。没有看出差别也照实记录：水果原先的成熟度不同，短时间不一定看得出来。",
+    "co_reading": {
+      "pauses": [
+        {
+          "page": 2,
+          "ask": "这张小房子图，哪些地方像梨？哪些地方是我们想出来的？"
+        },
+        {
+          "page": 5,
+          "ask": "你猜放进冰箱以后，哪些变化会慢下来？"
+        },
+        {
+          "page": 7,
+          "ask": "你想怎么轻轻拿水果，让它少碰伤？"
+        }
+      ],
+      "tips": [
+        "孩子插嘴就停下来听；说不明白的地方可以指着画面再讲，不要求记住术语。",
+        "先留时间让孩子说自己的问题；只有他愿意且暂时说不出来，再看最后一页的提示。"
+      ]
+    },
+    "approval": {
+      "status": "pending",
+      "note": "家长预览版；按本次要求停在第 7 步，尚未放行。请先审阅全书、比喻边界和观察活动。"
+    }
+  }
+}

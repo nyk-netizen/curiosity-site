@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1536 1024" width="1536" height="1024">
+  <defs>
+    <filter id="cut" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="5" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="6" result="d"/>
+      <feGaussianBlur in="d" stdDeviation="5" result="b"/>
+      <feOffset in="b" dx="5" dy="7" result="o"/>
+      <feColorMatrix in="o" values="0 0 0 0 0.25  0 0 0 0 0.18  0 0 0 0 0.1  0 0 0 0.35 0" result="s"/>
+      <feMerge><feMergeNode in="s"/><feMergeNode in="d"/></feMerge>
+    </filter>
+    <filter id="fiber"><feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3" seed="11"/><feColorMatrix values="0 0 0 0 0.5  0 0 0 0 0.42  0 0 0 0 0.32  0 0 0 0.13 0"/></filter>
+    <g id="guide">
+      <ellipse cx="0" cy="97" rx="110" ry="16" fill="#000" opacity=".08"/>
+      <rect x="60" y="-35" width="44" height="70" rx="10" fill="#A07C55"/>
+      <path d="M-83,-25 L-160,-115" stroke="#4A82C4" stroke-width="30" stroke-linecap="round" fill="none"/>
+      <path d="M89,-13 L97,67" stroke="#4A82C4" stroke-width="30" stroke-linecap="round" fill="none"/>
+      <rect x="-85" y="-85" width="170" height="170" rx="18" fill="#EE8A3A"/>
+      <path d="M-97,-77 L97,-77 L97,-89 C97,-150 53,-177 0,-177 C-53,-177 -97,-150 -97,-89 Z" fill="#F3C64E"/>
+      <rect x="-15" y="-165" width="30" height="80" rx="10" fill="#F3C64E" opacity=".6"/>
+      <circle cx="-30" cy="-13" r="13" fill="#2B2018"/><circle cx="30" cy="-13" r="13" fill="#2B2018"/>
+      <circle cx="-26" cy="-18" r="4" fill="#fff"/><circle cx="34" cy="-18" r="4" fill="#fff"/>
+      <path d="M-20,27 Q0,43 20,27" stroke="#2B2018" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <rect x="-60" y="81" width="36" height="16" rx="6" fill="#4A82C4"/>
+      <rect x="25" y="81" width="36" height="16" rx="6" fill="#4A82C4"/>
+    </g>
+  </defs>
+
+  <rect width="1536" height="1024" fill="#F4EBDD"/>
+  <rect width="1536" height="1024" filter="url(#fiber)"/>
+  <path d="M0,860 C300,840 700,880 1000,850 C1250,830 1400,860 1536,845 L1536,1024 L0,1024 Z" fill="#E6D3B4" filter="url(#cut)"/>
+
+  <!-- 左边：桌上的草莓盘 -->
+  <g filter="url(#cut)">
+    <rect x="60" y="640" width="620" height="190" rx="20" fill="#E9DCC2"/>
+  </g>
+  <g filter="url(#cut)">
+    <ellipse cx="360" cy="640" rx="230" ry="42" fill="#F8E6BE"/>
+  </g>
+  <g filter="url(#cut)">
+    <path d="M230,600 C220,520 270,470 330,470 C390,470 440,520 430,600 C425,640 390,655 330,655 C270,655 235,640 230,600 Z" fill="#D4574C"/>
+    <path d="M305,470 C315,440 345,430 360,442 C350,466 325,472 305,470 Z" fill="#7FA86A"/>
+  </g>
+  <g filter="url(#cut)">
+    <path d="M420,610 C414,560 445,528 485,528 C525,528 556,560 550,610 C546,638 520,648 485,648 C450,648 424,638 420,610 Z" fill="#D4574C"/>
+    <path d="M470,528 C478,508 498,502 508,510 C500,528 482,532 470,528 Z" fill="#7FA86A"/>
+  </g>
+  <g filter="url(#cut)">
+    <circle cx="472" cy="560" r="13" fill="#93B77F"/>
+    <circle cx="495" cy="575" r="10" fill="#B9D6A5"/>
+    <circle cx="455" cy="585" r="8" fill="#B9D6A5"/>
+  </g>
+
+  <!-- 右边：冰箱里的草莓 -->
+  <g filter="url(#cut)">
+    <rect x="880" y="150" width="540" height="700" rx="26" fill="#DCE9F3"/>
+  </g>
+  <g filter="url(#cut)">
+    <rect x="912" y="182" width="476" height="636" rx="18" fill="#F7F3EA"/>
+  </g>
+  <g filter="url(#cut)">
+    <rect x="912" y="430" width="476" height="26" rx="10" fill="#DCE9F3"/>
+  </g>
+  <g filter="url(#cut)">
+    <path d="M1010,400 C1002,344 1036,312 1078,312 C1120,312 1154,344 1146,400 C1141,430 1116,442 1078,442 C1040,442 1015,430 1010,400 Z" fill="#D4574C"/>
+    <path d="M1062,312 C1070,290 1092,284 1102,292 C1094,312 1076,316 1062,312 Z" fill="#7FA86A"/>
+    <path d="M1180,396 C1174,352 1202,326 1238,326 C1274,326 1302,352 1296,396 C1292,422 1270,432 1238,432 C1206,432 1184,422 1180,396 Z" fill="#D4574C"/>
+    <path d="M1224,326 C1230,310 1246,306 1254,312 C1248,328 1232,330 1224,326 Z" fill="#7FA86A"/>
+    <ellipse cx="1120" cy="580" rx="46" ry="54" fill="#D4574C"/>
+    <ellipse cx="1220" cy="590" rx="42" ry="50" fill="#D4574C"/>
+    <ellipse cx="1270" cy="560" rx="36" ry="44" fill="#E9705F"/>
+  </g>
+
+  <!-- 标注 -->
+  <text x="180" y="140" font-family="PingFang SC, Hiragino Sans GB, Heiti SC, sans-serif" font-size="54" font-weight="bold" fill="#4A3B2C">桌上</text>
+  <text x="1000" y="140" font-family="PingFang SC, Hiragino Sans GB, Heiti SC, sans-serif" font-size="54" font-weight="bold" fill="#4A3B2C">冰箱里</text>
+
+  <!-- 小方在中间比较 -->
+  <g filter="url(#cut)"><use xlink:href="#guide" href="#guide" transform="translate(760 790) scale(0.82)"/></g>
+</svg>

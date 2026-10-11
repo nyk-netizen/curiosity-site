@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1536 1024" width="1536" height="1024">
+  <defs>
+    <filter id="cut" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="5" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="6" result="d"/>
+      <feGaussianBlur in="d" stdDeviation="5" result="b"/>
+      <feOffset in="b" dx="5" dy="7" result="o"/>
+      <feColorMatrix in="o" values="0 0 0 0 0.25  0 0 0 0 0.18  0 0 0 0 0.1  0 0 0 0.35 0" result="s"/>
+      <feMerge><feMergeNode in="s"/><feMergeNode in="d"/></feMerge>
+    </filter>
+    <filter id="fiber"><feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3" seed="11"/><feColorMatrix values="0 0 0 0 0.5  0 0 0 0 0.42  0 0 0 0 0.32  0 0 0 0.13 0"/></filter>
+    <clipPath id="mag"><circle cx="1180" cy="300" r="132"/></clipPath>
+    <g id="guide">
+      <ellipse cx="0" cy="97" rx="110" ry="16" fill="#000" opacity=".08"/>
+      <rect x="60" y="-35" width="44" height="70" rx="10" fill="#A07C55"/>
+      <path d="M-83,-25 L-160,-115" stroke="#4A82C4" stroke-width="30" stroke-linecap="round" fill="none"/>
+      <path d="M89,-13 L97,67" stroke="#4A82C4" stroke-width="30" stroke-linecap="round" fill="none"/>
+      <rect x="-85" y="-85" width="170" height="170" rx="18" fill="#EE8A3A"/>
+      <path d="M-97,-77 L97,-77 L97,-89 C97,-150 53,-177 0,-177 C-53,-177 -97,-150 -97,-89 Z" fill="#F3C64E"/>
+      <rect x="-15" y="-165" width="30" height="80" rx="10" fill="#F3C64E" opacity=".6"/>
+      <circle cx="-30" cy="-13" r="13" fill="#2B2018"/><circle cx="30" cy="-13" r="13" fill="#2B2018"/>
+      <circle cx="-26" cy="-18" r="4" fill="#fff"/><circle cx="34" cy="-18" r="4" fill="#fff"/>
+      <path d="M-20,27 Q0,43 20,27" stroke="#2B2018" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <rect x="-60" y="81" width="36" height="16" rx="6" fill="#4A82C4"/>
+      <rect x="25" y="81" width="36" height="16" rx="6" fill="#4A82C4"/>
+    </g>
+  </defs>
+
+  <rect width="1536" height="1024" fill="#F4EBDD"/>
+  <rect width="1536" height="1024" filter="url(#fiber)"/>
+  <path d="M0,860 C300,840 700,880 1000,850 C1250,830 1400,860 1536,845 L1536,1024 L0,1024 Z" fill="#E6D3B4" filter="url(#cut)"/>
+
+  <!-- 冰箱剖面 -->
+  <g filter="url(#cut)">
+    <rect x="430" y="140" width="640" height="720" rx="28" fill="#DCE9F3"/>
+  </g>
+  <g filter="url(#cut)">
+    <rect x="462" y="172" width="576" height="656" rx="20" fill="#F7F3EA"/>
+  </g>
+  <g filter="url(#cut)">
+    <rect x="462" y="440" width="576" height="24" rx="10" fill="#DCE9F3"/>
+  </g>
+  <g filter="url(#cut)">
+    <rect x="462" y="640" width="576" height="24" rx="10" fill="#DCE9F3"/>
+  </g>
+
+  <!-- 架子上的水果 -->
+  <g filter="url(#cut)">
+    <path d="M560,420 C554,376 580,352 612,352 C644,352 670,376 664,420 C660,444 640,452 612,452 C584,452 564,444 560,420 Z" fill="#D4574C"/>
+    <path d="M598,352 C604,336 618,332 626,338 C620,352 606,356 598,352 Z" fill="#7FA86A"/>
+    <path d="M700,416 C695,378 718,358 746,358 C774,358 797,378 792,416 C789,438 770,446 746,446 C722,446 703,438 700,416 Z" fill="#D4574C"/>
+    <path d="M733,358 C738,344 750,340 758,346 C752,360 740,362 733,358 Z" fill="#7FA86A"/>
+    <circle cx="880" cy="416" r="34" fill="#F2D38E"/>
+    <circle cx="950" cy="420" r="30" fill="#F2D38E"/>
+    <ellipse cx="590" cy="614" rx="44" ry="52" fill="#D4574C"/>
+    <ellipse cx="690" cy="620" rx="40" ry="48" fill="#E9705F"/>
+    <circle cx="800" cy="616" r="32" fill="#F2D38E"/>
+  </g>
+
+  <!-- 慢吞吞的小圆点 -->
+  <g filter="url(#cut)">
+    <circle cx="560" cy="280" r="22" fill="#93B77F"/>
+    <path d="M548,274 L560,274 M566,274 L578,274" stroke="#2B2018" stroke-width="4" stroke-linecap="round"/>
+    <path d="M548,290 Q560,298 572,290" stroke="#2B2018" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+    <line x1="524" y1="272" x2="504" y2="266" stroke="#93B77F" stroke-width="4" stroke-linecap="round"/>
+    <line x1="524" y1="286" x2="500" y2="286" stroke="#93B77F" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="700" cy="250" r="17" fill="#B9D6A5"/>
+    <path d="M691,246 L701,246 M705,246 L715,246" stroke="#2B2018" stroke-width="3.4" stroke-linecap="round"/>
+    <line x1="672" y1="242" x2="654" y2="238" stroke="#B9D6A5" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="820" cy="300" r="15" fill="#93B77F"/>
+    <path d="M812,296 L821,296 M825,296 L834,296" stroke="#2B2018" stroke-width="3.2" stroke-linecap="round"/>
+    <line x1="796" y1="294" x2="780" y2="290" stroke="#93B77F" stroke-width="3.6" stroke-linecap="round"/>
+  </g>
+
+  <!-- 温度计 -->
+  <g filter="url(#cut)">
+    <rect x="920" y="220" width="34" height="150" rx="17" fill="#FFFFFF"/>
+    <circle cx="937" cy="392" r="24" fill="#D9584E"/>
+    <rect x="931" y="326" width="12" height="64" rx="6" fill="#D9584E"/>
+    <line x1="906" y1="250" x2="920" y2="250" stroke="#8C7B66" stroke-width="4"/>
+    <line x1="906" y1="285" x2="920" y2="285" stroke="#8C7B66" stroke-width="4"/>
+    <line x1="906" y1="320" x2="920" y2="320" stroke="#8C7B66" stroke-width="4"/>
+  </g>
+
+  <!-- 放大圈：小圆点慢吞吞 -->
+  <path d="M1046,322 L920,360" stroke="#8C7B66" stroke-width="2.5" stroke-dasharray="8 8"/>
+  <g filter="url(#cut)">
+    <circle cx="1180" cy="300" r="150" fill="#7E9FB8"/>
+    <circle cx="1180" cy="300" r="132" fill="#EEF3E6"/>
+  </g>
+  <g clip-path="url(#mag)" filter="url(#cut)">
+    <circle cx="1130" cy="300" r="38" fill="#93B77F"/>
+    <path d="M1114,292 L1128,292 M1134,292 L1148,292" stroke="#2B2018" stroke-width="5" stroke-linecap="round"/>
+    <path d="M1114,316 Q1130,328 1146,316" stroke="#2B2018" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <line x1="1078" y1="290" x2="1044" y2="282" stroke="#93B77F" stroke-width="6" stroke-linecap="round"/>
+    <line x1="1078" y1="312" x2="1040" y2="312" stroke="#93B77F" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="1230" cy="250" r="28" fill="#B9D6A5"/>
+    <path d="M1220,244 L1231,244 M1236,244 L1247,244" stroke="#2B2018" stroke-width="4" stroke-linecap="round"/>
+    <line x1="1192" y1="240" x2="1166" y2="234" stroke="#B9D6A5" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="1250" cy="360" r="24" fill="#93B77F"/>
+    <path d="M1242,355 L1251,355 M1256,355 L1265,355" stroke="#2B2018" stroke-width="3.6" stroke-linecap="round"/>
+    <line x1="1218" y1="352" x2="1198" y2="348" stroke="#93B77F" stroke-width="5" stroke-linecap="round"/>
+  </g>
+
+  <!-- 标注 -->
+  <text x="150" y="150" font-family="PingFang SC, Hiragino Sans GB, Heiti SC, sans-serif" font-size="54" font-weight="bold" fill="#4A3B2C">冷冷的，慢吞吞</text>
+
+  <!-- 小方拿尺子量 -->
+  <g filter="url(#cut)">
+    <rect x="300" y="700" width="190" height="22" rx="10" fill="#F2D38E" transform="rotate(14 395 711)"/>
+    <rect x="330" y="694" width="10" height="16" rx="3" fill="#E3C77E" transform="rotate(14 395 711)"/>
+    <rect x="370" y="694" width="10" height="16" rx="3" fill="#E3C77E" transform="rotate(14 395 711)"/>
+    <rect x="410" y="694" width="10" height="16" rx="3" fill="#E3C77E" transform="rotate(14 395 711)"/>
+  </g>
+  <g filter="url(#cut)"><use xlink:href="#guide" href="#guide" transform="translate(230 780) scale(0.8)"/></g>
+</svg>

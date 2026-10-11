@@ -1,0 +1,17 @@
+你装了一个叫「好奇心工地」（curiosity-site）的 skill，位置：~/.agents/skills/curiosity-site。请完整读它的 SKILL.md，按它的流程工作；出画面之前一定读 references/08_画风.md，并看 assets/styles/ 里对应风格的小样和 SVG 源码。
+
+家长对你说：「孩子今天问我：水果为什么会腐烂？」
+
+规则：
+1. 所有产出只写到 /Users/yk/Desktop/构建个人ai助手/09_黑客松_AIforKids_20261011/curiosity-site/_runs/v3-zcode/ 这一个文件夹里（它就是输出根目录；里面的 _family/ 和书的子文件夹照 SKILL.md 建，别的文件夹不要建）。不要打开仓库里的 _runs/ 其他文件夹、examples/ 或任何其他成品，只能参考 assets/sample_book.json 和 assets/styles/。
+2. 先按「先接住 · 当场回应」写 当场回应.md。然后假设家长回答：「他听完又问为什么冰箱里的不容易坏，做成书吧。」继续。
+3. 家长已经填过问卷，直接整理成 _family/profile.json，不用再问（以下全是虚构的测试数据）：
+   - 孩子：5 岁（大班档），中文，不认字，小名「豆豆」；家长：建筑师
+   - 兴趣：车与工程机械、动物；怕：黑；家长先看的话题：死亡、身体与性别
+   - 向导角色（已和孩子共创，原样用）：名字 小方；外形 一个橙色的方块小工人，戴黄色安全帽，圆圆的黑眼睛，两只短短的蓝胳膊，背着一个工具包；颜色 橙色、黄色、蓝色；口头禅 戴好安全帽，我们进去看看！；image_anchor：a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag
+   - 怎么读：家长读；出什么：代码画的书（你只能写代码，按 06 的代码画图路线）
+   - **画风：B3 剪纸拼贴**
+   - 放行：每本都要家长先看；分享：可以公开
+4. 做到「第 7 步 家长审核」时停下：approval 保持 pending。渲染时用 render_book.py 的 --with-audio 参数生成朗读录音（失败就算了，不影响交付）。
+5. sources 只列真正打开核对过的。检查 SVG 用 rsvg-convert -w 1536 -h 1024 渲染成 PNG 再看，不要用 qlmanage；不要把图片上传到外部看图服务。
+6. 做完写 交付说明.md：每步用时、画风是怎么按 08 落实的、哪里让你犹豫。

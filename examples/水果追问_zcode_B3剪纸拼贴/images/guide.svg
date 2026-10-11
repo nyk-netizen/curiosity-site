@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1536 1024" width="1536" height="1024">
+  <defs>
+    <filter id="cut" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="5" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="6" result="d"/>
+      <feGaussianBlur in="d" stdDeviation="5" result="b"/>
+      <feOffset in="b" dx="5" dy="7" result="o"/>
+      <feColorMatrix in="o" values="0 0 0 0 0.25  0 0 0 0 0.18  0 0 0 0 0.1  0 0 0 0.35 0" result="s"/>
+      <feMerge><feMergeNode in="s"/><feMergeNode in="d"/></feMerge>
+    </filter>
+    <filter id="fiber"><feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3" seed="11"/><feColorMatrix values="0 0 0 0 0.5  0 0 0 0 0.42  0 0 0 0 0.32  0 0 0 0.13 0"/></filter>
+    <g id="guide">
+      <ellipse cx="0" cy="97" rx="110" ry="16" fill="#000" opacity=".08"/>
+      <rect x="60" y="-35" width="44" height="70" rx="10" fill="#A07C55"/>
+      <path d="M-83,-25 L-160,-115" stroke="#4A82C4" stroke-width="30" stroke-linecap="round" fill="none"/>
+      <path d="M89,-13 L97,67" stroke="#4A82C4" stroke-width="30" stroke-linecap="round" fill="none"/>
+      <rect x="-85" y="-85" width="170" height="170" rx="18" fill="#EE8A3A"/>
+      <path d="M-97,-77 L97,-77 L97,-89 C97,-150 53,-177 0,-177 C-53,-177 -97,-150 -97,-89 Z" fill="#F3C64E"/>
+      <rect x="-15" y="-165" width="30" height="80" rx="10" fill="#F3C64E" opacity=".6"/>
+      <circle cx="-30" cy="-13" r="13" fill="#2B2018"/><circle cx="30" cy="-13" r="13" fill="#2B2018"/>
+      <circle cx="-26" cy="-18" r="4" fill="#fff"/><circle cx="34" cy="-18" r="4" fill="#fff"/>
+      <path d="M-20,27 Q0,43 20,27" stroke="#2B2018" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <rect x="-60" y="81" width="36" height="16" rx="6" fill="#4A82C4"/>
+      <rect x="25" y="81" width="36" height="16" rx="6" fill="#4A82C4"/>
+    </g>
+  </defs>
+
+  <rect width="1536" height="1024" fill="#F4EBDD"/>
+  <rect width="1536" height="1024" filter="url(#fiber)"/>
+  <path d="M0,860 C300,840 700,880 1000,850 C1250,830 1400,860 1536,845 L1536,1024 L0,1024 Z" fill="#E6D3B4" filter="url(#cut)"/>
+
+  <g filter="url(#cut)"><use xlink:href="#guide" href="#guide" transform="translate(780 480) scale(2.6)"/></g>
+
+  <text x="768" y="900" font-family="PingFang SC, Hiragino Sans GB, Heiti SC, sans-serif" font-size="96" font-weight="bold" fill="#4A3B2C" text-anchor="middle">小方</text>
+</svg>

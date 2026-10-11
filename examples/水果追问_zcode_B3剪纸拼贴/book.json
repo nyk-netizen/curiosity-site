@@ -1,0 +1,139 @@
+{
+  "schema_version": "1.0",
+  "title": "冰箱里的甜房子，拆得慢吞吞",
+  "mode": "follow_up",
+  "continues_from": "当场回应：水果为什么会腐烂（2026-10-11，未成书）",
+  "language": "zh",
+  "age_band": "large",
+  "question": {
+    "original": "为什么冰箱里的不容易坏？",
+    "age": "5岁",
+    "understood_as": "家长转述：孩子听完「水果为什么会腐烂」的当场回答后追问，指冰箱里的水果为什么不容易坏"
+  },
+  "guide": {
+    "name": "小方",
+    "look": "一个橙色的方块小工人，戴黄色安全帽，圆圆的黑眼睛，两只短短的蓝胳膊，背着一个工具包",
+    "colors": [
+      "橙色",
+      "黄色",
+      "蓝色"
+    ],
+    "catchphrase": "戴好安全帽，我们进去看看！",
+    "image_anchor": "a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag",
+    "reference_image": "images/guide.svg"
+  },
+  "protagonist": null,
+  "render": {
+    "route": "code",
+    "style": "B3 剪纸拼贴",
+    "agent": "ZCode · GLM-5.3-Flash"
+  },
+  "chapters": [
+    {
+      "name": "第一章 · 冷冷的冰箱，慢吞吞的工地",
+      "role": "structure",
+      "pages": [
+        {
+          "narration": "上次我们说，水果是一座甜房子，小小居民会钻进去拆。桌上和冰箱里各放几颗草莓，两天后，长毛的只有桌上那几颗。",
+          "visual": {
+            "description": "同一个厨房分两边：左边台面上的草莓盘里，有一颗长了灰绿色的小毛毛；右边打开的冰箱里，草莓还新鲜亮亮的。小方站在中间，两边各指一指。",
+            "image_prompt": "A bright kitchen split into two sides: on the left a plate of strawberries on the counter with a few tiny grey-green fuzz dots on one berry, on the right the same strawberries looking fresh inside an open refrigerator, a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag stands between them comparing both plates, torn paper collage shapes with soft shadows on beige paper, warm and clean",
+            "image": "images/p01.svg"
+          }
+        },
+        {
+          "narration": "冰箱里冷冷的，小小居民冻得动作变慢，拆房子拆得慢；草莓自己也老得慢，所以能多住好几天。",
+          "visual": {
+            "description": "冰箱的剖面：架子上摆着草莓和橘子，一个大放大圈里能看到几个小圆点慢吞吞地挪，后面拖着困困的线；冰箱内壁挂着小温度计。小方拿小尺子量慢吞吞的小圆点。",
+            "image_prompt": "Inside the open refrigerator drawn as a paper collage cutaway, red strawberries and oranges sit on shelves, a big magnifying circle shows tiny round microbe dots moving slowly with sleepy motion lines, a small thermometer on the wall, a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag measures the slow dots with a ruler, layered torn paper shapes with soft shadows, cool blue and warm beige palette",
+            "image": "images/p02.svg"
+          }
+        },
+        {
+          "narration": "水果搬进冷冰箱，就能多陪我们好几天。不过香蕉怕冷，住进冰箱反而冻伤，它的家在桌上。",
+          "visual": {
+            "description": "打开的冰箱里水果满满，一串黄色香蕉摆在冰箱外的台面上。小方站在香蕉旁边，给它们指了一个暖和的位置。",
+            "image_prompt": "A cozy kitchen corner, an open refrigerator full of fresh strawberries and oranges, a bunch of yellow bananas sits on the counter outside the fridge, a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag stands beside the bananas showing them a cozy spot away from the cold, layered torn paper collage shapes with soft shadows on warm beige paper, friendly and clean",
+            "image": "images/p03.svg"
+          }
+        }
+      ],
+      "follow_up": {
+        "question": "香蕉为什么怕冷呀？",
+        "why": "通向热带水果的低温冷害：生香蕉低于约 13°C 皮会冻黑、风味变差；完全熟透后可以短暂冷藏（皮黑肉不黑）。"
+      }
+    }
+  ],
+  "child_page": {
+    "prompt": "你还想知道什么？说给爸爸妈妈听，他们会帮你写在这里。",
+    "child_words": ""
+  },
+  "parent_card": {
+    "hard_notes": [
+      "冷藏（4°C 以下）的主要作用是减缓微生物的代谢和增殖——不是杀菌：细菌、霉菌在低温下长得慢，所以食物坏得慢，但放久了照样会坏。",
+      "低温同时减缓果实自身的后熟代谢（呼吸作用、乙烯信号），微生物和果子自己两条线一起慢，保鲜期才拉长。",
+      "香蕉等热带水果对低温敏感：生香蕉低于约 13°C 发生冷害，皮迅速变黑、风味变差，所以没熟的香蕉不放冰箱；完全成熟后可以短暂冷藏，皮黑肉不黑。"
+    ],
+    "sources": [
+      {
+        "title": "USDA FSIS《Refrigeration & Food Safety》",
+        "where": "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/refrigeration",
+        "used_for": "冷藏减缓细菌生长、冰箱应设 4°C（40°F）以下；冷藏不是杀菌（已打开核对原文）"
+      },
+      {
+        "title": "USDA FSIS《Molds on Food: Are They Dangerous?》",
+        "where": "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/molds-food-are-they-dangerous",
+        "used_for": "霉菌耐冷、在冰箱里也能缓慢生长；发霉的软质水果整颗丢弃（已打开核对原文）"
+      },
+      {
+        "title": "University of Nebraska–Lincoln Food《Prolonging the Life of Bananas》",
+        "where": "https://food.unl.edu/article/prolonging-life-bananas/",
+        "used_for": "香蕉宜存放在约 54°F 的阴凉处；完全熟透后才可冷藏，皮会变黑但果肉完好；香蕉的乙烯会催熟旁边的水果（已打开核对原文）"
+      },
+      {
+        "title": "其余科学表述：低温减缓果实自身后熟代谢、生香蕉冷害温度约 13°C",
+        "where": "模型自有知识，经搜索结果交叉印证，未打开原始论文页面核对",
+        "used_for": "家长卡 hard_notes 第 2 条和追问提示的 why"
+      }
+    ],
+    "uncertain": [
+      "「冰箱让小小居民动作变慢」：冷藏是减缓、不是停止，霉菌在冰箱里也能极缓慢生长（FSIS），冰箱不是保险箱，只是把拆房子的速度调慢。",
+      "「香蕉怕冷」：本书简化成「住进冰箱反而冻伤」。准确的说法是：生香蕉遇低温（约 13°C 以下）冷害、皮变黑；完全熟透的香蕉反而可以在冰箱里多放几天，皮黑肉不黑——这点书里没讲，家长可按情况补充。",
+      "「草莓两天长毛」是室温下的典型情形，实际快慢和室温、湿度、果子有没有碰伤都有关。",
+      "香蕉放出的乙烯还会催熟旁边的水果（所以最好分开放），书里没有展开。"
+    ],
+    "sensitive": {
+      "level": "notice",
+      "topics": [
+        "death",
+        "fear"
+      ],
+      "how_handled": "这是「水果为什么会腐烂」的追问书，接着「小小居民拆甜房子」的比喻讲「冷＝慢」，不渲染腐烂发黑的细节，霉毛只画成两三个中性小圆点、不给微生物画怪脸（画面规则见 05）。孩子怕黑：全书没有黑暗场景，冰箱内部画成亮亮的冷光，避免「冷＝黑＝可怕」的联想。"
+    },
+    "weekend_project": "「冷慢对比」：两颗差不多大的草莓，一颗放小碟子里留在桌上、一颗装小盒放进冰箱，每天同一时间看一眼、在小本子上画一笔（长毛了吗？软了吗？），第三天摆在一起比一比。切水果由家长来做，孩子负责看和记录。加一个小观察：把一根香蕉单独放几天，看它的皮怎么慢慢变黑——那是它在自己变熟，不是坏了。全程不用火、不碰电。",
+    "co_reading": {
+      "pauses": [
+        {
+          "page": 1,
+          "ask": "你猜冰箱里那几颗草莓，为什么还没长毛？"
+        },
+        {
+          "page": 2,
+          "ask": "你猜小小居民在冷冷的地方干活，会变成什么样？"
+        },
+        {
+          "page": 3,
+          "ask": "香蕉的老家是暖和的地方，还是冷的地方？"
+        }
+      ],
+      "tips": [
+        "孩子插嘴就停下来听，不用急着读完",
+        "读完可以拉开冰箱给孩子看看：里面冷冷的，但是亮亮的——小小居民只是放慢了，不是躲进黑暗里"
+      ]
+    },
+    "approval": {
+      "status": "pending",
+      "note": "等家长审核后再放行"
+    }
+  }
+}

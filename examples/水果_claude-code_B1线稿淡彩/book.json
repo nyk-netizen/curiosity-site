@@ -1,0 +1,200 @@
+{
+  "schema_version": "1.0",
+  "title": "苹果小房子的外墙破了！",
+  "mode": "new",
+  "continues_from": null,
+  "language": "zh",
+  "age_band": "large",
+  "question": {
+    "original": "水果为什么会腐烂？",
+    "age": "5岁",
+    "understood_as": "水果为什么会变软、变褐、长毛（发霉）。听完当场回应后，孩子又问「为什么冰箱里的不容易坏」，这个当场追问放进第三章一起讲。"
+  },
+  "guide": {
+    "name": "小方",
+    "look": "一个橙色的方块小工人，戴黄色安全帽，圆圆的黑眼睛，两只短短的蓝胳膊，背着一个工具包",
+    "colors": [
+      "橙色",
+      "黄色",
+      "蓝色"
+    ],
+    "catchphrase": "戴好安全帽，我们进去看看！",
+    "image_anchor": "a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag",
+    "reference_image": "images/guide.svg"
+  },
+  "protagonist": null,
+  "render": {
+    "route": "code",
+    "style": "B1 线稿淡彩",
+    "agent": "Claude Code · claude-opus-5-5（SVG 代码画图）"
+  },
+  "chapters": [
+    {
+      "name": "第一章 · 苹果身上的软斑",
+      "role": "discover",
+      "pages": [
+        {
+          "narration": "桌上的苹果，身上多了一块软软的褐色斑。小方说：「戴好安全帽，我们进去看看！」",
+          "visual": {
+            "description": "浅色桌面上一个大苹果，侧面有一块褐色的软斑；后面放着一根香蕉和一个梨，画得小一些。小方站在右边，举着放大镜对准那块斑",
+            "image_prompt": "A big red apple on a light wooden table with one soft brown spot on its side, a small banana and pear behind it, a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag holds up a magnifying glass toward the brown spot, bright calm daylight, ivory paper background",
+            "image": "images/p01.svg"
+          }
+        },
+        {
+          "narration": "把苹果切开，它像一座小房子：果皮是外墙，果肉是一间间装满甜汁的小房间。看，外墙这里磕破了一个口子。",
+          "visual": {
+            "description": "苹果的剖面图：红色的果皮画成一圈外墙，果肉画成一格一格的小房间，中间是果核和两颗种子。外墙右上角有一道裂口，用放大圈放大，能看到墙断开了。小方在右下方用手指着裂口。标注「果皮外墙」「破口」",
+            "image_prompt": "Architectural cutaway section of an apple drawn like a little house, the red peel as an outer wall and the flesh as rows of small rooms full of juice, a crack in the wall shown in a round magnifier callout, a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag points at the crack, calm light, mostly blank ivory paper",
+            "image": "images/p02.svg"
+          }
+        }
+      ],
+      "follow_up": {
+        "question": "苹果皮那么薄，怎么挡得住外面的东西？",
+        "why": "通向果皮表面的蜡质层和表皮细胞怎么保护果肉"
+      }
+    },
+    {
+      "name": "第二章 · 看不见的小家伙搬进来了",
+      "role": "structure",
+      "pages": [
+        {
+          "narration": "空气里飘着霉菌的孢子，就像霉菌的小种子，小得看不见。它们最容易从破口钻进去，在甜甜的果肉里住下来。",
+          "visual": {
+            "description": "放大的苹果外墙横贯画面：上方是空气，飘着很多圆圆的小孢子（小圆点，不画成怪物）；下方是红色外墙和一格格果肉小房间。墙上有一道破口，几颗孢子正从破口落进果肉。小方在左边，举着放大镜看。标注「孢子」",
+            "image_prompt": "A magnified cutaway of an apple peel wall stretching across the scene, tiny round mold spores drifting in the air above like soft dots, a few spores slipping through a crack into the juicy flesh rooms below, a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag watches through a magnifying glass, gentle colors, ivory paper",
+            "image": "images/p03.svg"
+          }
+        },
+        {
+          "narration": "霉菌伸出好多细丝，像工人在墙里铺管子。可它们不是在盖房子，是在吃甜汁，吃过的地方就变软、变褐了。",
+          "visual": {
+            "description": "果肉小房间的放大剖面：从破口处长出一片绿灰色的分叉细丝，像管道一样在小房间之间伸展，被细丝穿过的小房间颜色变成褐色、形状塌软，离得远的房间还是淡黄的。小方在右边扛着一根小管子，比给孩子看「像铺管子」。标注「霉菌的细丝」",
+            "image_prompt": "Close-up cutaway of apple flesh drawn as small rooms, thin branching green-grey mold threads spreading from a crack like pipes laid between the rooms, rooms touched by the threads turning soft and brown while far rooms stay pale yellow, a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag holds a little pipe to compare, calm diagram style",
+            "image": "images/p04.svg"
+          }
+        }
+      ],
+      "follow_up": {
+        "question": "霉菌为什么有的是白的，有的是绿的？",
+        "why": "通向孢子成熟时颜色会变：苹果青霉一开始是白色菌丝，孢子长熟后变成蓝绿色"
+      }
+    },
+    {
+      "name": "第三章 · 冰箱里的慢吞吞工地",
+      "role": "magic",
+      "pages": [
+        {
+          "narration": "你问：冰箱里的为什么不容易坏？打开冰箱，里面亮亮的、冷冷的。天一冷，霉菌就像冬天的工人，干活慢吞吞。",
+          "visual": {
+            "description": "一台打开门的冰箱，里面灯亮着，是明亮的暖白色（不画暗处），隔层上放着苹果和草莓，冷空气画成淡蓝色的细线。右上放大圈里，霉菌的细丝又短又卷，旁边有一片雪花。小方站在冰箱门边，用手指着放大圈。标注「冷：慢吞吞」",
+            "image_prompt": "An open refrigerator with its inside light on, bright and clean, apples and strawberries on the shelves, pale blue lines showing cold air, a round magnifier callout showing short curled mold threads beside a snowflake, a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag stands by the open door pointing, cheerful bright kitchen light",
+            "image": "images/p05.svg"
+          }
+        },
+        {
+          "narration": "冷一冷，苹果自己变软也变慢了。不过冷只是让大家变慢，没有让它们停下，冰箱里的水果放久了也会坏。",
+          "visual": {
+            "description": "左右对比：左边是放在桌上、旁边画着太阳的苹果，褐斑变得很大；右边是放在淡蓝色冰箱格子里、旁边画着雪花的苹果，只有一个小小的褐斑。小方站在中间，两只胳膊一边指一个。标注「桌上」「冰箱里」",
+            "image_prompt": "Side-by-side comparison of two apples after the same days, the left apple on a warm table beside a little sun with a large brown soft patch, the right apple in a pale blue fridge drawer beside a snowflake with only a tiny brown spot, a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag stands between them pointing both ways, clear simple diagram",
+            "image": "images/p06.svg"
+          }
+        },
+        {
+          "narration": "坏掉的果肉回到土里，会变成小树的养料。小方说：「明天我们去找找，哪个水果的外墙磕破了？」",
+          "visual": {
+            "description": "阳光下的花园地面剖面：地面上一个旧苹果正在变成土，地下是一层层的土，苹果下方的土颜色更深，一棵小树苗的根伸过去。小方站在地面上，举着放大镜准备出发去找。明亮的白天",
+            "image_prompt": "A sunny garden ground section, an old apple on the soil slowly turning into earth, darker rich soil layers beneath it, the roots of a small young tree reaching toward it, a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag stands on the ground holding a magnifying glass ready to explore, bright daytime, ivory paper background",
+            "image": "images/p07.svg"
+          }
+        }
+      ],
+      "follow_up": {
+        "question": "那放进冷冻室，是不是就永远不会坏了？",
+        "why": "通向冷冻能让细菌和霉菌停止生长，但大多数并没有被冻死，化冻后还会继续"
+      }
+    }
+  ],
+  "child_page": {
+    "prompt": "你还想知道什么？说给爸爸妈妈听，他们会帮你写在这里。",
+    "child_words": ""
+  },
+  "parent_card": {
+    "hard_notes": [
+      "水果腐烂主要是微生物（霉菌、细菌，也有酵母）在分解果肉：它们分泌酶，把果肉里的糖和细胞壁分解掉当食物，于是出现变软、变褐、长毛、异味。苹果上常见的「青霉病」由苹果青霉（Penicillium expansum）引起，它主要从磕伤、刺伤处侵入，所以轻拿轻放能明显减少腐烂；这种霉还会产生毒素展青霉素，发霉的地方不要给孩子吃、也别凑近闻。",
+      "水果摘下后自己也在「变老」：它还在呼吸，并靠乙烯等激素继续成熟，果胶被酶分解、果肉变软，软了更容易磕伤，也更容易被微生物侵入。",
+      "冷藏（冰箱 4°C 以下）会同时减慢微生物的生长和水果自身的呼吸与成熟，所以坏得慢；但冷只是「减速」不是「杀死」，苹果青霉的孢子耐冷，在冷库里也会慢慢长。冷冻能让细菌停止生长，但并不杀死大多数细菌。"
+    ],
+    "sources": [
+      {
+        "title": "Food spoilage（Wikipedia）",
+        "where": "https://en.wikipedia.org/wiki/Food_spoilage",
+        "used_for": "腐败由细菌和真菌（霉菌、酵母）引起；冷藏等保存方法只能延长、不能无限延长保质期"
+      },
+      {
+        "title": "Penicillium expansum（Wikipedia）",
+        "where": "https://en.wikipedia.org/wiki/Penicillium_expansum",
+        "used_for": "苹果青霉多从磕伤、刺伤处侵入；先长白色菌丝、孢子成熟后变蓝绿；15–27°C 长得最快、低温变慢；孢子耐冷；展青霉素"
+      },
+      {
+        "title": "Ripening（Wikipedia）",
+        "where": "https://en.wikipedia.org/wiki/Ripening",
+        "used_for": "水果成熟时变甜变软、乙烯的作用、果胶被酶分解"
+      },
+      {
+        "title": "Postharvest（Wikipedia）",
+        "where": "https://en.wikipedia.org/wiki/Postharvest",
+        "used_for": "采后保鲜要保持低温、避免磕伤；冷藏通过抑制呼吸延缓成熟"
+      },
+      {
+        "title": "Are You Storing Food Safely?（美国 FDA 消费者指南）",
+        "where": "https://www.fda.gov/consumers/consumer-updates/are-you-storing-food-safely",
+        "used_for": "冰箱保持 4°C（40°F）以下；冷藏减慢细菌生长；冷冻让细菌停止生长但不杀死大多数细菌"
+      },
+      {
+        "title": "Compost（Wikipedia）",
+        "where": "https://en.wikipedia.org/wiki/Compost",
+        "used_for": "细菌和真菌把植物、食物残渣分解成富含养分的堆肥，给植物当肥料"
+      }
+    ],
+    "uncertain": [
+      "书里把孢子说成「霉菌的小种子」：孢子和植物种子不是一回事，只是作用相似（落到合适的地方就能长出新的霉菌）。",
+      "书里只讲了霉菌。实际上细菌、酵母也会让水果坏，不同水果主角不一样（比如草莓常见灰霉）；也有些霉菌不需要破口也能侵入，书里说的是「最容易从破口进去」。",
+      "「像工人铺管子」只是比喻菌丝在果肉里伸展的样子；菌丝不是管道，霉菌也没有「想要」破坏什么，它只是在吃。",
+      "不是所有水果都适合放冰箱：香蕉等热带水果放冰箱，皮会变黑（冷害），那不是霉菌造成的。这一条是模型自有知识，没有找到能打开的来源核对。",
+      "苹果切开后切面变黄变褐，主要是果肉自己的酶碰到空气发生的反应，不是腐烂。孩子如果把这两件事混在一起，可以分开讲。"
+    ],
+    "sensitive": {
+      "level": "notice",
+      "topics": [
+        "fear"
+      ],
+      "how_handled": "孩子怕黑：冰箱那页画成开着门、灯亮着的明亮冰箱，没有画冰箱里面关门后的黑暗；地下的土层画在晴天下。霉菌和孢子画成小圆点和细丝，不画成怪物或坏蛋，旁白里说「它们只是在吃」。书没有把腐烂说成水果「死了」；如果孩子顺着问「苹果是不是死了」「人会不会也这样」，就碰到了档案里的「死亡」话题，请按您家的方式回答，需要的话再单独做一本、动笔前先问您。"
+    },
+    "weekend_project": "冰箱和桌子比一比：挑两颗差不多新鲜的草莓，各放进一个干净的有盖小盒子，一盒进冰箱、一盒放桌上，每天看一次，请孩子画下来或者用贴纸记哪一盒先长毛。长毛以后只看不闻、不吃，由家长连盒子一起扔掉，看完洗手。想再多一步：家长把一个苹果轻轻磕一下，和一个没磕的一起放几天，看看软斑先出现在哪里。",
+    "co_reading": {
+      "pauses": [
+        {
+          "page": 2,
+          "ask": "你觉得苹果的外墙是怎么磕破的？"
+        },
+        {
+          "page": 5,
+          "ask": "你猜，天冷的时候，霉菌会怎么样？"
+        },
+        {
+          "page": 7,
+          "ask": "我们家里哪个水果的外墙最结实？要怎么拿它才不会磕破？"
+        }
+      ],
+      "tips": [
+        "孩子插嘴就停下来听，不用急着读完。",
+        "第 5 页是他自己问过的问题，读到这里可以说「这是你问的那个」，让他知道他的问题被认真对待了。"
+      ]
+    },
+    "approval": {
+      "status": "pending"
+    }
+  }
+}
