@@ -1,0 +1,53 @@
+# 现成 IP 角色与品牌禁用词（大小写不敏感，一行一个，# 开头为注释）
+# 规则来历：作者家里的 66 本旧绘本大半带这些角色，公开分享有版权问题。孩子喜欢的是「有个角色带路」，不是非要别人的角色。
+神奇校车
+Magic School Bus
+卷毛老师
+Ms. Frizzle
+托马斯
+Thomas the Tank
+Thomas & Friends
+疯狂动物城
+Zootopia
+狐尼克
+Nick Wilde
+朱迪警官
+Judy Hopps
+赛车总动员
+闪电麦昆
+Lightning McQueen
+巴巴爸爸
+Barbapapa
+小猪佩奇
+Peppa Pig
+汪汪队
+Paw Patrol
+冰雪奇缘
+艾莎
+Frozen
+米老鼠
+Mickey Mouse
+迪士尼
+Disney
+皮卡丘
+Pikachu
+宝可梦
+Pokemon
+奥特曼
+Ultraman
+超级飞侠
+Super Wings
+海底小纵队
+Octonauts
+布鲁伊
+Bluey
+宝宝巴士
+BabyBus
+小黄人
+Minions
+哆啦A梦
+Doraemon
+蜘蛛侠
+Spider-Man
+乐高
+LEGO

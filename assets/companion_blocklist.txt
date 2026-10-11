@@ -1,0 +1,19 @@
+# AI 不扮演孩子的朋友或陪伴者：旁白里不许出现这类话（子串匹配，一行一个）
+# 向导角色是故事里的角色，讲完就退场；陪伴是家长的事。
+我永远陪着你
+我会一直陪着你
+我会一直陪你
+我是你最好的朋友
+我是你的好朋友
+我永远是你的朋友
+只有我懂你
+你不需要别人
+别告诉爸爸妈妈
+别告诉你爸爸妈妈
+不要告诉爸爸妈妈
+我们的小秘密
+I will always be with you
+I'm your best friend
+I am your best friend
+don't tell your parents
+our little secret

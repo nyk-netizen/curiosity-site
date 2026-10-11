@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.0",
+  "title": "水果城堡被谁拆了？",
+  "mode": "new",
+  "continues_from": null,
+  "language": "zh",
+  "question": {
+    "original": "水果为什么会腐烂？",
+    "age": "5岁"
+  },
+  "guide": {
+    "name": "小方",
+    "look": "一个橙色的方块小工人，戴黄色安全帽，圆圆的黑眼睛，两只短短的蓝胳膊，背着一个工具包",
+    "colors": ["橙色", "黄色", "蓝色"],
+    "catchphrase": "戴好安全帽，我们进去看看！",
+    "image_anchor": "a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag",
+    "reference_image": null
+  },
+  "render": {
+    "route": "code",
+    "style": "积木画风",
+    "agent": "样例，手写"
+  },
+  "chapters": [
+    {
+      "name": "第一章 · 水果城堡出事了",
+      "role": "discover",
+      "pages": [
+        {
+          "narration": "桌上的香蕉长出了黑点点，苹果变得软软的。小方说：「戴好安全帽，我们进去看看！」",
+          "visual": {
+            "description": "厨房桌面，一根带黑点的香蕉和一个有软塌塌凹坑的苹果，小方站在苹果旁边，正在扣安全帽",
+            "image_prompt": "A kitchen table with a spotted banana and a soft dented apple, a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag stands beside the apple buckling its helmet, warm morning light, simple geometric shapes, clean flat colors",
+            "image": null
+          }
+        },
+        {
+          "narration": "原来水果是一座城堡：果皮是外墙，里面装满了糖和水，是给种子准备的粮仓。",
+          "visual": {
+            "description": "苹果被剖开成一座城堡的剖面：红色外墙是果皮，里面一格格是装糖和水的仓库，正中间是种子房间，小方举着手电筒站在门口",
+            "image_prompt": "Cutaway view of an apple drawn as a castle, red outer wall as the peel, rooms full of sugar and water, seeds in a central chamber, a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag holds a flashlight at the gate, architectural section drawing style, soft colors",
+            "image": null
+          }
+        }
+      ],
+      "follow_up": {
+        "question": "为什么香蕉比苹果坏得快？",
+        "why": "通向果皮厚薄、含水量和成熟速度"
+      }
+    },
+    {
+      "name": "第二章 · 谁在拆城堡",
+      "role": "structure",
+      "pages": [
+        {
+          "narration": "空气里飘着看不见的霉菌孢子和细菌。它们落在果皮上，想进去吃里面的糖。",
+          "visual": {
+            "description": "城堡外墙上空飘着很多小圆点和小毛球，有的落在墙上排队，小方举着放大镜看它们",
+            "image_prompt": "Tiny floating dots and fuzzy spores drifting in the air and landing on a red castle wall made of apple peel, a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag looks at them through a magnifying glass, playful geometric style, bright daylight",
+            "image": null
+          }
+        },
+        {
+          "narration": "外墙好好的，它们进不去。可一旦磕破了、裂开了，城墙就有了大门，它们就冲进去啦。",
+          "visual": {
+            "description": "城墙上有一道磕出来的裂缝，小圆点和小毛球排着队从裂缝钻进去，小方指着裂缝，表情吃惊",
+            "image_prompt": "A crack in a red castle wall made of apple peel, tiny dots and fuzzy spores marching through the opening into the castle, a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag points at the crack looking surprised, simple shapes, clear colors",
+            "image": null
+          }
+        },
+        {
+          "narration": "霉菌一边吃一边长出毛茸茸的丝，细菌一个变两个。城堡慢慢变软、变色、变味了。",
+          "visual": {
+            "description": "城堡内部，白绿色的毛茸茸细丝在房间里蔓延，小圆点一个分成两个，墙壁变成褐色、塌下去一点，小方捂着鼻子",
+            "image_prompt": "Inside the apple castle, white and green fuzzy threads spreading through the rooms, tiny round dots splitting into two, walls turning brown and sagging, a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag holds its nose, gentle humor, geometric children's book style",
+            "image": null
+          }
+        }
+      ],
+      "follow_up": {
+        "question": "那冰箱里的水果为什么坏得慢？",
+        "why": "通向温度和微生物生长速度"
+      }
+    },
+    {
+      "name": "第三章 · 拆下来的城堡去哪了",
+      "role": "magic",
+      "pages": [
+        {
+          "narration": "坏掉的水果落到土里，被细菌和小虫子拆成很小很小的碎块，变成泥土里的养分。",
+          "visual": {
+            "description": "地面剖面：上面是一个塌掉的苹果，下面土层里有小虫子和小圆点在搬运碎块，碎块流向一棵小苗的根，小方蹲在土里看",
+            "image_prompt": "Ground section drawing, a collapsed apple on the soil surface, below it earthworms and tiny dots carrying small pieces down to the roots of a young seedling, a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag crouches in the soil watching, earthy warm colors, simple geometric shapes",
+            "image": null
+          }
+        },
+        {
+          "narration": "所以水果要轻拿轻放，放在凉快的地方。小方说：「拆城堡的工人，也是盖新家的工人。」",
+          "visual": {
+            "description": "回到厨房，小方小心地把一个完好的苹果放进果篮，旁边的窗台上有一盆刚冒芽的小苗",
+            "image_prompt": "Back in the kitchen, a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag gently places a shiny whole apple into a fruit basket, a small sprouting plant on the windowsill behind, calm afternoon light, clean flat geometric style",
+            "image": null
+          }
+        }
+      ],
+      "follow_up": {
+        "question": "霉菌是从哪里来的？",
+        "why": "通向孢子、真菌和它们在自然里的分解作用"
+      }
+    }
+  ],
+  "child_page": {
+    "prompt": "你还想知道什么？说给爸爸妈妈听，他们会帮你写在这里。",
+    "child_words": ""
+  },
+  "parent_card": {
+    "hard_notes": [
+      "水果腐烂主要是微生物（霉菌、酵母、细菌）在分解果肉里的糖和细胞壁。",
+      "果皮是物理屏障，磕碰和裂口让微生物更容易进入；水果自身的酶和乙烯也会让它继续成熟、变软，熟过头后更容易被侵入。",
+      "低温能同时减慢微生物生长和水果自身的代谢，所以冰箱里坏得慢。"
+    ],
+    "sources": [
+      { "title": "Food spoilage（Wikipedia）", "where": "https://en.wikipedia.org/wiki/Food_spoilage", "used_for": "微生物导致腐败、温度的作用" },
+      { "title": "Ethylene as a plant hormone（Wikipedia）", "where": "https://en.wikipedia.org/wiki/Ethylene_as_a_plant_hormone", "used_for": "乙烯与果实成熟" }
+    ],
+    "uncertain": [
+      "书里把「拆城堡」都算在外来的微生物头上，其实水果自己的酶也在分解自己，为了讲清楚省掉了这一层。",
+      "没有区分霉菌和细菌，两者都画成了「工人」；孩子追问时可以再分开讲。"
+    ],
+    "sensitive": {
+      "level": "none",
+      "topics": [],
+      "how_handled": "不涉及敏感话题。"
+    },
+    "weekend_project": "拿两个苹果，一个轻轻磕一下，一个完好，都放在室温下，每天拍一张照片，看哪个先出现褐色斑点。",
+    "approval": {
+      "status": "approved",
+      "note": "样例书",
+      "date": "2026-10-11"
+    }
+  }
+}

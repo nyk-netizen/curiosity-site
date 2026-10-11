@@ -1,0 +1,7 @@
+_runs/
+tasks/codex-log-*.txt
+curiosity-site-books/
+.env
+.DS_Store
+__pycache__/
+*.pyc
