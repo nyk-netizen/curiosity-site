@@ -1,4 +1,4 @@
-# T-CODEX-fix3 · 追问卡挪到故事结束之后（叶凯定）
+# T-CODEX-fix3 · 追问卡挪到故事结束之后（作者定）
 
 禁止项同 T-CODEX.md 第 5 节。只改 scripts/render_book.py、assets/book_template.html、scripts/test_*。不改 schema、不改任何 book.json。
 

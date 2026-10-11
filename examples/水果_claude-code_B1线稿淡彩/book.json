@@ -194,7 +194,9 @@
       ]
     },
     "approval": {
-      "status": "pending"
+      "status": "approved",
+      "note": "家长翻过全书，放行",
+      "date": "2026-10-11"
     }
   }
 }

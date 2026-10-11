@@ -1,9 +1,9 @@
-# T-CODEX-fix5 · 朗读换成「晓晓」（edge-tts，叶凯定）
+# T-CODEX-fix5 · 朗读换成「晓晓」（edge-tts，作者定）
 
 禁止项同 T-CODEX.md 第 5 节。只改 scripts/ 和 assets/book_template.html。不改 schema、不改任何 book.json。
 
 ## 现状
-「读给我听」用浏览器 speechSynthesis，声音不好。本机装有 edge-tts 7.2.8（/opt/homebrew/bin/edge-tts，python3.11 可 import edge_tts），叶凯要用 `zh-CN-XiaoxiaoNeural`（晓晓）。
+「读给我听」用浏览器 speechSynthesis，声音不好。本机装有 edge-tts 7.2.8（/opt/homebrew/bin/edge-tts，python3.11 可 import edge_tts），作者要用 `zh-CN-XiaoxiaoNeural`（晓晓）。
 
 ## 要做
 1. 新脚本 `scripts/make_audio.py <book.json> [--voice zh-CN-XiaoxiaoNeural] [--rate -5%]`：

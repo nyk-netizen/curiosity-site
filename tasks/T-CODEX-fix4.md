@@ -1,4 +1,4 @@
-# T-CODEX-fix4 · 年龄分档、共读卡、AI 声明（按儿童发展调研 + 叶凯定位）
+# T-CODEX-fix4 · 年龄分档、共读卡、AI 声明（按儿童发展调研 + 作者定位）
 
 背景：调研报告 ../07_儿童发展调研_缺口清单.md（仓库外，可读）。禁止项同 T-CODEX.md 第 5 节。
 Claude Code 已改好 assets/book.schema.json（新增 `age_band`、`parent_card.co_reading`、x-rules 里的 `age_band_limits`、`co_reading_pages`，改了 `narration_length`）。**schema 不许再改**。你只改 scripts/ 和 assets/book_template.html。
