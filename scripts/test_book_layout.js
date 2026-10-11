@@ -79,30 +79,48 @@ function send(method, params = {}, sessionId) {
   })()`);
   const results = [];
   const viewports = [[1280,800],[1366,768],[1440,900],[1920,1080],[768,1024],[768,680],[375,812]];
-  for (const [width, height] of viewports) {
-    await call('Emulation.setDeviceMetricsOverride', {width, height, deviceScaleFactor:1, mobile:false});
-    const measurement = await evaluate(`new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(() => {
-      const page = document.querySelector('.story:not([hidden])');
-      const picture = page.querySelector('.picture').getBoundingClientRect();
-      resolve({width:innerWidth, height:innerHeight, scrollHeight:document.documentElement.scrollHeight,
-        scrollWidth:document.documentElement.scrollWidth,
-        readBottom:page.querySelector('.read-button').getBoundingClientRect().bottom,
-        footerBottom:document.querySelector('footer').getBoundingClientRect().bottom,
-        pictureWidth:picture.width, pictureHeight:picture.height,
-        narrationSize:parseFloat(getComputedStyle(page.querySelector('.narration')).fontSize)});
-    })))`);
-    results.push(measurement);
-    console.log(JSON.stringify(measurement));
-    assert.equal(measurement.width, width); assert.equal(measurement.height, height);
-    assert.ok(measurement.scrollWidth <= width, 'No horizontal overflow');
-    assert.ok(Math.abs(measurement.pictureWidth / measurement.pictureHeight - 1.5) < .01, 'Picture remains 3:2');
-    if (width >= 768) {
-      assert.ok(measurement.scrollHeight <= height, 'Story fits without scrolling');
-      assert.ok(measurement.readBottom < height, 'Read button is visible');
-      assert.ok(measurement.footerBottom <= height, 'Navigation is visible');
-    } else assert.ok(measurement.narrationSize >= 20, 'Mobile narration remains readable');
-    const shot = await call('Page.captureScreenshot', {format:'png', captureBeyondViewport:false});
-    fs.writeFileSync(path.join(output, `${width}x${height}.png`), Buffer.from(shot.data, 'base64'));
+  const storyCount = await evaluate(`document.querySelectorAll('.story').length`);
+  for (let storyIndex = 0; storyIndex < storyCount; storyIndex++) {
+    for (const [width, height] of viewports) {
+      await call('Emulation.setDeviceMetricsOverride', {width, height, deviceScaleFactor:1, mobile:false});
+      const measurement = await evaluate(`new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(() => {
+        const page = document.querySelector('.story:not([hidden])');
+        const picture = page.querySelector('.picture').getBoundingClientRect();
+        const narration = page.querySelector('.narration');
+        const hints = [...page.querySelectorAll('.co-reading-hint')].map(hint => {
+          const rect = hint.getBoundingClientRect(), style = getComputedStyle(hint);
+          return {top:rect.top, bottom:rect.bottom, fontSize:parseFloat(style.fontSize), color:style.color};
+        });
+        resolve({kind:'story', page:page.getAttribute('aria-label'), hints,
+          narrationBottom:narration.getBoundingClientRect().bottom,
+          readTop:page.querySelector('.read-button').getBoundingClientRect().top,
+          width:innerWidth, height:innerHeight, scrollHeight:document.documentElement.scrollHeight,
+          scrollWidth:document.documentElement.scrollWidth,
+          readBottom:page.querySelector('.read-button').getBoundingClientRect().bottom,
+          footerBottom:document.querySelector('footer').getBoundingClientRect().bottom,
+          pictureWidth:picture.width, pictureHeight:picture.height,
+          narrationSize:parseFloat(getComputedStyle(page.querySelector('.narration')).fontSize)});
+      })))`);
+      results.push(measurement);
+      console.log(JSON.stringify(measurement));
+      assert.equal(measurement.width, width); assert.equal(measurement.height, height);
+      assert.ok(measurement.scrollWidth <= width, 'No horizontal overflow');
+      assert.ok(Math.abs(measurement.pictureWidth / measurement.pictureHeight - 1.5) < .01, 'Picture remains 3:2');
+      for (const hint of measurement.hints) {
+        assert.ok(hint.fontSize <= measurement.narrationSize * .65, 'Parent hint is much smaller than narration');
+        assert.ok(hint.top >= measurement.narrationBottom && hint.bottom <= measurement.readTop,
+          'Parent hint follows narration and precedes read button');
+        if (width >= 768) assert.ok(hint.bottom < height, 'Parent hint is visible without scrolling');
+      }
+      if (width >= 768) {
+        assert.ok(measurement.scrollHeight <= height, 'Story fits without scrolling');
+        assert.ok(measurement.readBottom < height, 'Read button is visible');
+        assert.ok(measurement.footerBottom <= height, 'Navigation is visible');
+      } else assert.ok(measurement.narrationSize >= 20, 'Mobile narration remains readable');
+      const shot = await call('Page.captureScreenshot', {format:'png', captureBeyondViewport:false});
+      fs.writeFileSync(path.join(output, `story-${storyIndex + 1}-${width}x${height}.png`), Buffer.from(shot.data, 'base64'));
+    }
+    await evaluate(`document.getElementById('next').click()`);
   }
   await evaluate(`(() => {
     while (!document.getElementById('next').disabled) document.getElementById('next').click();

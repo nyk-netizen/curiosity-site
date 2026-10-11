@@ -4,8 +4,10 @@
     "nickname": "小名或昵称，不写真名",
     "age": "5岁",
     "language": "zh",
-    "reading": "不认字"
+    "reading": "不认字",
+    "age_band": "large"
   },
+  "parent_lens": "建筑师（不填就用建筑）",
   "interests": [
     "车与工程机械"
   ],

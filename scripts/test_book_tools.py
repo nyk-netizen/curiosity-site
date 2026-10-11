@@ -130,6 +130,9 @@ class BookToolsTests(unittest.TestCase):
     def test_bad_structures_do_not_crash(self):
         for value in (None, [], "book", {"chapters": [None, {"pages": [True, 1]}]}, {"chapters": "bad"}):
             self.assertFalse(validate_book(value, self.input)["ok"])
+        for age_band in ([], {}, None, 1, "unknown"):
+            self.book["age_band"] = age_band
+            self.assertIn("age_band", [e["path"] for e in validate_book(self.book, self.input)["errors"]])
         self.input.write_text('{"title": NaN}', encoding="utf-8")
         result = self.run_cli("validate_book.py", self.input, "--json")
         self.assertEqual(result.returncode, 1)
@@ -399,7 +402,7 @@ class BookToolsTests(unittest.TestCase):
 
     def test_existing_books_validate_and_render(self):
         books = [SAMPLE, *sorted((ROOT / "examples").glob("*/book.json"))]
-        self.assertGreaterEqual(len(books), 5)
+        self.assertGreaterEqual(len(books), 6)
         for index, book_path in enumerate(books):
             with self.subTest(book=str(book_path.relative_to(ROOT))):
                 result = self.run_cli("validate_book.py", book_path, "--json")
@@ -408,6 +411,110 @@ class BookToolsTests(unittest.TestCase):
                 result = self.run_cli("render_book.py", book_path, output)
                 self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
                 self.assertTrue(output.is_file())
+                self.assertIn('这本书由 AI 生成，家长看过才算数。', output.read_text(encoding="utf-8"))
+
+    def age_book(self, band, count, length=1, mode="new", language="zh"):
+        book = copy.deepcopy(self.book)
+        book.update(age_band=band, mode=mode, language=language, continues_from="上一本")
+        # Keep three valid chapters; follow-ups below use one or two as needed.
+        chapters = book["chapters"][:min(3, count)]
+        prototype = copy.deepcopy(chapters[0]["pages"][0])
+        prototype.update(narration="字 \n" * length, narration_en="word " * 40)
+        for index, chapter in enumerate(chapters):
+            page_count = count // len(chapters) + (index < count % len(chapters))
+            chapter["pages"] = [copy.deepcopy(prototype) for _ in range(page_count)]
+        book["chapters"] = chapters
+        return book
+
+    def test_age_band_page_boundaries_by_mode(self):
+        for band, lower, upper in (("small", 3, 4), ("middle", 4, 6), ("large", 4, 8)):
+            for mode in ("new", "no_question", "follow_up"):
+                minimum = 2 if mode == "follow_up" else lower
+                for count in (minimum - 1, minimum, upper, upper + 1):
+                    with self.subTest(band=band, mode=mode, count=count):
+                        book = self.age_book(band, count, mode=mode)
+                        errors = validate_book(book, self.input)["errors"]
+                        valid = minimum <= count <= upper
+                        self.assertEqual(not errors, valid, errors)
+                        if not valid:
+                            self.assertTrue(any(e["path"] == "chapters" and "全书正文" in e["message"] for e in errors))
+        for count in (3, 4, 8, 9):
+            book = self.age_book("large", count)
+            book.pop("age_band")
+            self.assertEqual(validate_book(book, self.input)["ok"], 4 <= count <= 8)
+
+    def test_age_band_narration_boundaries_and_cover(self):
+        for band, limit, label in (("small", 30, "小班 3–4 岁"),
+                                   ("middle", 45, "中班 4–5 岁"), ("large", 60, "大班 5–6 岁")):
+            for language in ("zh", "bilingual"):
+                for length in (limit, limit + 1):
+                    with self.subTest(band=band, language=language, length=length):
+                        book = self.age_book(band, 4, length, language=language)
+                        errors = validate_book(book, self.input)["errors"]
+                        self.assertEqual(not errors, length == limit, errors)
+                        if errors:
+                            self.assertEqual(len(errors), 4)
+                            self.assertTrue(all(e["path"].endswith(".narration") for e in errors))
+                        else:
+                            document = render_book(book, self.input)
+                            self.assertIn(f'<p class="age-band">{label}</p>', document.split('</section>', 1)[0])
+            book = self.age_book(band, 4, language="en")
+            for chapter in book["chapters"]:
+                for page in chapter["pages"]:
+                    page["narration"] = "word " * 40
+            self.assertTrue(validate_book(book, self.input)["ok"])
+            book["chapters"][0]["pages"][0]["narration"] += "word"
+            self.assertIn("chapters[0].pages[0].narration", [e["path"] for e in validate_book(book, self.input)["errors"]])
+        self.assertNotIn('class="age-band"', render_book(self.book, self.input))
+
+    def test_co_reading_schema_and_page_bounds(self):
+        self.assertTrue(validate_book(self.book, self.input)["ok"])
+        self.book["parent_card"]["co_reading"] = {"pauses": [{"page": 7, "ask": "你看见了什么？"}], "tips": []}
+        self.assertTrue(validate_book(self.book, self.input)["ok"])
+        for page in (0, -1, 8, True, 1.5, "1", None):
+            with self.subTest(page=page):
+                self.book["parent_card"]["co_reading"]["pauses"][0]["page"] = page
+                errors = validate_book(self.book, self.input)["errors"]
+                self.assertIn("parent_card.co_reading.pauses[0].page", [e["path"] for e in errors])
+        self.book["parent_card"]["co_reading"]["pauses"][0]["page"] = 8
+        self.write()
+        output = self.directory / "out-of-range.html"
+        self.assertEqual(self.run_cli("render_book.py", self.input, output).returncode, 1)
+        self.assertFalse(output.exists())
+        for value in (None, [], {}, {"pauses": [], "tips": []},
+                      {"pauses": [{"page": 1, "ask": " \n"}], "tips": [""]},
+                      {"pauses": [True, {"page": []}], "tips": "wrong"}):
+            self.book["parent_card"]["co_reading"] = value
+            self.assertFalse(validate_book(self.book, self.input)["ok"])
+
+    def test_co_reading_render_numbering_escaping_and_speech(self):
+        self.assertNotIn('怎么一起读', render_book(self.book, self.input))
+        self.assertNotIn('class="co-reading-hint"', render_book(self.book, self.input))
+        asks = [(1, '你看见了什么？'), (3, '猜猜 <云> & 水去哪了？'), (3, '还有什么？')]
+        self.book["parent_card"]["co_reading"] = {
+            "pauses": [{"page": page, "ask": ask} for page, ask in asks],
+            "tips": ['孩子插嘴就停下来听。', '等一等 <回答> & 不纠正。']}
+        self.assertTrue(validate_book(self.book, self.input)["ok"])
+        for status in ("approved", "pending", "changes_requested"):
+            with self.subTest(status=status):
+                self.book["parent_card"]["approval"]["status"] = status
+                document = render_book(self.book, self.input)
+                parent = document.split('<summary>家长卡（给大人看）</summary>', 1)[1].split('</details>', 1)[0]
+                self.assertTrue(parent.lstrip().startswith('<p class="ai-notice">这本书由 AI 生成，家长看过才算数。</p>'))
+                self.assertIn('<h3>怎么一起读</h3>', parent)
+                self.assertIn('第 3 页：问猜猜 &lt;云&gt; &amp; 水去哪了？', parent)
+                self.assertIn('等一等 &lt;回答&gt; &amp; 不纠正。', parent)
+                stories = [s.split('</section>', 1)[0] for s in document.split('class="page story"')[1:]]
+                for index, story in enumerate(stories, 1):
+                    self.assertEqual(story.count('class="co-reading-hint"'), sum(page == index for page, _ in asks))
+                    if index in (1, 3):
+                        self.assertLess(story.index('class="narration"'), story.index('class="co-reading-hint"'))
+                        self.assertLess(story.index('class="co-reading-hint"'), story.index('class="read-button"'))
+                    self.assertEqual(story.count('<button '), 1)
+                payload = json.loads(document.split('<script id="book-data" type="application/json">', 1)[1].split('</script>', 1)[0])
+                self.assertEqual([lines[0]["text"] for lines in payload["narrations"].values()],
+                                 [p["narration"] for c in self.book["chapters"] for p in c["pages"]])
+                self.assertFalse(any(ask in json.dumps(payload, ensure_ascii=False) for _, ask in asks))
 
 
 if __name__ == "__main__":

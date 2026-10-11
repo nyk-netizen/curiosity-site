@@ -17,6 +17,7 @@ from validate_book import load_book, print_result, resolve_book_image, validate_
 ASSETS = Path(__file__).resolve().parent.parent / "assets"
 TOPICS = {"death": "死亡", "body": "身体", "fear": "恐惧", "religion": "宗教",
           "family_change": "家庭变化", "disaster": "灾难", "other": "其他"}
+AGE_BAND_LABELS = {"small": "小班 3–4 岁", "middle": "中班 4–5 岁", "large": "大班 5–6 岁"}
 
 
 def esc(value):
@@ -59,8 +60,15 @@ def parent_card(book, opened=False):
     approval = parent["approval"]
     status = {"pending": "待家长放行", "approved": "家长已放行", "changes_requested": "家长要求修改"}[approval["status"]]
     level = {"none": "无", "notice": "提醒家长", "parent_first": "家长先看"}[sensitive["level"]]
+    co_reading = ''
+    if "co_reading" in parent:
+        reading = parent["co_reading"]
+        pauses = ''.join(f'<li>第 {pause["page"]} 页：问{esc(pause["ask"])}</li>' for pause in reading["pauses"])
+        co_reading = f'<h3>怎么一起读</h3><ul>{pauses}</ul>' + (list_html(reading["tips"]) if reading["tips"] else '')
     return f'''<details class="parent-card" {'open' if opened else ''}>
 <summary>家长卡（给大人看）</summary>
+<p class="ai-notice">这本书由 AI 生成，家长看过才算数。</p>
+{co_reading}
 <h3>核心原理 · hard_notes</h3>{list_html(parent['hard_notes'])}
 <h3>参考来源 · sources</h3><ul>{''.join(sources)}</ul>
 <h3>不确定与简化 · uncertain</h3>{list_html(parent['uncertain'])}
@@ -88,15 +96,20 @@ def render_book(book, book_path):
         question_note = f'<p class="question-note">接着《{esc(book["continues_from"])}》</p>'
     elif book["mode"] == "no_question":
         question_note = '<p class="question-note">今天没有问题，这一题是替你出的</p>'
+    age_note = (f'<p class="age-band">{AGE_BAND_LABELS[book["age_band"]]}</p>'
+                if "age_band" in book else '')
     pages = [f'''<section class="page cover" aria-label="封面">
 <p class="eyebrow">从一个问题，走进一个世界</p><div class="cover-mark" aria-hidden="true">?</div>
-<h1>{esc(book['title'])}</h1><p class="question">{question_prefix}{esc(book['question']['original'])}</p>{question_note}
+<h1>{esc(book['title'])}</h1><p class="question">{question_prefix}{esc(book['question']['original'])}</p>{question_note}{age_note}
 <div class="guide"><p>这次的向导 · <strong>{esc(guide['name'])}</strong></p><p>「{esc(guide['catchphrase'])}」</p></div>
 <p class="hint">和爸爸妈妈一起，翻开下一页吧。</p></section>''']
     if pending:
         pages.append('<section class="page" aria-label="家长预览"><p class="eyebrow">先给大人看</p>'
                      + parent_card(book, opened=True) + '</section>')
     narrations = {}
+    pauses_by_page = {}
+    for pause in book["parent_card"].get("co_reading", {}).get("pauses", []):
+        pauses_by_page.setdefault(pause["page"], []).append(pause["ask"])
     art_index = 0
     for chapter in book["chapters"]:
         for page in chapter["pages"]:
@@ -110,9 +123,11 @@ def render_book(book, book_path):
             if book["language"] == "bilingual" and page.get("narration_en"):
                 english = f'<p class="narration english" lang="en">{esc(page["narration_en"])}</p>'
                 narrations[str(number)].append({"text": page["narration_en"], "lang": "en-US"})
+            parent_hint = ''.join(f'<p class="co-reading-hint">家长可以停下来问：{esc(ask)}</p>'
+                                  for ask in pauses_by_page.get(art_index, []))
             pages.append(f'''<section class="page story" aria-label="正文第 {art_index} 页">
 <p class="eyebrow">{esc(chapter['name'])}</p><div class="picture">{illustration}</div>
-<p class="narration">{esc(page['narration'])}</p>{english}
+<p class="narration">{esc(page['narration'])}</p>{english}{parent_hint}
 <button class="read-button" type="button" data-read="{number}">读给我听</button><p class="speech-status" role="status"></p></section>''')
     follow_buttons = ''.join(
         f'<button class="follow-button" type="button" data-follow="{ci}" aria-pressed="false">'

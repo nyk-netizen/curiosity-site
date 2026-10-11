@@ -9,6 +9,8 @@ from pathlib import Path, PureWindowsPath
 ASSETS = Path(__file__).resolve().parent.parent / "assets"
 WORD = re.compile(r"[A-Za-z0-9]+(?:['’\-][A-Za-z0-9]+)*")
 ENGLISH_WORD = re.compile(r"[A-Za-z]+(?:['’\-][A-Za-z]+)*")
+# x-rules.age_band_limits (the schema describes these limits in prose).
+AGE_BAND_LIMITS = {"small": (3, 4, 30), "middle": (4, 6, 45), "large": (4, 8, 60)}
 
 
 def resolve_book_image(filename, book_path):
@@ -98,6 +100,11 @@ def validate_schema(value, schema, path, errors):
         error("值必须是以下之一：" + json.dumps(schema["enum"], ensure_ascii=False))
     if "const" in schema and not json_equal(value, schema["const"]):
         error("值必须为 " + json.dumps(schema["const"], ensure_ascii=False))
+    if isinstance(value, (int, float)) and not isinstance(value, bool):
+        if "minimum" in schema and value < schema["minimum"]:
+            error(f"数值至少为 {schema['minimum']}，实际 {value}")
+        if "maximum" in schema and value > schema["maximum"]:
+            error(f"数值最多为 {schema['maximum']}，实际 {value}")
     if isinstance(value, dict):
         for key in schema.get("required", []):
             if key not in value:
@@ -146,6 +153,11 @@ def validate_book(book, book_path):
         for pi, page in enumerate(chapter["pages"]):
             pages.append((f"chapters[{ci}].pages[{pi}]", page))
     mode = obj.get("mode")
+    age_band = obj.get("age_band", "large")
+    # Invalid age_band values are reported by the schema, without crashing here.
+    if not isinstance(age_band, str) or age_band not in AGE_BAND_LIMITS:
+        age_band = "large"
+    minimum, maximum, narration_limit = AGE_BAND_LIMITS[age_band]
     if mode in ("new", "no_question"):
         if len(chapters) != 3:
             error("chapters", f"mode={mode} 必须正好 3 章，实际 {len(chapters)} 章")
@@ -153,9 +165,9 @@ def validate_book(book, book_path):
             if index < len(chapters) and isinstance(chapters[index], dict) and chapters[index].get("role") != role:
                 error(f"chapters[{index}].role", f"第 {index + 1} 章的 role 必须为 {role}")
     if mode in ("new", "no_question", "follow_up"):
-        minimum = 2 if mode == "follow_up" else 4
-        if not minimum <= len(pages) <= 8:
-            error("chapters", f"mode={mode} 全书正文必须 {minimum}–8 页，实际 {len(pages)} 页")
+        minimum = 2 if mode == "follow_up" else minimum
+        if not minimum <= len(pages) <= maximum:
+            error("chapters", f"mode={mode}、age_band={age_band} 全书正文必须 {minimum}–{maximum} 页，实际 {len(pages)} 页")
     if mode == "follow_up":
         if not 1 <= len(chapters) <= 3:
             error("chapters", "追问模式必须有 1–3 章")
@@ -185,8 +197,8 @@ def validate_book(book, book_path):
         if isinstance(narration, str):
             if obj.get("language") in ("zh", "bilingual"):
                 length = len(re.sub(r"\s", "", narration))
-                if length > 60:
-                    error(path + ".narration", f"中文旁白去掉空白后不得超过 60 个字符，实际 {length} 个")
+                if length > narration_limit:
+                    error(path + ".narration", f"age_band={age_band} 中文旁白去掉空白后不得超过 {narration_limit} 个字符，实际 {length} 个")
             elif obj.get("language") == "en" and word_count(narration) > 40:
                 error(path + ".narration", f"英文旁白不得超过 40 词，实际 {word_count(narration)} 词")
         english = page.get("narration_en")
@@ -223,6 +235,14 @@ def validate_book(book, book_path):
             if term.casefold() in value.casefold():
                 error(path, f"含禁用 IP 词「{term}」")
     parent = obj.get("parent_card")
+    co_reading = parent.get("co_reading") if isinstance(parent, dict) else None
+    pauses = co_reading.get("pauses") if isinstance(co_reading, dict) else None
+    if isinstance(pauses, list):
+        for index, pause in enumerate(pauses):
+            page_number = pause.get("page") if isinstance(pause, dict) else None
+            if isinstance(page_number, int) and not isinstance(page_number, bool) and page_number > len(pages):
+                error(f"parent_card.co_reading.pauses[{index}].page",
+                      f"共读页码不能超过全书正文 {len(pages)} 页，实际 {page_number}")
     sensitive = parent.get("sensitive") if isinstance(parent, dict) else None
     if isinstance(sensitive, dict) and sensitive.get("level") == "parent_first" and not sensitive.get("topics"):
         error("parent_card.sensitive.topics", "parent_first 时敏感话题 topics 不能为空")

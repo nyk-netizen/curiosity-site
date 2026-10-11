@@ -162,3 +162,48 @@ node scripts/test_book_layout.js /tmp/curiosity-fix3.html
 ### 范围
 
 本次仅修改 `scripts/render_book.py`、`assets/book_template.html`、三个 `scripts/test_*` 文件，并按要求追加本节。未修改 schema 或任何 book.json，未读取 `_runs/`，未安装包，未 commit/push。工作区同时出现 README、SKILL、references 和新增示例等其他变动，均非本任务写入，未还原或覆盖。
+
+## fix4
+
+### 修改
+
+- `scripts/validate_book.py`：实现 `x-rules.age_band_limits`，small 正文 3–4 页、中文旁白 ≤30 字；middle 4–6 页、≤45 字；large 4–8 页、≤60 字。未填 `age_band` 按 large，follow_up 三档下限均为 2、各档上限不变。中文计数沿用去掉空白后计算字符数（含标点），适用于 zh / bilingual；英文仍为 40 词上限。非法档位由 schema 报错，不会导致规则校验崩溃。
+- 实现 `co_reading_pages`，超过正文总页数时报 `parent_card.co_reading.pauses[N].page`。共读卡可省略，有则执行 schema 的对象、必填字段、数组和非空文本约束；补上数值 `minimum` / `maximum` 支持，执行 schema 中页码至少为 1 的限制，同时拒绝布尔值、字符串和非整数页码。
+- `scripts/render_book.py`：所有家长卡在 summary 后第一行固定显示「这本书由 AI 生成，家长看过才算数。」。有共读卡时显示「怎么一起读」、逐项「第 N 页：问……」及 tips。封面有档位才显示对应「小班 3–4 岁 / 中班 4–5 岁 / 大班 5–6 岁」。
+- 共读提示按正文连续页码匹配，不包含封面、家长预览页或结尾页；同页多个 pause 均显示。提示放在旁白之后、朗读按钮之前，HTML 转义处理；提示和 tips 不进入朗读数据，也不新增按钮。
+- `assets/book_template.html`：提示使用 13px、浅色 `#9b8b77`（旁白为 22–28px），封面档位为 14px。沿用 fix1 测量剩余高度、同时缩小画面宽度的适配，家长提示占用高度也计入；增加提示尺寸观察，变化后重新适配。
+- `scripts/test_book_tools.py`：新增三档在三种 mode 下页数边界、中文/双语长度边界、英文上限、默认 large、非法档位、共读卡缺失/合法/越界/错误结构测试；检查家长卡顶部声明、共读页码跨章及预览页映射、同页多个提示、转义和朗读数据。现有书回归至少要求六本。
+- `scripts/test_book_layout.js`：改为每一页正文都检查七种视口，增加提示字号明显小于旁白、在旁白与朗读按钮之间、桌面无需滚动可见等断言，保留画面 3:2、朗读按钮、翻页栏和末页布局检查。
+
+### 自测结果
+
+- `PYTHONDONTWRITEBYTECODE=1 python3 scripts/test_book_tools.py`：**22 项全部通过，退出码 0**。
+- 六本现有书分别运行 CLI 校验、CLI 渲染及 JavaScript 交互回归：全部通过；输出在 `/tmp/curiosity-fix4-books/existing-0.html` 至 `existing-5.html`，未覆盖 examples。
+
+| 书 | 正文页数 | 校验 / 渲染 / 交互回归 |
+| --- | --- | --- |
+| `assets/sample_book.json` | 7 | 全部通过 |
+| `examples/t10_claude-code_代码画图/book.json` | 8 | 全部通过 |
+| `examples/t10_codex_图片书/book.json` | 7 | 全部通过 |
+| `examples/t10_zcode_代码画图/book.json` | 7 | 全部通过 |
+| `examples/t10_zcode_代码画图_v2/book.json` | 7 | 全部通过 |
+| `examples/t22_codex_孩子当主角/book.json` | 6 | 全部通过 |
+
+- 另生成已放行、未放行共读测试书，档位 large，正文第 1 / 3 / 7 页有提示，第一页旁白达到 60 字上限。两份校验、渲染和交互回归均通过；临时 JSON / HTML 为 `/tmp/curiosity-fix4-books/co-reading-approved.*`、`co-reading-pending.*`。
+- `node --check scripts/test_book_layout.js`、`git diff --check` 通过。
+- **真实布局验收未完成**：对样例和两份共读书实际运行布局脚本，Chrome 均启动即 `SIGABRT`，脚本退出码 1，未取得截图或几何数据。尝试本地 HTTP 服务时，环境拒绝绑定 `127.0.0.1`（`Operation not permitted`）；备用浏览器安全策略拒绝 `file://`，只允许 http/https，明确禁止绕过。停止此浏览器路径，未降低保护或申请额外权限。因此不能声称已实测通过 1280×800 的正文无滚动要求。交互回归使用 DOM 替身，也不代表真实听音或下载验收。
+
+可复跑命令（临时共读书保留在上述目录）：
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/test_book_tools.py
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/render_book.py assets/sample_book.json /tmp/curiosity-fix4.html
+node scripts/test_book_interactions.js /tmp/curiosity-fix4.html
+node scripts/test_book_layout.js /tmp/curiosity-fix4.html
+node scripts/test_book_layout.js /tmp/curiosity-fix4-books/co-reading-approved.html
+node scripts/test_book_layout.js /tmp/curiosity-fix4-books/co-reading-pending.html
+```
+
+### 范围
+
+本次仅写入 `scripts/validate_book.py`、`scripts/render_book.py`、`scripts/test_book_tools.py`、`scripts/test_book_layout.js`、`assets/book_template.html` 和本交付记录。`assets/book.schema.json` 在开始前已修改，本任务未编辑；期间另有 `SKILL.md` 变动，也非本任务写入。未修改任何现有书 JSON、README、references 或 blocklist；未读取 `_runs/`，未安装包，未 commit/push。
