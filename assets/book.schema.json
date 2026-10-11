@@ -39,7 +39,7 @@
         "colors": { "type": "array", "items": { "type": "string" }, "minItems": 1, "maxItems": 6 },
         "catchphrase": { "type": "string" },
         "image_anchor": { "type": "string", "description": "英文外形锚句，每页 image_prompt 都必须原样包含" },
-        "reference_image": { "type": ["string", "null"], "description": "生图路线：角色参考图的相对路径" }
+        "reference_image": { "type": ["string", "null"], "description": "角色参考图的相对路径：生图路线用 .png，代码画图路线用角色 SVG" }
       }
     },
     "protagonist": {
