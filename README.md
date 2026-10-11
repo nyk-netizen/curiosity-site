@@ -7,7 +7,7 @@
 ![同一个问题，三个平台，三种画面](docs/t10_三个平台.jpg)
 
 > 同一道题「水果为什么会腐烂？」、同一个向导角色「小方」，在不同 agent 上跑出的书。能生图的 agent 出水彩图片书，只能写代码的 agent 用 SVG 画成积木风。内容结构一样，画面各不相同。**这是一个工作流，不是一个产品。**
-> 成品在 [`examples/`](examples/)：下载 `book.html` 双击就能翻，断网也能看，每页可以朗读。
+> 成品在 [`examples/`](examples/)：下载 `book.html` 双击就能翻，断网也能看，每页可以朗读。Codex 和 Claude Code 两本家长已放行；ZCode 那本**特意保留未放行状态**，打开能看到「家长预览版」横幅。
 
 ## 为什么做
 
@@ -80,7 +80,7 @@
 |---|---|---|
 | Claude Code | `~/.claude/skills/curiosity-site/` | ✅ 能自动发现；代码画图路线，约 12 分钟出一本 8 页书 |
 | Codex | `~/.codex/skills/curiosity-site/` | ✅ 能自动发现；生图路线，约 12 分钟出一本 7 页水彩书（含 9 次生图） |
-| ZCode | `~/.agents/skills/curiosity-site/` | ✅ 能发现；代码画图路线 |
+| ZCode | `~/.agents/skills/curiosity-site/` | ✅ 能发现；代码画图路线（GLM-5.3-Flash），约 20 分钟出一本 7 页书 |
 
 ```bash
 git clone https://github.com/nyk-netizen/curiosity-site.git ~/.claude/skills/curiosity-site
