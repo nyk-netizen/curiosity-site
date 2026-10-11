@@ -1,0 +1,29 @@
+你装了一个叫「好奇心工地」（curiosity-site）的 skill，位置：~/.agents/skills/curiosity-site。
+请按它的 SKILL.md 和用到的 references/ 工作，帮一位家长把孩子的问题做成一本绘本。
+
+规则：
+1. 所有产出只写到 /Users/yk/Desktop/构建个人ai助手/09_黑客松_AIforKids_20261011/curiosity-site/_runs/zcode/ 这一个文件夹里（里面的 _family/ 和书的子文件夹照 SKILL.md 建，别的文件夹一个都不要建；它就是 SKILL.md 里说的 curiosity-site-books/）。
+   不要打开仓库里的 _runs/、examples/ 或任何其他成品，也不要参考 assets/sample_book.json 以外的书。
+2. 家长已经填过问卷，你直接把下面这份答案整理成 /Users/yk/Desktop/构建个人ai助手/09_黑客松_AIforKids_20261011/curiosity-site/_runs/zcode/_family/profile.json，不用再问：
+   - 孩子：5 岁，中文，不认字，小名「豆豆」
+   - 兴趣：车与工程机械、动物
+   - 怕：黑
+   - 家长先看的话题：死亡、身体与性别
+   - 向导角色：已经和孩子一起造好了，角色卡如下（原样用）：
+     名字：小方
+     外形：一个橙色的方块小工人，戴黄色安全帽，圆圆的黑眼睛，两只短短的蓝胳膊，背着一个工具包
+     颜色：橙色、黄色、蓝色
+     口头禅：戴好安全帽，我们进去看看！
+     image_anchor：a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag
+     孩子的原话：「它是个方方的小工人，橙色的，要戴黄帽子，手是蓝的，还要背工具包」
+   - 怎么读：家长读
+   - 出什么：代码画的书（你只能写代码，按 06 的代码画图路线）
+   - 多长：标准（6–8 页）
+   - 放行：每本都要家长先看
+   - 分享：可以公开
+3. 孩子的问题是：「水果为什么会腐烂？」
+4. 做到第 7 步「家长放行」时停下：approval 保持 pending，把你会对家长说的话写进交付说明，不要自己改成 approved。
+5. 能联网就查证；不能联网就照 SKILL.md 的规定在 sources 里写明。
+6. 做完后在 /Users/yk/Desktop/构建个人ai助手/09_黑客松_AIforKids_20261011/curiosity-site/_runs/zcode/交付说明.md 里写：走了哪几步、每步大约用时、哪一步不确定、SKILL.md 里哪里写得让你犹豫。
+
+7. 检查 SVG 画面时用 rsvg-convert -w 1536 -h 1024 按原尺寸渲染成 PNG 再看，不要用 qlmanage。不要把任何图片上传到外部看图服务。
