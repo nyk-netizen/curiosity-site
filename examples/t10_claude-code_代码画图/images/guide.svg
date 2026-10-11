@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 1024" width="1536" height="1024">
+<rect width="1536" height="1024" fill="#FFF7EA"/>
+<circle cx="768" cy="520" r="360" fill="#FFE9C7"/>
+<g transform="translate(768 820) scale(2.2 2.2)">
+  <ellipse cx="0" cy="4" rx="95" ry="12" fill="#000" opacity="0.10"/>
+  <rect x="48" y="-176" width="66" height="96" rx="14" fill="#1F4E8C" stroke="#163A69" stroke-width="4"/>
+  <rect x="84" y="-214" width="12" height="44" rx="6" fill="#9AA5B1" stroke="#6B7785" stroke-width="3"/>
+  <circle cx="90" cy="-216" r="13" fill="none" stroke="#6B7785" stroke-width="7"/>
+  <rect x="56" y="-120" width="50" height="10" rx="5" fill="#163A69"/>
+  <rect x="-56" y="-26" width="40" height="28" rx="10" fill="#C0661A"/>
+  <rect x="16" y="-26" width="40" height="28" rx="10" fill="#C0661A"/>
+  <rect x="-80" y="-192" width="160" height="172" rx="22" fill="#F28C28" stroke="#C0661A" stroke-width="6"/>
+  <rect x="-62" y="-192" width="16" height="36" rx="6" fill="#1F4E8C"/>
+  <rect x="46" y="-192" width="16" height="36" rx="6" fill="#1F4E8C"/>
+  <g transform="rotate(35 -80 -130)"><rect x="-108" y="-138" width="30" height="72" rx="15" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4"/><circle cx="-93" cy="-64" r="17" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4"/></g><g transform="rotate(-120 80 -130)"><rect x="78" y="-138" width="30" height="72" rx="15" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4"/><circle cx="93" cy="-64" r="17" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4"/></g>
+  <path d="M -72 -192 A 74 64 0 0 1 72 -192 Z" fill="#FFD23F" stroke="#D9A800" stroke-width="5"/>
+  <rect x="-11" y="-252" width="22" height="58" rx="9" fill="#FFE27A" stroke="#D9A800" stroke-width="3"/>
+  <rect x="-98" y="-204" width="196" height="22" rx="11" fill="#FFD23F" stroke="#D9A800" stroke-width="5"/>
+  <circle cx="-34" cy="-128" r="17" fill="#1A1A1A"/><circle cx="-28" cy="-134" r="5.5" fill="#FFF"/>
+  <circle cx="34" cy="-128" r="17" fill="#1A1A1A"/><circle cx="40" cy="-134" r="5.5" fill="#FFF"/>
+  <circle cx="-56" cy="-98" r="9" fill="#F7A65A"/><circle cx="56" cy="-98" r="9" fill="#F7A65A"/>
+  <path d="M -18 -90 Q 0 -72 18 -90" fill="none" stroke="#7A3A0A" stroke-width="5" stroke-linecap="round"/>
+</g>
+<rect x="694.0" y="898" width="148" height="86" rx="16" fill="#FFFFFF" stroke="#3A2A1E" stroke-width="4"/><text x="768" y="964" font-family="PingFang SC, Hiragino Sans GB, Noto Sans CJK SC, sans-serif" font-size="56" font-weight="700" fill="#3A2A1E" text-anchor="middle">小方</text>
+</svg>

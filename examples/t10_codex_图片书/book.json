@@ -1,0 +1,161 @@
+{
+  "schema_version": "1.0",
+  "title": "小方探访水果小房子",
+  "mode": "new",
+  "continues_from": null,
+  "language": "zh",
+  "question": {
+    "original": "水果为什么会腐烂？",
+    "age": "5岁"
+  },
+  "guide": {
+    "name": "小方",
+    "look": "一个橙色的方块小工人，戴黄色安全帽，圆圆的黑眼睛，两只短短的蓝胳膊，背着一个工具包",
+    "colors": [
+      "橙色",
+      "黄色",
+      "蓝色"
+    ],
+    "catchphrase": "戴好安全帽，我们进去看看！",
+    "image_anchor": "a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag",
+    "reference_image": "images/guide_ref.jpg"
+  },
+  "render": {
+    "route": "image",
+    "style": "明亮水彩绘本，水果剖面与放大示意，暖白纸纹",
+    "agent": "Codex · 内置 image_gen"
+  },
+  "chapters": [
+    {
+      "name": "第一章 · 走进水果小房子",
+      "role": "discover",
+      "pages": [
+        {
+          "narration": "桃子怎么变样了？新鲜的桃子圆鼓鼓，放久的桃子却塌了，还长了毛。小方说：戴好安全帽，我们进去看看！",
+          "visual": {
+            "description": "明亮桌面左侧是新鲜桃子，右侧托盘上是局部塌陷、有少量灰白霉毛的桃子。小方站在旁边观察，不摸也不凑近闻。不同状态的示意不承诺时间。",
+            "image_prompt": "A fresh peach and a spoiled peach sit separately on a bright kitchen table. The spoiled peach has one small pale fuzzy patch and a softened dent. Nearby stands a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag, observing without touching. Warm watercolor picture book, cream paper texture, gentle daylight, clear large subjects, landscape three to two, no text, no faces on fruit.",
+            "image": "images/p01.jpg"
+          }
+        },
+        {
+          "narration": "把桃子放大，像看一座水果小房子。果皮像外墙，果肉里装着水和养分。小方只在图画里走进去。",
+          "visual": {
+            "description": "桃子教学剖面占大半画面，薄果皮、含水果肉、中央硬果核分明。局部相连的小格子示意细胞；小方在剖面旁指向外层，不把桃子真的画成建筑。",
+            "image_prompt": "A large peach cutaway shows thin skin, juicy flesh and a central stone. A small inset suggests connected plant cells holding water. Beside the cutaway, a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag points toward the outer skin. Architectural educational watercolor, warm cream background, readable simple layers, soft daylight, landscape three to two, no text, no literal house rooms.",
+            "image": "images/p02.jpg"
+          }
+        }
+      ],
+      "follow_up": {
+        "question": "果皮破了，会怎么样？",
+        "why": "通向果皮的保护作用，以及损伤让微生物更容易侵入。"
+      }
+    },
+    {
+      "name": "第二章 · 果肉怎么变了",
+      "role": "structure",
+      "pages": [
+        {
+          "narration": "水果摘下来以后，里面还会慢慢变化。成熟时，果肉会变软；变软不一定是腐烂。",
+          "visual": {
+            "description": "两个桃子分别示意较硬和成熟略软，都没有霉毛。下方相连细胞示意从紧到略松。小方展示纸板示意图，绝不敲砸水果。",
+            "image_prompt": "Two clean peaches illustrate firmer flesh and gently softened ripe flesh, with neither showing mold. Below them, paired small cell diagrams show tight then slightly loosened connections. a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag presents the diagrams beside the fruit. Warm watercolor picture book, bright cream backdrop, simple comparison, landscape three to two, no text, no rotten fruit here.",
+            "image": "images/p03.jpg"
+          }
+        },
+        {
+          "narration": "霉菌和细菌都很小，叫微生物。它们可能在果皮上；果皮破了，更容易在里面长起来。",
+          "visual": {
+            "description": "桃子小裂口连着放大观察框。框内极简无表情的杆状和细丝状示意微生物，少量在裂口里。小方在框外指向裂口；这不是普通放大镜能直接看到细菌的承诺。",
+            "image_prompt": "A peach skin has a small crack linked to an enlarged scientific inset. Inside the inset, simple tiny rods and delicate fungal threads appear on the surface and around the crack. a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag points from outside the inset. Gentle educational watercolor, cream background, clear scale separation, landscape three to two, no text, no monsters or facial features on microbes.",
+            "image": "images/p04.jpg"
+          }
+        },
+        {
+          "narration": "有些微生物用水果里的养分长大，还会拆开果肉的结构。果肉越来越烂，可能长毛、流水。这就是腐烂。",
+          "visual": {
+            "description": "左右连贯的果肉放大图：完整细胞结构与部分连接、细胞壁被分解，汁水流出。细丝状霉菌延伸到组织内部，上方小桃子对应小霉斑。小方旁观，微生物不拿工具拆房子。",
+            "image_prompt": "An enlarged peach tissue diagram compares intact connected cells with partially broken cell walls releasing juice. Fine fungal threads extend into softened tissue; a small peach above shows a modest fuzzy patch. a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag observes from the side. Calm educational watercolor, warm cream paper, clear before and after composition, landscape three to two, no text, no tools or faces on microbes.",
+            "image": "images/p05.jpg"
+          }
+        }
+      ],
+      "follow_up": {
+        "question": "放进冰箱，就一直不会坏了吗？",
+        "why": "通向低温减慢变化和生长，但不保证永久保鲜。"
+      }
+    },
+    {
+      "name": "第三章 · 让水果慢一点变",
+      "role": "magic",
+      "pages": [
+        {
+          "narration": "冰箱像慢速工地。凉凉的地方，许多微生物长得慢，水果也变得慢。但放久了，还是可能坏。",
+          "visual": {
+            "description": "明亮厨房的干净冰箱上层放成熟新鲜桃子。概念框里仍有少量微生物，配慢速表盘。小方在冰箱旁指向慢速指针；不表现杀菌。",
+            "image_prompt": "A clean open refrigerator holds fresh ripe peaches on an upper shelf. A nearby conceptual inset still shows a few simple microbes and a slow dial icon. a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag gestures toward the slowed dial beside the fridge. Bright reassuring kitchen, warm watercolor paper texture, cream and cool blue palette, landscape three to two, no text, no dead microbes, no magical sterilization.",
+            "image": "images/p06.jpg"
+          }
+        },
+        {
+          "narration": "轻拿轻放，吃前洗干净。长毛、腐烂的水果，交给大人处理，不摸、不凑近闻，也不尝。",
+          "visual": {
+            "description": "明亮厨房里成人一只手在流水下清洗新鲜桃子，远处台面另有装坏桃子的封口袋等待成人丢弃。小方在清洁区提醒，无孩子真人。",
+            "image_prompt": "In a bright kitchen, one anonymous adult hand rinses a fresh peach under running water. Separately, a sealed disposal bag contains a spoiled peach on a distant tray. a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag stands beside the clean fruit area, giving a gentle reminder. Warm watercolor picture book, cream paper, simple uncluttered composition, landscape three to two, no text, no tasting, no close sniffing.",
+            "image": "images/p07.jpg"
+          }
+        }
+      ],
+      "follow_up": {
+        "question": "为什么有的水果坏得快，有的坏得慢？",
+        "why": "通向水果种类、成熟度、损伤与保存条件；这是建议追问，并非孩子说过。"
+      }
+    }
+  ],
+  "child_page": {
+    "prompt": "你还想知道什么？也可以画出来。说给爸爸妈妈听，请他们把你的原话记在这里。",
+    "child_words": ""
+  },
+  "parent_card": {
+    "hard_notes": [
+      "采摘后水果仍有代谢和成熟、衰老变化；自身酶参与组织软化，成熟变软不能等同于微生物腐烂。",
+      "霉菌、酵母和部分细菌可利用水果养分繁殖，部分腐败微生物分泌酶分解细胞壁等结构，造成软烂和渗液；果皮损伤常使侵入更容易，完整果皮也不保证不会感染。",
+      "适当冷藏减慢许多微生物的生长和水果代谢，不是杀菌或永久保鲜；本书教孩子把长霉、腐烂的水果交给成人处理，不把外观正常等同于安全。"
+    ],
+    "sources": [
+      {
+        "title": "USDA ARS 托管学术章节：Microbiological Spoilage of Fruits and Vegetables（Barth 等，2009）",
+        "where": "https://www.ars.usda.gov/ARSUserFiles/60701000/Pickle%20Pubs/p363.pdf",
+        "used_for": "已联网打开。印刷页137–139：分解组织获取养分、损伤处更易腐败；页143–145：成熟衰老、侵入路径与冷却减慢代谢和微生物生长。"
+      },
+      {
+        "title": "University of Minnesota Extension：Preserving food at home: Freezing",
+        "where": "https://extension.umn.edu/food/preparing/cooking-at-home/food-preservation/freezing",
+        "used_for": "已联网打开。水果自身酶影响颜色、风味与品质，水分和细胞壁决定组织质地；不把冷冻停止生长等同于冷藏。"
+      },
+      {
+        "title": "FDA：Selecting and Serving Produce Safely",
+        "where": "https://www.fda.gov/food/buy-store-serve-safe-food/selecting-and-serving-produce-safely",
+        "used_for": "已联网打开。易腐水果适当冷藏，腐烂蔬果丢弃，新鲜蔬果吃前流水清洗；清洗不能消除所有细菌。"
+      }
+    ],
+    "uncertain": [
+      "「水果小房子」是结构类比：果皮不是密封墙，果肉小格子示意细胞，微生物没有拆房子的意图；小方只在想象图里进入。",
+      "微生物在放大示意框里，颜色用于区分结构，不代表真实颜色；不是肉眼可见的小动物，普通放大镜不能保证看见细菌。省略了酵母、孢子传播和具体酶名，不表示腐烂只能由霉菌、细菌造成。",
+      "成熟、衰老与腐烂可能交叠；变软、变褐不一定腐烂，腐烂也不一定有霉毛。图示顺序用于理解原理，不是每种水果都按同一顺序变化。",
+      "不判断某个桃子的微生物种类，也不承诺几天内腐烂。冷藏效果随水果、成熟度、温度和损伤变化；画的是成熟桃子，不表示所有水果应立即冷藏。"
+    ],
+    "sensitive": {
+      "level": "none",
+      "topics": [],
+      "how_handled": "食品变化主题不涉及死亡、身体与性别，也不引入怕黑情节；不把腐烂说成水果死亡。画面明亮，微生物无恶意表情、不画怪物。食品卫生提醒由家长讲；仍按家庭要求每本先给家长看。"
+    },
+    "weekend_project": "不培养霉菌的水果巡检：用家里的一份新鲜水果、纸和笔。家长先检查，再和孩子画下今天的颜色、形状、果皮状态。按水果适宜方式正常保存，隔天远看、画一画，没有变化也照实记录。不要故意放到腐烂，不切、不尝来判断，不触摸或凑近闻疑似坏果；异常由成人立即处理。孩子只观察和画，冰箱由成人操作。这是观察记录，不据此证明冷藏因果或判断能否食用。",
+    "approval": {
+      "status": "approved",
+      "note": "家长翻过全书，放行",
+      "date": "2026-10-11"
+    }
+  }
+}

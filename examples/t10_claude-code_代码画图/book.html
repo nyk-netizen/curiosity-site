@@ -1,0 +1,748 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>苹果城堡怎么变软了？</title>
+<style>
+:root{color-scheme:light;--ink:#463724;--paper:#fffaf0;--accent:#aa4b29;--banner-height:0px}
+*{box-sizing:border-box}body{margin:0;padding-top:var(--banner-height);background:#f6efdf;color:var(--ink);font-family:system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.65}
+button,input,textarea{font:inherit}button{border:1px solid #b15837;border-radius:14px;background:#aa4b29;color:#fffaf0;padding:12px 20px;cursor:pointer;font-weight:650;min-height:48px}button:hover{background:#873c23}button:disabled{opacity:.4;cursor:default}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #33795e;outline-offset:4px}
+[hidden]{display:none!important}#preview-banner{position:fixed;top:0;left:0;right:0;z-index:2;text-align:center;background:#ffe0ad;color:#613714;padding:10px 14px;font-weight:700;box-shadow:0 2px 8px #79552a20}
+.shell{max-width:928px;margin:auto;min-height:calc(100svh - var(--banner-height));padding:0 24px;display:flex;flex-direction:column}.site-header{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:20px 0;font-size:14px;letter-spacing:.1em;color:#77684d}.site-header strong{color:#68492e}.site-header span{letter-spacing:0}main{flex:1;min-width:0}.page{background:var(--paper);border:1px solid #e7dbc7;border-radius:24px;padding:30px;box-shadow:0 8px 30px #8067430b;overflow-wrap:anywhere}.eyebrow{font-size:14px;letter-spacing:.06em;color:#82694b;margin:0 0 20px}.cover{text-align:center;min-height:610px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:50px 30px}.cover-mark,.follow-symbol{width:100px;height:100px;border-radius:30px;background:#f6ce81;color:#7b5229;display:grid;place-items:center;font-size:64px;font-weight:800;transform:rotate(-6deg);margin:8px auto 24px}h1{font-size:clamp(32px,5vw,54px);line-height:1.25;margin:16px 0 28px}h2{font-size:clamp(26px,4vw,38px);line-height:1.5;margin:12px 0 26px}h3{font-size:19px;margin-top:26px}.question{font-size:24px;margin:0 0 28px}.guide{padding:16px 24px;border-radius:18px;background:#f8ecd7;font-size:20px}.guide p{margin:4px 0}.hint{font-size:16px;color:#836f54;margin-top:26px}
+.picture{width:100%;aspect-ratio:3/2;background:#f5ead7;border:1px solid #ead9bd;border-radius:16px;overflow:hidden;display:grid;place-items:center}.picture img,.picture svg{display:block;width:100%;height:100%;object-fit:contain;min-width:0;min-height:0}.placeholder{padding:24px;text-align:center;max-width:600px;font-size:clamp(17px,2.4vw,23px);line-height:1.75}.placeholder span{font-size:13px;letter-spacing:.1em;color:#967c59}.placeholder p{margin:12px 0 0}.narration{font-size:clamp(22px,3vw,28px);line-height:1.85;margin:24px 0 18px}.english{color:#75624b}.read-button{background:transparent;color:#884428;font-size:18px}.read-button:hover{color:#fff}.speech-status{font-size:14px;margin:6px 0 0;color:#806849}.speech-status:empty{display:none}.follow-up{min-height:610px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}.follow-up>p:not(.eyebrow):not(.hint){font-size:22px}.follow-symbol{background:#dce9ca;color:#47704b}.follow-button[aria-pressed="true"]{background:#427052;border-color:#427052}.child-page h2{max-width:700px}.field-label{display:block;font-size:18px;margin:20px 0 8px}textarea{display:block;width:100%;resize:vertical;min-height:100px;border:1px solid #cdbd9f;border-radius:14px;padding:16px;background:#fffdf7;color:var(--ink);font-size:20px;line-height:1.7}textarea:focus{outline:2px solid #bd7742;outline-offset:2px}fieldset{margin:28px 0 0;border:1px solid #e3d6bf;border-radius:14px;padding:14px}legend{padding:0 8px;font-size:16px}.reactions{display:flex;flex-wrap:wrap;gap:8px 18px}.reactions label{display:flex;align-items:center;gap:6px;min-height:44px;cursor:pointer;font-size:18px}.reactions input{accent-color:#aa4b29;width:18px;height:18px}#export-feedback{margin-top:24px}#save-status{font-size:15px}.parent-card{margin-top:28px;border-top:1px solid #dfd1b8;padding-top:20px;font-size:16px}.parent-card summary{cursor:pointer;font-size:19px;font-weight:700;min-height:44px}.parent-card p,.parent-card li{white-space:pre-wrap}.parent-card li{margin-bottom:12px}.parent-card a{color:#80512c;word-break:break-word}footer{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:20px 0 24px}footer button{background:#fff8eb;color:#74492a;border-color:#cbb696}footer button:hover{background:#eeddbd}#page-count{font-size:17px;font-variant-numeric:tabular-nums;white-space:nowrap}
+@media(max-width:600px){.shell{padding:0 12px}.site-header{padding:15px 4px;font-size:12px}.page{padding:20px;border-radius:18px}.cover,.follow-up{min-height:560px;padding:30px 22px}.question{font-size:22px}.guide{font-size:20px;padding:14px}.picture{border-radius:12px}.placeholder{padding:12px;font-size:16px;line-height:1.6}.placeholder p{margin-top:6px}.placeholder span{font-size:11px}.narration{font-size:22px;margin-top:20px}.eyebrow{font-size:12px;margin-bottom:16px}footer{padding:16px 0 20px;gap:8px}footer button{padding:10px 16px;font-size:16px}#page-count{font-size:16px}.parent-card ul{padding-left:22px}}
+.question-note{font-size:16px;color:#836f54;margin:-16px 0 28px}
+@media(min-width:768px) and (min-height:680px){.story .picture{width:min(100%,880px,var(--picture-width,880px));margin-inline:auto;min-height:0}}
+@media(prefers-reduced-motion:no-preference){button{transition:background .15s ease}}
+</style>
+</head>
+<body>
+
+<div class="shell"><header class="site-header"><strong>好奇心工地</strong><span>一本从你的问题出发的书</span></header>
+<main id="book-pages"><section class="page cover" aria-label="封面">
+<p class="eyebrow">从一个问题，走进一个世界</p><div class="cover-mark" aria-hidden="true">?</div>
+<h1>苹果城堡怎么变软了？</h1><p class="question">你问：水果为什么会腐烂？</p>
+<div class="guide"><p>这次的向导 · <strong>小方</strong></p><p>「戴好安全帽，我们进去看看！」</p></div>
+<p class="hint">和爸爸妈妈一起，翻开下一页吧。</p></section><section hidden class="page story" aria-label="正文第 1 页">
+<p class="eyebrow">第一章 · 苹果身上的褐色斑</p><div class="picture"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 1024" width="1536" height="1024" preserveAspectRatio="xMidYMid meet" role="img" aria-label="绘本画面">
+<rect width="1536" height="1024" fill="#FFF7EA" />
+<rect x="140" y="110" width="420" height="300" rx="18" fill="#CFEAFB" stroke="#E2C9A6" stroke-width="16" /><rect x="344.0" y="110" width="12" height="300" fill="#E2C9A6" /><rect x="140" y="254.0" width="420" height="12" fill="#E2C9A6" /><circle cx="455.0" cy="191.0" r="36.0" fill="#FFE27A" />
+<rect x="0" y="740" width="1536" height="284" fill="#E9C9A0" />
+<rect x="0" y="728" width="1536" height="24" fill="#D4A373" />
+<path d="M 980 310.0 C 892.5 255.0, 717.5 285.0, 725.0 512.5 C 730.0 687.5, 867.5 755.0, 980 730.0 C 1092.5 755.0, 1230.0 687.5, 1235.0 512.5 C 1242.5 285.0, 1067.5 255.0, 980 310.0 Z" fill="#E2463A" stroke="#B5302A" stroke-width="8" stroke-linejoin="round" />
+<rect x="971" y="210.0" width="18" height="95.0" rx="8" fill="#7C4A26" />
+<path d="M 986 255.0 C 1042.5 180.0, 1117.5 210.0, 1135.0 230.0 C 1092.5 280.0, 1030.0 280.0, 986 255.0 Z" fill="#6DBE5A" stroke="#3F8F3A" stroke-width="5" />
+<ellipse cx="860.0" cy="437.5" rx="35.0" ry="65.0" fill="#FFFFFF" opacity="0.45" transform="rotate(20 860.0 437.5)" />
+<ellipse cx="1085.0" cy="575.0" rx="80.0" ry="65.0" fill="#B9773F" />
+<ellipse cx="1090.0" cy="577.5" rx="55.0" ry="42.5" fill="#A0673A" />
+<g transform="translate(520 760) scale(1.35 1.35)">
+  <ellipse cx="0" cy="4" rx="95" ry="12" fill="#000" opacity="0.10" />
+  <rect x="48" y="-176" width="66" height="96" rx="14" fill="#1F4E8C" stroke="#163A69" stroke-width="4" />
+  <rect x="84" y="-214" width="12" height="44" rx="6" fill="#9AA5B1" stroke="#6B7785" stroke-width="3" />
+  <circle cx="90" cy="-216" r="13" fill="none" stroke="#6B7785" stroke-width="7" />
+  <rect x="56" y="-120" width="50" height="10" rx="5" fill="#163A69" />
+  <rect x="-56" y="-26" width="40" height="28" rx="10" fill="#C0661A" />
+  <rect x="16" y="-26" width="40" height="28" rx="10" fill="#C0661A" />
+  <rect x="-80" y="-192" width="160" height="172" rx="22" fill="#F28C28" stroke="#C0661A" stroke-width="6" />
+  <rect x="-62" y="-192" width="16" height="36" rx="6" fill="#1F4E8C" />
+  <rect x="46" y="-192" width="16" height="36" rx="6" fill="#1F4E8C" />
+  <g transform="rotate(8 -80 -130)"><rect x="-108" y="-138" width="30" height="72" rx="15" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4" /><circle cx="-93" cy="-64" r="17" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4" /></g><g transform="rotate(-118 80 -130)"><rect x="78" y="-138" width="30" height="72" rx="15" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4" /><circle cx="93" cy="-64" r="17" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4" /></g>
+  <path d="M -72 -192 A 74 64 0 0 1 72 -192 Z" fill="#FFD23F" stroke="#D9A800" stroke-width="5" />
+  <rect x="-11" y="-252" width="22" height="58" rx="9" fill="#FFE27A" stroke="#D9A800" stroke-width="3" />
+  <rect x="-98" y="-204" width="196" height="22" rx="11" fill="#FFD23F" stroke="#D9A800" stroke-width="5" />
+  <circle cx="-34" cy="-128" r="17" fill="#1A1A1A" /><circle cx="-28" cy="-134" r="5.5" fill="#FFF" />
+  <circle cx="34" cy="-128" r="17" fill="#1A1A1A" /><circle cx="40" cy="-134" r="5.5" fill="#FFF" />
+  <circle cx="-56" cy="-98" r="9" fill="#F7A65A" /><circle cx="56" cy="-98" r="9" fill="#F7A65A" />
+  <path d="M -18 -90 Q 0 -72 18 -90" fill="none" stroke="#7A3A0A" stroke-width="5" stroke-linecap="round" />
+</g>
+<path d="M 738.8225060258877 528.8673640972114 L 1010 600" stroke="#3A2A1E" stroke-width="5" stroke-dasharray="4 12" stroke-linecap="round" />
+</svg></div>
+<p class="narration">桌上的苹果放了好多天，身上冒出一块软软的褐色斑。小方说：「戴好安全帽，我们进去看看！」</p>
+<button class="read-button" type="button" data-read="1">读给我听</button><p class="speech-status" role="status"></p></section><section hidden class="page story" aria-label="正文第 2 页">
+<p class="eyebrow">第一章 · 苹果身上的褐色斑</p><div class="picture"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 1024" width="1536" height="1024" preserveAspectRatio="xMidYMid meet" role="img" aria-label="绘本画面">
+<rect width="1536" height="1024" fill="#FFF7EA" />
+<defs><clipPath id="art2-p2flesh"><circle cx="960" cy="540" r="328" /></clipPath></defs>
+<rect x="644.0120426727264" y="283.4365770801577" width="52" height="52" rx="8" fill="#E2463A" stroke="#B5302A" stroke-width="6" transform="rotate(-52 670.0120426727264 313.4365770801577)" />
+<rect x="702.4100960936598" y="224.0102861838347" width="52" height="52" rx="8" fill="#E2463A" stroke="#B5302A" stroke-width="6" transform="rotate(-39 728.4100960936598 254.0102861838347)" />
+<rect x="772.6794179816195" y="179.2437909619066" width="52" height="52" rx="8" fill="#E2463A" stroke="#B5302A" stroke-width="6" transform="rotate(-26 798.6794179816195 209.2437909619066)" />
+<rect x="851.2180120014576" y="151.43181615903342" width="52" height="52" rx="8" fill="#E2463A" stroke="#B5302A" stroke-width="6" transform="rotate(-13 877.2180120014576 181.43181615903342)" />
+<rect x="934.0" y="142.0" width="52" height="52" rx="8" fill="#E2463A" stroke="#B5302A" stroke-width="6" transform="rotate(0 960.0 172.0)" />
+<rect x="1016.7819879985423" y="151.43181615903342" width="52" height="52" rx="8" fill="#E2463A" stroke="#B5302A" stroke-width="6" transform="rotate(13 1042.7819879985423 181.43181615903342)" />
+<rect x="1095.3205820183805" y="179.2437909619066" width="52" height="52" rx="8" fill="#E2463A" stroke="#B5302A" stroke-width="6" transform="rotate(26 1121.3205820183805 209.2437909619066)" />
+<rect x="1165.5899039063402" y="224.0102861838347" width="52" height="52" rx="8" fill="#E2463A" stroke="#B5302A" stroke-width="6" transform="rotate(39 1191.5899039063402 254.0102861838347)" />
+<rect x="1223.9879573272738" y="283.43657708015775" width="52" height="52" rx="8" fill="#E2463A" stroke="#B5302A" stroke-width="6" transform="rotate(52 1249.9879573272738 313.43657708015775)" />
+<circle cx="960" cy="540" r="370" fill="none" stroke="#FFFFFF" stroke-width="18" opacity="0.95" />
+<circle cx="960" cy="540" r="370" fill="none" stroke="#BFE3F5" stroke-width="4" />
+<circle cx="960" cy="540" r="360" fill="#E2463A" stroke="#B5302A" stroke-width="8" />
+<circle cx="960" cy="540" r="328" fill="#FFF1C9" />
+<g clip-path="url(#art2-p2flesh)"><rect x="600" y="180" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="600" y="256" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="600" y="332" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="600" y="408" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="600" y="484" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="600" y="560" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="600" y="636" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="600" y="712" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="600" y="788" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="600" y="864" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="676" y="180" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="676" y="256" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="676" y="332" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="676" y="408" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="676" y="484" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="676" y="560" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="676" y="636" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="676" y="712" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="676" y="788" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="676" y="864" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="752" y="180" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="752" y="256" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="752" y="332" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="752" y="408" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="752" y="484" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="752" y="560" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="752" y="636" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="752" y="712" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="752" y="788" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="752" y="864" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="828" y="180" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="828" y="256" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="828" y="332" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="828" y="408" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="828" y="484" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="828" y="560" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="828" y="636" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="828" y="712" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="828" y="788" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="828" y="864" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="904" y="180" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="904" y="256" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="904" y="332" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="904" y="408" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="904" y="636" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="904" y="712" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="904" y="788" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="904" y="864" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="980" y="180" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="980" y="256" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="980" y="332" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="980" y="408" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="980" y="636" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="980" y="712" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="980" y="788" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="980" y="864" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1056" y="180" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1056" y="256" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1056" y="332" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1056" y="408" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1056" y="484" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1056" y="560" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1056" y="636" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1056" y="712" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1056" y="788" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1056" y="864" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1132" y="180" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1132" y="256" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1132" y="332" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1132" y="408" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1132" y="484" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1132" y="560" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1132" y="636" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1132" y="712" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1132" y="788" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1132" y="864" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1208" y="180" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1208" y="256" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1208" y="332" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1208" y="408" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1208" y="484" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1208" y="560" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1208" y="636" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1208" y="712" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1208" y="788" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1208" y="864" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1284" y="180" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1284" y="256" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1284" y="332" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1284" y="408" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1284" y="484" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1284" y="560" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1284" y="636" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1284" y="712" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1284" y="788" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /><rect x="1284" y="864" width="64" height="64" rx="16" fill="#FFE08A" stroke="#EFC458" stroke-width="4" /></g>
+<path d="M 960 453.6 L 985.2 514.8 L 1046.4 540 L 985.2 565.2 L 960 626.4 L 934.8 565.2 L 873.6 540 L 934.8 514.8 Z" fill="#F6E3A8" stroke="#D9BF72" stroke-width="5" />
+<ellipse cx="1003.2" cy="540.0" rx="13" ry="22" fill="#7C4A26" transform="rotate(90 1003.2 540.0)" />
+<ellipse cx="960.0" cy="583.2" rx="13" ry="22" fill="#7C4A26" transform="rotate(180 960.0 583.2)" />
+<ellipse cx="916.8" cy="540.0" rx="13" ry="22" fill="#7C4A26" transform="rotate(270 916.8 540.0)" />
+<ellipse cx="960.0" cy="496.8" rx="13" ry="22" fill="#7C4A26" transform="rotate(360 960.0 496.8)" />
+<g transform="translate(330 900) scale(1.35 1.35)">
+  <ellipse cx="0" cy="4" rx="95" ry="12" fill="#000" opacity="0.10" />
+  <rect x="48" y="-176" width="66" height="96" rx="14" fill="#1F4E8C" stroke="#163A69" stroke-width="4" />
+  <rect x="84" y="-214" width="12" height="44" rx="6" fill="#9AA5B1" stroke="#6B7785" stroke-width="3" />
+  <circle cx="90" cy="-216" r="13" fill="none" stroke="#6B7785" stroke-width="7" />
+  <rect x="56" y="-120" width="50" height="10" rx="5" fill="#163A69" />
+  <rect x="-56" y="-26" width="40" height="28" rx="10" fill="#C0661A" />
+  <rect x="16" y="-26" width="40" height="28" rx="10" fill="#C0661A" />
+  <rect x="-80" y="-192" width="160" height="172" rx="22" fill="#F28C28" stroke="#C0661A" stroke-width="6" />
+  <rect x="-62" y="-192" width="16" height="36" rx="6" fill="#1F4E8C" />
+  <rect x="46" y="-192" width="16" height="36" rx="6" fill="#1F4E8C" />
+  <g transform="rotate(6 -80 -130)"><rect x="-108" y="-138" width="30" height="72" rx="15" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4" /><circle cx="-93" cy="-64" r="17" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4" /></g><g transform="rotate(-75 80 -130)"><rect x="78" y="-138" width="30" height="72" rx="15" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4" /><circle cx="93" cy="-64" r="17" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4" /></g>
+  <path d="M -72 -192 A 74 64 0 0 1 72 -192 Z" fill="#FFD23F" stroke="#D9A800" stroke-width="5" />
+  <rect x="-11" y="-252" width="22" height="58" rx="9" fill="#FFE27A" stroke="#D9A800" stroke-width="3" />
+  <rect x="-98" y="-204" width="196" height="22" rx="11" fill="#FFD23F" stroke="#D9A800" stroke-width="5" />
+  <circle cx="-34" cy="-128" r="17" fill="#1A1A1A" /><circle cx="-28" cy="-134" r="5.5" fill="#FFF" />
+  <circle cx="34" cy="-128" r="17" fill="#1A1A1A" /><circle cx="40" cy="-134" r="5.5" fill="#FFF" />
+  <circle cx="-56" cy="-98" r="9" fill="#F7A65A" /><circle cx="56" cy="-98" r="9" fill="#F7A65A" />
+  <path d="M -18 -90 Q 0 -72 18 -90" fill="none" stroke="#7A3A0A" stroke-width="5" stroke-linecap="round" />
+</g>
+<rect x="186.0" y="248" width="128" height="76" rx="16" fill="#FFFFFF" stroke="#3A2A1E" stroke-width="4" /><text x="250" y="304" font-family="PingFang SC, Hiragino Sans GB, Noto Sans CJK SC, sans-serif" font-size="46" font-weight="700" fill="#3A2A1E" text-anchor="middle">外墙</text>
+<path d="M 330 300 L 610 420" stroke="#3A2A1E" stroke-width="5" stroke-dasharray="4 10" stroke-linecap="round" fill="none" /><circle cx="610" cy="420" r="9" fill="#3A2A1E" />
+<rect x="1303.0" y="828" width="174" height="76" rx="16" fill="#FFFFFF" stroke="#3A2A1E" stroke-width="4" /><text x="1390" y="884" font-family="PingFang SC, Hiragino Sans GB, Noto Sans CJK SC, sans-serif" font-size="46" font-weight="700" fill="#3A2A1E" text-anchor="middle">小房间</text>
+<path d="M 1320 830 L 1180 690" stroke="#3A2A1E" stroke-width="5" stroke-dasharray="4 10" stroke-linecap="round" fill="none" /><circle cx="1180" cy="690" r="9" fill="#3A2A1E" />
+</svg></div>
+<p class="narration">原来苹果像一座城堡：果皮是外墙，外墙上涂着一层亮亮的蜡；里面是好多小房间，装满甜甜的果汁。</p>
+<button class="read-button" type="button" data-read="2">读给我听</button><p class="speech-status" role="status"></p></section><section hidden class="page follow-up" aria-label="追问口">
+<p class="eyebrow">追问口 · 第一章 · 苹果身上的褐色斑</p><div class="follow-symbol" aria-hidden="true">?</div>
+<h2>切开的苹果一会儿就变黄了，也是烂了吗？</h2><p>这个问题，也让你好奇吗？</p>
+<button class="follow-button" type="button" data-follow="0" aria-pressed="false">我也想知道这个！</button>
+<p class="hint">把好奇心留在这里，下次再一起看看。</p></section><section hidden class="page story" aria-label="正文第 3 页">
+<p class="eyebrow">第二章 · 看不见的小客人</p><div class="picture"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 1024" width="1536" height="1024" preserveAspectRatio="xMidYMid meet" role="img" aria-label="绘本画面">
+<rect width="1536" height="1024" fill="#FFF4E0" />
+<g transform="translate(1110 560) rotate(-3)"><path d="M 0 -190.0 C -87.5 -245.0, -262.5 -215.0, -255.0 12.5 C -250.0 187.5, -112.5 255.0, 0 230.0 C 112.5 255.0, 250.0 187.5, 255.0 12.5 C 262.5 -215.0, 87.5 -245.0, 0 -190.0 Z" fill="#E07F72" stroke="#B9645A" stroke-width="8" stroke-linejoin="round" />
+<rect x="-9" y="-290.0" width="18" height="95.0" rx="8" fill="#7C4A26" />
+<path d="M 6 -245.0 C 62.5 -320.0, 137.5 -290.0, 155.0 -270.0 C 112.5 -220.0, 50.0 -220.0, 6 -245.0 Z" fill="#6DBE5A" stroke="#3F8F3A" stroke-width="5" />
+<ellipse cx="-120.0" cy="-62.5" rx="35.0" ry="65.0" fill="#FFFFFF" opacity="0.25" transform="rotate(20 -120.0 -62.5)" /></g>
+<path d="M 970 480 q 20 -14 40 0 t 40 0" fill="none" stroke="#B9645A" stroke-width="7" stroke-linecap="round" transform="rotate(20 1010 480)" />
+<path d="M 1150 420 q 20 -14 40 0 t 40 0" fill="none" stroke="#B9645A" stroke-width="7" stroke-linecap="round" transform="rotate(-15 1190 420)" />
+<path d="M 1190 640 q 20 -14 40 0 t 40 0" fill="none" stroke="#B9645A" stroke-width="7" stroke-linecap="round" transform="rotate(10 1230 640)" />
+<path d="M 940 680 q 20 -14 40 0 t 40 0" fill="none" stroke="#B9645A" stroke-width="7" stroke-linecap="round" transform="rotate(-25 980 680)" />
+<path d="M 1080 760 q 20 -14 40 0 t 40 0" fill="none" stroke="#B9645A" stroke-width="7" stroke-linecap="round" transform="rotate(5 1120 760)" />
+<circle cx="999.6362459765402" cy="195.76425653205172" r="5.952803419119562" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<circle cx="1367.7429760735681" cy="144.7170377457143" r="5.748364017710065" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<circle cx="787.7467872470688" cy="450.2811152961473" r="4.209566270723856" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<circle cx="1167.7749678056255" cy="113.19945547109023" r="5.696361082579239" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<circle cx="805.7779157687439" cy="586.987280376348" r="4.148767940169314" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<circle cx="794.4711836571396" cy="832.6216131438116" r="4.8688278589950285" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<circle cx="836.2612272082577" cy="574.083952270613" r="4.5636130803614305" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<circle cx="1165.330904625073" cy="116.51007747599083" r="4.178803509898698" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<circle cx="1443.3466238927576" cy="385.4241203501097" r="4.745279754572648" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<circle cx="1277.2558809598827" cy="279.68685964993756" r="4.0062897915432085" fill="#E8DCC0" stroke="#BFAE86" stroke-width="2" />
+<circle cx="1407.6017467243373" cy="716.5007604952958" r="4.8638132946705595" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<circle cx="847.368675908672" cy="436.3105396067045" r="6.271422788695748" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<circle cx="1450.6199570136719" cy="439.52851902906986" r="6.886057250236329" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<circle cx="1407.8535807548574" cy="342.3727615632871" r="4.260120269174685" fill="#E8DCC0" stroke="#BFAE86" stroke-width="2" />
+<circle cx="1381.5761575792808" cy="910.2129855971436" r="5.4222950122589335" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<circle cx="804.8953764219426" cy="691.3428191739815" r="4.158970594508104" fill="#E8DCC0" stroke="#BFAE86" stroke-width="2" />
+<circle cx="1254.8030097542992" cy="80.30663525002971" r="5.385085858899298" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<circle cx="921.4737533665627" cy="318.6887338489756" r="4.350563097149068" fill="#E8DCC0" stroke="#BFAE86" stroke-width="2" />
+<circle cx="1049.302780318588" cy="844.2797767136694" r="2.9692207325202906" fill="#E8DCC0" stroke="#BFAE86" stroke-width="2" />
+<circle cx="861.3253458311191" cy="447.46948598016814" r="3.9554610608867127" fill="#E8DCC0" stroke="#BFAE86" stroke-width="2" />
+<circle cx="1489.9856399408777" cy="674.4507534487065" r="5.141323900768113" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<circle cx="871.6814702854206" cy="218.5959556413333" r="4.6958706004586075" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<rect x="763.0155270758844" y="805.2559882382915" width="11.82227441705334" height="5.45643434633231" rx="2.728217173166155" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2" transform="rotate(12.486649990877595 768.9266642844111 807.9842054114577)" />
+<rect x="756.3891775706578" y="433.9871945815847" width="13.280177868578859" height="6.129312862421011" rx="3.0646564312105053" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2" transform="rotate(-28.7951344653693 763.0292665049473 437.05185101279517)" />
+<circle cx="1465.2924648885705" cy="681.44429142238" r="5.546474299212335" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<circle cx="1097.9163544301273" cy="843.8815510419945" r="4.798961063746196" fill="#E8DCC0" stroke="#BFAE86" stroke-width="2" />
+<circle cx="901.0510577994378" cy="946.2008406809484" r="5.321880604974251" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<circle cx="1011.6397026519342" cy="107.31804350124025" r="4.0006998457040694" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<circle cx="1157.0978290966423" cy="914.0538827124902" r="5.841211788926293" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<rect x="1401.226612363836" y="609.9946981360353" width="11.558693785580955" height="5.334781747191209" rx="2.6673908735956045" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2" transform="rotate(-20.95828520361465 1407.0059592566265 612.6620890096309)" />
+<circle cx="1467.0463377018887" cy="602.0512700658074" r="5.422454389695277" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<circle cx="1388.213325598615" cy="953.7924495342426" r="3.7785778642358605" fill="#E8DCC0" stroke="#BFAE86" stroke-width="2" />
+<rect x="982.6469842316089" y="185.95632813984227" width="16.24745657945096" height="7.4988261135927505" rx="3.7494130567963753" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2" transform="rotate(5.394987649340692 990.7707125213344 189.70574119663866)" />
+<rect x="1133.1746623384254" y="240.57986832660544" width="17.825763387385066" height="8.227275409562338" rx="4.113637704781169" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2" transform="rotate(-15.38719177517487 1142.0875440321179 244.69350603138662)" />
+<circle cx="780.0114436524048" cy="535.2984968444758" r="6.9355037281569185" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<circle cx="1275.1856215717735" cy="295.00367750642573" r="5.100099375283536" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<rect x="1015.9030538901369" y="257.1386596287105" width="14.624223557685525" height="6.7496416420087035" rx="3.3748208210043518" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2" transform="rotate(-7.493840317141803 1023.2151656689797 260.51348044971485)" />
+<circle cx="1343.4154554370439" cy="742.4901816797698" r="4.585438090698688" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<circle cx="1365.566378060776" cy="725.8857183381427" r="3.2761529290663276" fill="#E8DCC0" stroke="#BFAE86" stroke-width="2" />
+<rect x="1017.807327488523" y="83.63184893146914" width="10.617909188292103" height="4.900573471519432" rx="2.450286735759716" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2" transform="rotate(-8.186025421317026 1023.116282082669 86.08213566722885)" />
+<rect x="1101.897604025592" y="230.79120115450033" width="15.120084447121751" height="6.978500514056193" rx="3.4892502570280963" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2" transform="rotate(-3.7964762559295195 1109.457646249153 234.28045141152842)" />
+<rect x="1081.8951331203843" y="899.1406126438529" width="18.10669685398231" height="8.356937009530297" rx="4.178468504765148" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2" transform="rotate(-13.360629168371815 1090.9484815473754 903.3190811486181)" />
+<rect x="812.5649009307843" y="148.69528871780008" width="14.066623861598282" height="6.492287936122284" rx="3.246143968061142" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2" transform="rotate(7.1874900310849625 819.5982128615835 151.94143268586123)" />
+<rect x="1419.1582236718245" y="813.1289223840901" width="14.13989272484" height="6.526104334541538" rx="3.263052167270769" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2" transform="rotate(-6.40280976028771 1426.2281700342446 816.3919745513608)" />
+<circle cx="1351.7363711887485" cy="136.3006378053421" r="4.187229865430278" fill="#E8DCC0" stroke="#BFAE86" stroke-width="2" />
+<circle cx="1338.9041342325866" cy="735.1264138474126" r="5.4340982337820005" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<circle cx="824.1948946759808" cy="911.5488108582165" r="4.315831934893584" fill="#E8DCC0" stroke="#BFAE86" stroke-width="2" />
+<circle cx="1057.026245222099" cy="912.1173058184037" r="6.174395996902646" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<circle cx="1494.9031437487035" cy="84.79396563794926" r="4.040705835075597" fill="#E8DCC0" stroke="#BFAE86" stroke-width="2" />
+<circle cx="1356.811466703825" cy="191.55687786948675" r="4.535672004903312" fill="#E8DCC0" stroke="#BFAE86" stroke-width="2" />
+<circle cx="1166.0084325502166" cy="177.88546680850536" r="4.042728814468317" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<circle cx="1149.669974853301" cy="900.2623245516841" r="5.301428310272457" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<path d="M 506.73077913133244 635.7692208686676 L 581.5 508.5" stroke="#8A5A33" stroke-width="30" stroke-linecap="round" />
+<g transform="translate(330 880) scale(1.35 1.35)">
+  <ellipse cx="0" cy="4" rx="95" ry="12" fill="#000" opacity="0.10" />
+  <rect x="48" y="-176" width="66" height="96" rx="14" fill="#1F4E8C" stroke="#163A69" stroke-width="4" />
+  <rect x="84" y="-214" width="12" height="44" rx="6" fill="#9AA5B1" stroke="#6B7785" stroke-width="3" />
+  <circle cx="90" cy="-216" r="13" fill="none" stroke="#6B7785" stroke-width="7" />
+  <rect x="56" y="-120" width="50" height="10" rx="5" fill="#163A69" />
+  <rect x="-56" y="-26" width="40" height="28" rx="10" fill="#C0661A" />
+  <rect x="16" y="-26" width="40" height="28" rx="10" fill="#C0661A" />
+  <rect x="-80" y="-192" width="160" height="172" rx="22" fill="#F28C28" stroke="#C0661A" stroke-width="6" />
+  <rect x="-62" y="-192" width="16" height="36" rx="6" fill="#1F4E8C" />
+  <rect x="46" y="-192" width="16" height="36" rx="6" fill="#1F4E8C" />
+  <g transform="rotate(10 -80 -130)"><rect x="-108" y="-138" width="30" height="72" rx="15" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4" /><circle cx="-93" cy="-64" r="17" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4" /></g><g transform="rotate(-135 80 -130)"><rect x="78" y="-138" width="30" height="72" rx="15" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4" /><circle cx="93" cy="-64" r="17" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4" /></g>
+  <path d="M -72 -192 A 74 64 0 0 1 72 -192 Z" fill="#FFD23F" stroke="#D9A800" stroke-width="5" />
+  <rect x="-11" y="-252" width="22" height="58" rx="9" fill="#FFE27A" stroke="#D9A800" stroke-width="3" />
+  <rect x="-98" y="-204" width="196" height="22" rx="11" fill="#FFD23F" stroke="#D9A800" stroke-width="5" />
+  <circle cx="-34" cy="-128" r="17" fill="#1A1A1A" /><circle cx="-28" cy="-134" r="5.5" fill="#FFF" />
+  <circle cx="34" cy="-128" r="17" fill="#1A1A1A" /><circle cx="40" cy="-134" r="5.5" fill="#FFF" />
+  <circle cx="-56" cy="-98" r="9" fill="#F7A65A" /><circle cx="56" cy="-98" r="9" fill="#F7A65A" />
+  <path d="M -18 -90 Q 0 -72 18 -90" fill="none" stroke="#7A3A0A" stroke-width="5" stroke-linecap="round" />
+</g>
+<circle cx="690" cy="400" r="175" fill="#FFFFFF" stroke="#1F5FA8" stroke-width="22" />
+<circle cx="640" cy="340" r="26" fill="#7FA37A" stroke="#5E8259" stroke-width="5.2" />
+<rect x="711.2" y="344.4" width="67.60000000000001" height="31.2" rx="15.6" fill="#B9A3D6" stroke="#8C74B0" stroke-width="5.2" transform="rotate(25 745 360)" />
+<circle cx="690" cy="460" r="26" fill="#7FA37A" stroke="#5E8259" stroke-width="5.2" />
+<rect x="576.2" y="429.4" width="67.60000000000001" height="31.2" rx="15.6" fill="#B9A3D6" stroke="#8C74B0" stroke-width="5.2" transform="rotate(-20 610 445)" />
+<circle cx="770" cy="455" r="18.2" fill="#E8DCC0" stroke="#BFAE86" stroke-width="2" />
+<path d="M 859 360 L 840 300" stroke="#FFFFFF" stroke-width="0" />
+</svg></div>
+<p class="narration">苹果放久了，会慢慢变老，城墙也变得没那么结实。这时候，看不见的小客人来了：霉菌和细菌。</p>
+<button class="read-button" type="button" data-read="4">读给我听</button><p class="speech-status" role="status"></p></section><section hidden class="page story" aria-label="正文第 4 页">
+<p class="eyebrow">第二章 · 看不见的小客人</p><div class="picture"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 1024" width="1536" height="1024" preserveAspectRatio="xMidYMid meet" role="img" aria-label="绘本画面">
+<rect width="1536" height="1024" fill="#FFF7EA" />
+<rect x="34" y="60" width="700" height="300" rx="28" fill="#E4F3FC" />
+<rect x="34" y="470" width="700" height="250" rx="28" fill="#FFF1C9" />
+<rect x="64" y="590" width="110" height="100" rx="20" fill="#FFE08A" stroke="#EFC458" stroke-width="4" />
+<rect x="198" y="590" width="110" height="100" rx="20" fill="#FFE08A" stroke="#EFC458" stroke-width="4" />
+<rect x="332" y="590" width="110" height="100" rx="20" fill="#FFE08A" stroke="#EFC458" stroke-width="4" />
+<rect x="466" y="590" width="110" height="100" rx="20" fill="#FFE08A" stroke="#EFC458" stroke-width="4" />
+<rect x="600" y="590" width="110" height="100" rx="20" fill="#FFE08A" stroke="#EFC458" stroke-width="4" />
+<rect x="34" y="352" width="700" height="126" rx="20" fill="#E2463A" stroke="#B5302A" stroke-width="8" />
+<rect x="44" y="340" width="680" height="14" rx="7" fill="#FFFFFF" stroke="#BFE3F5" stroke-width="3" />
+<circle cx="94" cy="318" r="14" fill="#7FA37A" stroke="#5E8259" stroke-width="2.8" />
+<rect x="147.8" y="295.6" width="36.4" height="16.8" rx="8.4" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2.8" transform="rotate(-8 166 304)" />
+<circle cx="238" cy="318" r="14" fill="#7FA37A" stroke="#5E8259" stroke-width="2.8" />
+<rect x="291.8" y="295.6" width="36.4" height="16.8" rx="8.4" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2.8" transform="rotate(-20 310 304)" />
+<circle cx="382" cy="318" r="14" fill="#7FA37A" stroke="#5E8259" stroke-width="2.8" />
+<rect x="435.8" y="295.6" width="36.4" height="16.8" rx="8.4" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2.8" transform="rotate(28 454 304)" />
+<circle cx="526" cy="318" r="14" fill="#7FA37A" stroke="#5E8259" stroke-width="2.8" />
+<rect x="579.8" y="295.6" width="36.4" height="16.8" rx="8.4" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2.8" transform="rotate(16 598 304)" />
+<circle cx="670" cy="318" r="14" fill="#7FA37A" stroke="#5E8259" stroke-width="2.8" />
+<rect x="802" y="60" width="700" height="300" rx="28" fill="#E4F3FC" />
+<rect x="802" y="470" width="700" height="250" rx="28" fill="#FFF1C9" />
+<rect x="832" y="590" width="110" height="100" rx="20" fill="#FFE08A" stroke="#EFC458" stroke-width="4" />
+<rect x="966" y="590" width="110" height="100" rx="20" fill="#FFE08A" stroke="#EFC458" stroke-width="4" />
+<rect x="1100" y="590" width="110" height="100" rx="20" fill="#FFE08A" stroke="#EFC458" stroke-width="4" />
+<rect x="1234" y="590" width="110" height="100" rx="20" fill="#FFE08A" stroke="#EFC458" stroke-width="4" />
+<rect x="1368" y="590" width="110" height="100" rx="20" fill="#FFE08A" stroke="#EFC458" stroke-width="4" />
+<path d="M 822 352 L 1112.0 352 L 1142.0 390 L 1100.0 420 L 1134.0 478 L 822 478 Q 802 478 802 458 L 802 372 Q 802 352 822 352 Z" fill="#E2463A" stroke="#B5302A" stroke-width="8" stroke-linejoin="round" />
+<path d="M 1192.0 352 L 1482 352 Q 1502 352 1502 372 L 1502 458 Q 1502 478 1482 478 L 1178.0 478 L 1202.0 425 L 1166.0 392 Z" fill="#E2463A" stroke="#B5302A" stroke-width="8" stroke-linejoin="round" />
+<rect x="812" y="340" width="290.0" height="14" rx="7" fill="#FFFFFF" stroke="#BFE3F5" stroke-width="3" />
+<rect x="1202.0" y="340" width="290.0" height="14" rx="7" fill="#FFFFFF" stroke="#BFE3F5" stroke-width="3" />
+<path d="M 1056.7372055837118 290.0 L 1022.0961894323342 272.5" stroke="#3A2A1E" stroke-width="7" stroke-linecap="round" />
+<path d="M 1097.0 260.7179676972449 L 1077.0 230.40707856478954" stroke="#3A2A1E" stroke-width="7" stroke-linecap="round" />
+<path d="M 1207.0 260.71796769724494 L 1227.0 230.40707856478957" stroke="#3A2A1E" stroke-width="7" stroke-linecap="round" />
+<path d="M 1247.2627944162882 290.0 L 1281.903810567666 272.5" stroke="#3A2A1E" stroke-width="7" stroke-linecap="round" />
+<circle cx="922.0" cy="300" r="14" fill="#7FA37A" stroke="#5E8259" stroke-width="2.8" />
+<rect x="983.8" y="301.6" width="36.4" height="16.8" rx="8.4" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2.8" transform="rotate(24.0 1002.0 310)" />
+<circle cx="1072.0" cy="318" r="14" fill="#7FA37A" stroke="#5E8259" stroke-width="2.8" />
+<rect x="1113.8" y="336.6" width="36.4" height="16.8" rx="8.4" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2.8" transform="rotate(-26.0 1132.0 345)" />
+<circle cx="1144.0" cy="398" r="14" fill="#7FA37A" stroke="#5E8259" stroke-width="2.8" />
+<rect x="1113.8" y="443.6" width="36.4" height="16.8" rx="8.4" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2.8" transform="rotate(-26.0 1132.0 452)" />
+<circle cx="1162.0" cy="515" r="14" fill="#7FA37A" stroke="#5E8259" stroke-width="2.8" />
+<rect x="1213.8" y="531.6" width="36.4" height="16.8" rx="8.4" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2.8" transform="rotate(14.0 1232.0 540)" />
+<circle cx="1322.0" cy="545" r="14" fill="#7FA37A" stroke="#5E8259" stroke-width="2.8" />
+<rect x="853.8" y="241.6" width="36.4" height="16.8" rx="8.4" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2.8" transform="rotate(14 872 250)" />
+<circle cx="942" cy="240" r="14" fill="#7FA37A" stroke="#5E8259" stroke-width="2.8" />
+<rect x="1253.8" y="221.6" width="36.4" height="16.8" rx="8.4" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2.8" transform="rotate(-6 1272 230)" />
+<circle cx="1362" cy="220" r="14" fill="#7FA37A" stroke="#5E8259" stroke-width="2.8" />
+<path d="M 768 60 L 768 720" stroke="#E2C9A6" stroke-width="8" stroke-dasharray="20 18" />
+<g transform="translate(768 1000) scale(0.95 0.95)">
+  <ellipse cx="0" cy="4" rx="95" ry="12" fill="#000" opacity="0.10" />
+  <rect x="48" y="-176" width="66" height="96" rx="14" fill="#1F4E8C" stroke="#163A69" stroke-width="4" />
+  <rect x="84" y="-214" width="12" height="44" rx="6" fill="#9AA5B1" stroke="#6B7785" stroke-width="3" />
+  <circle cx="90" cy="-216" r="13" fill="none" stroke="#6B7785" stroke-width="7" />
+  <rect x="56" y="-120" width="50" height="10" rx="5" fill="#163A69" />
+  <rect x="-56" y="-26" width="40" height="28" rx="10" fill="#C0661A" />
+  <rect x="16" y="-26" width="40" height="28" rx="10" fill="#C0661A" />
+  <rect x="-80" y="-192" width="160" height="172" rx="22" fill="#F28C28" stroke="#C0661A" stroke-width="6" />
+  <rect x="-62" y="-192" width="16" height="36" rx="6" fill="#1F4E8C" />
+  <rect x="46" y="-192" width="16" height="36" rx="6" fill="#1F4E8C" />
+  <g transform="rotate(70 -80 -130)"><rect x="-108" y="-138" width="30" height="72" rx="15" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4" /><circle cx="-93" cy="-64" r="17" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4" /></g><g transform="rotate(-70 80 -130)"><rect x="78" y="-138" width="30" height="72" rx="15" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4" /><circle cx="93" cy="-64" r="17" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4" /></g>
+  <path d="M -72 -192 A 74 64 0 0 1 72 -192 Z" fill="#FFD23F" stroke="#D9A800" stroke-width="5" />
+  <rect x="-11" y="-252" width="22" height="58" rx="9" fill="#FFE27A" stroke="#D9A800" stroke-width="3" />
+  <rect x="-98" y="-204" width="196" height="22" rx="11" fill="#FFD23F" stroke="#D9A800" stroke-width="5" />
+  <circle cx="-34" cy="-128" r="17" fill="#1A1A1A" /><circle cx="-28" cy="-134" r="5.5" fill="#FFF" />
+  <circle cx="34" cy="-128" r="17" fill="#1A1A1A" /><circle cx="40" cy="-134" r="5.5" fill="#FFF" />
+  <circle cx="-56" cy="-98" r="9" fill="#F7A65A" /><circle cx="56" cy="-98" r="9" fill="#F7A65A" />
+  <path d="M -18 -90 Q 0 -72 18 -90" fill="none" stroke="#7A3A0A" stroke-width="5" stroke-linecap="round" />
+</g>
+<rect x="320.0" y="98" width="128" height="76" rx="16" fill="#FFFFFF" stroke="#3A2A1E" stroke-width="4" /><text x="384" y="154" font-family="PingFang SC, Hiragino Sans GB, Noto Sans CJK SC, sans-serif" font-size="46" font-weight="700" fill="#3A2A1E" text-anchor="middle">完好</text>
+<rect x="1236.0" y="98" width="128" height="76" rx="16" fill="#FFFFFF" stroke="#3A2A1E" stroke-width="4" /><text x="1300" y="154" font-family="PingFang SC, Hiragino Sans GB, Noto Sans CJK SC, sans-serif" font-size="46" font-weight="700" fill="#3A2A1E" text-anchor="middle">破口</text>
+<path d="M 1300 185 L 1170 340" stroke="#3A2A1E" stroke-width="5" stroke-dasharray="4 10" stroke-linecap="round" fill="none" /><circle cx="1170" cy="340" r="9" fill="#3A2A1E" />
+</svg></div>
+<p class="narration">它们小得看不见，在空气里飘，在果皮上躺着。外墙结实，它们进不去；外墙一碰破，就从破口钻进去。</p>
+<button class="read-button" type="button" data-read="5">读给我听</button><p class="speech-status" role="status"></p></section><section hidden class="page story" aria-label="正文第 5 页">
+<p class="eyebrow">第二章 · 看不见的小客人</p><div class="picture"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 1024" width="1536" height="1024" preserveAspectRatio="xMidYMid meet" role="img" aria-label="绘本画面">
+<rect width="1536" height="1024" fill="#FFF1C9" />
+<rect x="12" y="150" width="128" height="128" rx="22" fill="#FFE08A" stroke="#EFC458" stroke-width="5" />
+<rect x="12" y="296" width="128" height="128" rx="22" fill="#FFE08A" stroke="#EFC458" stroke-width="5" />
+<rect x="12" y="442" width="128" height="128" rx="22" fill="#FFE08A" stroke="#EFC458" stroke-width="5" />
+<rect x="12" y="588" width="128" height="128" rx="22" fill="#FFE08A" stroke="#EFC458" stroke-width="5" />
+<rect x="12" y="734" width="128" height="128" rx="22" fill="#FFE08A" stroke="#EFC458" stroke-width="5" />
+<rect x="12" y="880" width="128" height="128" rx="22" fill="#FFE08A" stroke="#EFC458" stroke-width="5" />
+<rect x="158" y="150" width="128" height="128" rx="22" fill="#FFE08A" stroke="#EFC458" stroke-width="5" />
+<rect x="158" y="296" width="128" height="128" rx="22" fill="#FFE08A" stroke="#EFC458" stroke-width="5" />
+<rect x="158" y="442" width="128" height="128" rx="22" fill="#FFE08A" stroke="#EFC458" stroke-width="5" />
+<rect x="158" y="588" width="128" height="128" rx="22" fill="#FFE08A" stroke="#EFC458" stroke-width="5" />
+<rect x="158" y="734" width="128" height="128" rx="22" fill="#FFE08A" stroke="#EFC458" stroke-width="5" />
+<rect x="158" y="880" width="128" height="128" rx="22" fill="#FFE08A" stroke="#EFC458" stroke-width="5" />
+<rect x="304" y="150" width="128" height="128" rx="22" fill="#FFE08A" stroke="#EFC458" stroke-width="5" />
+<rect x="304" y="296" width="128" height="128" rx="22" fill="#FFE08A" stroke="#EFC458" stroke-width="5" />
+<rect x="304" y="442" width="128" height="128" rx="22" fill="#FFE08A" stroke="#EFC458" stroke-width="5" />
+<rect x="304" y="588" width="128" height="128" rx="22" fill="#FFE08A" stroke="#EFC458" stroke-width="5" />
+<rect x="304" y="734" width="128" height="128" rx="22" fill="#FFE08A" stroke="#EFC458" stroke-width="5" />
+<rect x="304" y="880" width="128" height="128" rx="22" fill="#FFE08A" stroke="#EFC458" stroke-width="5" />
+<rect x="450" y="150" width="128" height="128" rx="22" fill="#FFE08A" stroke="#EFC458" stroke-width="5" />
+<rect x="450" y="296" width="128" height="128" rx="22" fill="#FFE08A" stroke="#EFC458" stroke-width="5" />
+<rect x="450" y="442" width="128" height="128" rx="22" fill="#FFE08A" stroke="#EFC458" stroke-width="5" />
+<rect x="450" y="588" width="128" height="128" rx="22" fill="#FFE08A" stroke="#EFC458" stroke-width="5" />
+<rect x="450" y="734" width="128" height="128" rx="22" fill="#FFE08A" stroke="#EFC458" stroke-width="5" />
+<rect x="450" y="880" width="128" height="128" rx="22" fill="#FFE08A" stroke="#EFC458" stroke-width="5" />
+<rect x="594.6857142857143" y="170.97142857142856" width="126.4" height="107.02857142857142" rx="24.97142857142857" fill="#D2A06A" stroke="#A9773F" stroke-width="5" transform="rotate(-0.22857142857142856 660 226)" />
+<rect x="601.6857142857143" y="316.9714285714286" width="126.4" height="107.02857142857142" rx="24.97142857142857" fill="#D2A06A" stroke="#A9773F" stroke-width="5" transform="rotate(0.5714285714285714 660 372)" />
+<rect x="596.6857142857143" y="462.9714285714286" width="126.4" height="107.02857142857142" rx="24.97142857142857" fill="#D2A06A" stroke="#A9773F" stroke-width="5" transform="rotate(0.0 660 518)" />
+<rect x="591.6857142857143" y="608.9714285714285" width="126.4" height="107.02857142857142" rx="24.97142857142857" fill="#D2A06A" stroke="#A9773F" stroke-width="5" transform="rotate(-0.5714285714285714 660 664)" />
+<rect x="598.6857142857143" y="754.9714285714285" width="126.4" height="107.02857142857142" rx="24.97142857142857" fill="#D2A06A" stroke="#A9773F" stroke-width="5" transform="rotate(0.22857142857142856 660 810)" />
+<rect x="593.6857142857143" y="900.9714285714285" width="126.4" height="107.02857142857142" rx="24.97142857142857" fill="#D2A06A" stroke="#A9773F" stroke-width="5" transform="rotate(-0.34285714285714286 660 956)" />
+<rect x="743.25" y="177.75" width="122.75" height="100.25" rx="31.75" fill="#D2A06A" stroke="#A9773F" stroke-width="5" transform="rotate(-0.375 806 226)" />
+<rect x="738.25" y="323.75" width="122.75" height="100.25" rx="31.75" fill="#D2A06A" stroke="#A9773F" stroke-width="5" transform="rotate(-2.25 806 372)" />
+<rect x="745.25" y="469.75" width="122.75" height="100.25" rx="31.75" fill="#D2A06A" stroke="#A9773F" stroke-width="5" transform="rotate(0.375 806 518)" />
+<rect x="740.25" y="615.75" width="122.75" height="100.25" rx="31.75" fill="#D2A06A" stroke="#A9773F" stroke-width="5" transform="rotate(-1.5 806 664)" />
+<rect x="747.25" y="761.75" width="122.75" height="100.25" rx="31.75" fill="#D2A06A" stroke="#A9773F" stroke-width="5" transform="rotate(1.125 806 810)" />
+<rect x="742.25" y="907.75" width="122.75" height="100.25" rx="31.75" fill="#D2A06A" stroke="#A9773F" stroke-width="5" transform="rotate(-0.75 806 956)" />
+<rect x="891.8142857142857" y="184.5285714285714" width="119.1" height="93.47142857142858" rx="38.528571428571425" fill="#B98252" stroke="#8E5E33" stroke-width="5" transform="rotate(0.0 952 226)" />
+<rect x="886.8142857142857" y="330.5285714285714" width="119.1" height="93.47142857142858" rx="38.528571428571425" fill="#B98252" stroke="#8E5E33" stroke-width="5" transform="rotate(-3.1785714285714284 952 372)" />
+<rect x="893.8142857142857" y="476.5285714285714" width="119.1" height="93.47142857142858" rx="38.528571428571425" fill="#B98252" stroke="#8E5E33" stroke-width="5" transform="rotate(1.2714285714285714 952 518)" />
+<rect x="888.8142857142857" y="622.5285714285715" width="119.1" height="93.47142857142858" rx="38.528571428571425" fill="#B98252" stroke="#8E5E33" stroke-width="5" transform="rotate(-1.907142857142857 952 664)" />
+<rect x="895.8142857142857" y="768.5285714285715" width="119.1" height="93.47142857142858" rx="38.528571428571425" fill="#B98252" stroke="#8E5E33" stroke-width="5" transform="rotate(2.5428571428571427 952 810)" />
+<rect x="890.8142857142857" y="914.5285714285715" width="119.1" height="93.47142857142858" rx="38.528571428571425" fill="#B98252" stroke="#8E5E33" stroke-width="5" transform="rotate(-0.6357142857142857 952 956)" />
+<rect x="1040.3785714285714" y="191.30714285714285" width="115.45" height="86.69285714285715" rx="45.30714285714286" fill="#B98252" stroke="#8E5E33" stroke-width="5" transform="rotate(0.8964285714285715 1098 226)" />
+<rect x="1035.3785714285714" y="337.3071428571429" width="115.45" height="86.69285714285715" rx="45.30714285714286" fill="#B98252" stroke="#8E5E33" stroke-width="5" transform="rotate(-3.585714285714286 1098 372)" />
+<rect x="1042.3785714285714" y="483.3071428571429" width="115.45" height="86.69285714285715" rx="45.30714285714286" fill="#B98252" stroke="#8E5E33" stroke-width="5" transform="rotate(2.6892857142857145 1098 518)" />
+<rect x="1037.3785714285714" y="629.3071428571428" width="115.45" height="86.69285714285715" rx="45.30714285714286" fill="#B98252" stroke="#8E5E33" stroke-width="5" transform="rotate(-1.792857142857143 1098 664)" />
+<rect x="1044.3785714285714" y="775.3071428571428" width="115.45" height="86.69285714285715" rx="45.30714285714286" fill="#B98252" stroke="#8E5E33" stroke-width="5" transform="rotate(4.482142857142858 1098 810)" />
+<rect x="1039.3785714285714" y="921.3071428571428" width="115.45" height="86.69285714285715" rx="45.30714285714286" fill="#B98252" stroke="#8E5E33" stroke-width="5" transform="rotate(0.0 1098 956)" />
+<rect x="1188" y="194" width="114" height="84" rx="48" fill="#B98252" stroke="#8E5E33" stroke-width="5" transform="rotate(2 1244 226)" />
+<rect x="1183" y="340" width="114" height="84" rx="48" fill="#B98252" stroke="#8E5E33" stroke-width="5" transform="rotate(-3 1244 372)" />
+<rect x="1190" y="486" width="114" height="84" rx="48" fill="#B98252" stroke="#8E5E33" stroke-width="5" transform="rotate(4 1244 518)" />
+<rect x="1185" y="632" width="114" height="84" rx="48" fill="#B98252" stroke="#8E5E33" stroke-width="5" transform="rotate(-1 1244 664)" />
+<rect x="1180" y="778" width="114" height="84" rx="48" fill="#B98252" stroke="#8E5E33" stroke-width="5" transform="rotate(-6 1244 810)" />
+<rect x="1187" y="924" width="114" height="84" rx="48" fill="#B98252" stroke="#8E5E33" stroke-width="5" transform="rotate(1 1244 956)" />
+<rect x="1335" y="194" width="114" height="84" rx="48" fill="#B98252" stroke="#8E5E33" stroke-width="5" transform="rotate(3 1390 226)" />
+<rect x="1330" y="340" width="114" height="84" rx="48" fill="#B98252" stroke="#8E5E33" stroke-width="5" transform="rotate(-2 1390 372)" />
+<rect x="1337" y="486" width="114" height="84" rx="48" fill="#B98252" stroke="#8E5E33" stroke-width="5" transform="rotate(5 1390 518)" />
+<rect x="1332" y="632" width="114" height="84" rx="48" fill="#B98252" stroke="#8E5E33" stroke-width="5" transform="rotate(0 1390 664)" />
+<rect x="1327" y="778" width="114" height="84" rx="48" fill="#B98252" stroke="#8E5E33" stroke-width="5" transform="rotate(-5 1390 810)" />
+<rect x="1334" y="924" width="114" height="84" rx="48" fill="#B98252" stroke="#8E5E33" stroke-width="5" transform="rotate(2 1390 956)" />
+<rect x="1482" y="194" width="114" height="84" rx="48" fill="#B98252" stroke="#8E5E33" stroke-width="5" transform="rotate(4 1536 226)" />
+<rect x="1477" y="340" width="114" height="84" rx="48" fill="#B98252" stroke="#8E5E33" stroke-width="5" transform="rotate(-1 1536 372)" />
+<rect x="1472" y="486" width="114" height="84" rx="48" fill="#B98252" stroke="#8E5E33" stroke-width="5" transform="rotate(-6 1536 518)" />
+<rect x="1479" y="632" width="114" height="84" rx="48" fill="#B98252" stroke="#8E5E33" stroke-width="5" transform="rotate(1 1536 664)" />
+<rect x="1474" y="778" width="114" height="84" rx="48" fill="#B98252" stroke="#8E5E33" stroke-width="5" transform="rotate(-4 1536 810)" />
+<rect x="1481" y="924" width="114" height="84" rx="48" fill="#B98252" stroke="#8E5E33" stroke-width="5" transform="rotate(3 1536 956)" />
+<path d="M 0 0 L 1536 0 L 1536 120 L 760 120 L 730 70 L 700 120 L 0 120 Z" fill="#E2463A" stroke="#B5302A" stroke-width="8" />
+<path d="M 730 90 C 760 200, 690 280, 760 380 C 820 470, 760 560, 840 660" fill="none" stroke="#9C9C9C" stroke-width="16" stroke-linecap="round" />
+<path d="M 730 90 C 760 200, 690 280, 760 380 C 820 470, 760 560, 840 660" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" />
+<path d="M 730 90 C 820 160, 900 220, 980 330 C 1040 420, 1140 430, 1230 520" fill="none" stroke="#9C9C9C" stroke-width="16" stroke-linecap="round" />
+<path d="M 730 90 C 820 160, 900 220, 980 330 C 1040 420, 1140 430, 1230 520" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" />
+<path d="M 730 90 C 700 180, 640 230, 660 330" fill="none" stroke="#9C9C9C" stroke-width="16" stroke-linecap="round" />
+<path d="M 730 90 C 700 180, 640 230, 660 330" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" />
+<path d="M 760 380 C 880 380, 960 470, 1060 560 C 1140 640, 1250 650, 1340 760" fill="none" stroke="#9C9C9C" stroke-width="16" stroke-linecap="round" />
+<path d="M 760 380 C 880 380, 960 470, 1060 560 C 1140 640, 1250 650, 1340 760" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" />
+<path d="M 980 330 C 1080 280, 1200 260, 1330 300 C 1420 330, 1480 300, 1530 320" fill="none" stroke="#9C9C9C" stroke-width="16" stroke-linecap="round" />
+<path d="M 980 330 C 1080 280, 1200 260, 1330 300 C 1420 330, 1480 300, 1530 320" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" />
+<path d="M 840 660 C 900 760, 1000 820, 1100 900" fill="none" stroke="#9C9C9C" stroke-width="16" stroke-linecap="round" />
+<path d="M 840 660 C 900 760, 1000 820, 1100 900" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" />
+<g transform="translate(290 296) scale(0.95 0.95)">
+  <ellipse cx="0" cy="4" rx="95" ry="12" fill="#000" opacity="0.10" />
+  <rect x="48" y="-176" width="66" height="96" rx="14" fill="#1F4E8C" stroke="#163A69" stroke-width="4" />
+  <rect x="84" y="-214" width="12" height="44" rx="6" fill="#9AA5B1" stroke="#6B7785" stroke-width="3" />
+  <circle cx="90" cy="-216" r="13" fill="none" stroke="#6B7785" stroke-width="7" />
+  <rect x="56" y="-120" width="50" height="10" rx="5" fill="#163A69" />
+  <rect x="-56" y="-26" width="40" height="28" rx="10" fill="#C0661A" />
+  <rect x="16" y="-26" width="40" height="28" rx="10" fill="#C0661A" />
+  <rect x="-80" y="-192" width="160" height="172" rx="22" fill="#F28C28" stroke="#C0661A" stroke-width="6" />
+  <rect x="-62" y="-192" width="16" height="36" rx="6" fill="#1F4E8C" />
+  <rect x="46" y="-192" width="16" height="36" rx="6" fill="#1F4E8C" />
+  <g transform="rotate(12 -80 -130)"><rect x="-108" y="-138" width="30" height="72" rx="15" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4" /><circle cx="-93" cy="-64" r="17" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4" /></g><g transform="rotate(-100 80 -130)"><rect x="78" y="-138" width="30" height="72" rx="15" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4" /><circle cx="93" cy="-64" r="17" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4" /></g>
+  <path d="M -72 -192 A 74 64 0 0 1 72 -192 Z" fill="#FFD23F" stroke="#D9A800" stroke-width="5" />
+  <rect x="-11" y="-252" width="22" height="58" rx="9" fill="#FFE27A" stroke="#D9A800" stroke-width="3" />
+  <rect x="-98" y="-204" width="196" height="22" rx="11" fill="#FFD23F" stroke="#D9A800" stroke-width="5" />
+  <circle cx="-34" cy="-128" r="17" fill="#1A1A1A" /><circle cx="-28" cy="-134" r="5.5" fill="#FFF" />
+  <circle cx="34" cy="-128" r="17" fill="#1A1A1A" /><circle cx="40" cy="-134" r="5.5" fill="#FFF" />
+  <circle cx="-56" cy="-98" r="9" fill="#F7A65A" /><circle cx="56" cy="-98" r="9" fill="#F7A65A" />
+  <path d="M -18 -90 Q 0 -72 18 -90" fill="none" stroke="#7A3A0A" stroke-width="5" stroke-linecap="round" />
+</g>
+<g transform="translate(443.360850306035 130.62246464758195) rotate(-20)"><rect x="0" y="0" width="90" height="44" rx="12" fill="#FFFFFF" stroke="#1F5FA8" stroke-width="5" /><path d="M 90 10 L 118 16 L 118 28 L 90 34 Z" fill="#2F7DD1" /><rect x="14" y="12" width="44" height="20" rx="6" fill="#FFD23F" /></g>
+<rect x="1017.0" y="928" width="266" height="76" rx="16" fill="#FFFFFF" stroke="#3A2A1E" stroke-width="4" /><text x="1150" y="984" font-family="PingFang SC, Hiragino Sans GB, Noto Sans CJK SC, sans-serif" font-size="46" font-weight="700" fill="#3A2A1E" text-anchor="middle">胶水化开了</text>
+<path d="M 1150 925 L 1010 760" stroke="#3A2A1E" stroke-width="5" stroke-dasharray="4 10" stroke-linecap="round" fill="none" /><circle cx="1010" cy="760" r="9" fill="#3A2A1E" />
+</svg></div>
+<p class="narration">霉菌伸出细细的丝，一边喝甜果汁，一边把粘住小房间的「胶水」化开。房间一间间塌软，苹果就烂了。</p>
+<button class="read-button" type="button" data-read="6">读给我听</button><p class="speech-status" role="status"></p></section><section hidden class="page follow-up" aria-label="追问口">
+<p class="eyebrow">追问口 · 第二章 · 看不见的小客人</p><div class="follow-symbol" aria-hidden="true">?</div>
+<h2>那放进冰箱的苹果，为什么坏得慢？</h2><p>这个问题，也让你好奇吗？</p>
+<button class="follow-button" type="button" data-follow="1" aria-pressed="false">我也想知道这个！</button>
+<p class="hint">把好奇心留在这里，下次再一起看看。</p></section><section hidden class="page story" aria-label="正文第 6 页">
+<p class="eyebrow">第三章 · 拆下来的材料去哪了</p><div class="picture"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 1024" width="1536" height="1024" preserveAspectRatio="xMidYMid meet" role="img" aria-label="绘本画面">
+<rect width="1536" height="1024" fill="#CFEAFB" />
+<circle cx="1360" cy="150" r="80" fill="#FFE27A" />
+<rect x="0" y="560" width="1536" height="464" fill="#C98F5E" />
+<rect x="0" y="540" width="1536" height="44" rx="10" fill="#6DBE5A" />
+<rect x="230" y="250" width="70" height="320" rx="20" fill="#A0673A" />
+<circle cx="265" cy="230" r="190" fill="#6DBE5A" stroke="#3F8F3A" stroke-width="8" />
+<circle cx="190" cy="180" r="24" fill="#E2463A" stroke="#B5302A" stroke-width="5" />
+<circle cx="330" cy="250" r="24" fill="#E2463A" stroke="#B5302A" stroke-width="5" />
+<circle cx="240" cy="320" r="24" fill="#E2463A" stroke="#B5302A" stroke-width="5" />
+<circle cx="370" cy="150" r="24" fill="#E2463A" stroke="#B5302A" stroke-width="5" />
+<ellipse cx="120" cy="760" rx="25.2" ry="18" fill="#A8703F" />
+<ellipse cx="620" cy="900" rx="19.599999999999998" ry="14" fill="#A8703F" />
+<ellipse cx="1420" cy="820" rx="28.0" ry="20" fill="#A8703F" />
+<ellipse cx="1000" cy="960" rx="22.4" ry="16" fill="#A8703F" />
+<ellipse cx="360" cy="940" rx="16.799999999999997" ry="12" fill="#A8703F" />
+<defs><clipPath id="art6-above"><rect x="0" y="0" width="1536" height="585" /></clipPath></defs>
+<g clip-path="url(#art6-above)"><path d="M 860 486.0 C 807.5 453.0, 702.5 471.0, 707.0 607.5 C 710.0 712.5, 792.5 753.0, 860 738.0 C 927.5 753.0, 1010.0 712.5, 1013.0 607.5 C 1017.5 471.0, 912.5 453.0, 860 486.0 Z" fill="#B07A45" stroke="#87592F" stroke-width="8" stroke-linejoin="round" />
+<rect x="851" y="426.0" width="18" height="57.0" rx="8" fill="#7C4A26" />
+<path d="M 866 453.0 C 897.5 408.0, 942.5 426.0, 953.0 438.0 C 927.5 468.0, 890.0 468.0, 866 453.0 Z" fill="#6DBE5A" stroke="#3F8F3A" stroke-width="5" />
+<ellipse cx="788.0" cy="562.5" rx="21.000000000000004" ry="39.0" fill="#FFFFFF" opacity="0.25" transform="rotate(20 788.0 562.5)" /></g>
+<path d="M 700 585 C 740 660, 980 660, 1020 585 Z" fill="#9C6A3E" opacity="0.6" />
+<path d="M 760 640 C 740 720, 800 760, 760 840" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" opacity="0.95" />
+<path d="M 900 650 C 940 720, 880 780, 940 860" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" opacity="0.95" />
+<path d="M 980 630 C 1060 680, 1040 740, 1110 790" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" opacity="0.95" />
+<rect x="776.7616107708947" y="782.3913870242014" width="15.885650299075019" height="7.331838599573086" rx="3.665919299786543" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2" transform="rotate(2.9310514430253534 784.7044359204322 786.057306323988)" />
+<rect x="948.7655786404798" y="663.3585124251546" width="13.10271033412802" height="6.047404769597547" rx="3.0237023847987734" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2" transform="rotate(-2.781463347193494 955.3169338075438 666.3822148099533)" />
+<rect x="783.7327514458326" y="703.7905795577552" width="20.76602971698161" height="9.584321407837665" rx="4.7921607039188325" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2" transform="rotate(8.810364130264134 794.1157663043234 708.5827402616741)" />
+<circle cx="918.028509676777" cy="787.4077917567514" r="6.191403731086883" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<rect x="771.9349240258208" y="683.2390902390301" width="20.22151667982946" height="9.333007698382827" rx="4.666503849191414" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2" transform="rotate(-15.680223439851034 782.0456823657355 687.9055940882215)" />
+<circle cx="1006.1508167286557" cy="817.8528688423982" r="5.1920943146809915" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<rect x="802.6822139626955" y="653.1949888408753" width="19.751112448435777" height="9.115898053124203" rx="4.557949026562102" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2" transform="rotate(17.904391308394224 812.5577701869134 657.7529378674375)" />
+<rect x="933.6781133994267" y="876.3414594308865" width="16.023346967773215" height="7.395390908203021" rx="3.6976954541015106" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2" transform="rotate(21.828508183193662 941.6897868833133 880.0391548849881)" />
+<circle cx="853.7838977603274" cy="850.2271927463071" r="6.333863168152282" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<circle cx="1066.7013305487383" cy="674.3635774327194" r="5.407906580602007" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<rect x="783.9737461758207" y="813.6081576340832" width="19.075986168443087" height="8.804301308512194" rx="4.402150654256097" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2" transform="rotate(4.582174820295222 793.5117392600422 818.0103082883393)" />
+<rect x="856.566656861591" y="854.3360390755156" width="17.477377335258588" height="8.066481847042425" rx="4.0332409235212126" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2" transform="rotate(27.137418704542142 865.3053455292203 858.3692799990368)" />
+<circle cx="937.0707889068875" cy="876.0504427119438" r="7.0459464099049" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<circle cx="1056.8162492145725" cy="897.7474112172038" r="7.013820626487554" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<circle cx="987.3909829458632" cy="731.5975721266734" r="6.625297827378571" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<rect x="984.3362179485816" y="698.2843516444075" width="19.486541856132163" height="8.993788548984075" rx="4.496894274492037" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2" transform="rotate(28.55642213653391 994.0794888766477 702.7812459188996)" />
+<rect x="795.5509075690818" y="661.3280478071465" width="19.660751409696903" height="9.074192958321648" rx="4.537096479160824" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2" transform="rotate(27.66898291751204 805.3812832739303 665.8651442863073)" />
+<circle cx="718.9479609682804" cy="850.1488303143755" r="6.231385482037727" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<circle cx="688.8551557757866" cy="756.7854403868166" r="6.245591913300015" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<rect x="692.7683599473645" y="800.5522396946593" width="13.350533899269083" height="6.16178487658573" rx="3.080892438292865" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2" transform="rotate(6.105388278992905 699.443626896999 803.6331321329521)" />
+<circle cx="922.3746340542907" cy="880.4705846694033" r="5.837220486374655" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<circle cx="1119.3439359653416" cy="727.4175133690848" r="5.230912114116236" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<rect x="1089.8767286223808" y="889.3322622141629" width="15.274576709878769" height="7.0498046353286625" rx="3.5249023176643313" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2" transform="rotate(-27.401881158759352 1097.5140169773201 892.8571645318273)" />
+<rect x="738.8432178136503" y="656.0469539192312" width="19.768676464636233" height="9.1240045221398" rx="4.5620022610699" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2" transform="rotate(-8.90710767822111 748.7275560459684 660.6089561803011)" />
+<rect x="828.6258409376202" y="680.030438768006" width="19.721317426463635" height="9.102146504521677" rx="4.551073252260839" fill="#B9A3D6" stroke="#8C74B0" stroke-width="2" transform="rotate(19.405497555963848 838.486499650852 684.5815120202668)" />
+<circle cx="882.580238452198" cy="780.018246148141" r="6.931666155163181" fill="#7FA37A" stroke="#5E8259" stroke-width="2" />
+<path d="M 420 760 C 480 700, 540 820, 600 760 C 650 710, 700 760, 720 730" fill="none" stroke="#F29BB0" stroke-width="34" stroke-linecap="round" />
+<path d="M 420 760 C 480 700, 540 820, 600 760 C 650 710, 700 760, 720 730" fill="none" stroke="#D97A93" stroke-width="34" stroke-linecap="round" stroke-dasharray="2 26" opacity="0.6" />
+<circle cx="724" cy="726" r="6" fill="#3A2A1E" />
+<path d="M 800 690 L 790 900" stroke="#1F5FA8" stroke-width="10" stroke-linecap="round" />
+<path d="M 768 875 L 790 910 L 812 875" fill="none" stroke="#1F5FA8" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M 930 690 L 950 900" stroke="#1F5FA8" stroke-width="10" stroke-linecap="round" />
+<path d="M 928 875 L 950 910 L 972 875" fill="none" stroke="#1F5FA8" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" />
+<g transform="translate(1120 600) scale(1.05 1.05)">
+  <ellipse cx="0" cy="4" rx="95" ry="12" fill="#000" opacity="0.10" />
+  <rect x="48" y="-176" width="66" height="96" rx="14" fill="#1F4E8C" stroke="#163A69" stroke-width="4" />
+  <rect x="84" y="-214" width="12" height="44" rx="6" fill="#9AA5B1" stroke="#6B7785" stroke-width="3" />
+  <circle cx="90" cy="-216" r="13" fill="none" stroke="#6B7785" stroke-width="7" />
+  <rect x="56" y="-120" width="50" height="10" rx="5" fill="#163A69" />
+  <rect x="-56" y="-26" width="40" height="28" rx="10" fill="#C0661A" />
+  <rect x="16" y="-26" width="40" height="28" rx="10" fill="#C0661A" />
+  <rect x="-80" y="-192" width="160" height="172" rx="22" fill="#F28C28" stroke="#C0661A" stroke-width="6" />
+  <rect x="-62" y="-192" width="16" height="36" rx="6" fill="#1F4E8C" />
+  <rect x="46" y="-192" width="16" height="36" rx="6" fill="#1F4E8C" />
+  <g transform="rotate(15 -80 -130)"><rect x="-108" y="-138" width="30" height="72" rx="15" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4" /><circle cx="-93" cy="-64" r="17" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4" /></g><g transform="rotate(-80 80 -130)"><rect x="78" y="-138" width="30" height="72" rx="15" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4" /><circle cx="93" cy="-64" r="17" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4" /></g>
+  <path d="M -72 -192 A 74 64 0 0 1 72 -192 Z" fill="#FFD23F" stroke="#D9A800" stroke-width="5" />
+  <rect x="-11" y="-252" width="22" height="58" rx="9" fill="#FFE27A" stroke="#D9A800" stroke-width="3" />
+  <rect x="-98" y="-204" width="196" height="22" rx="11" fill="#FFD23F" stroke="#D9A800" stroke-width="5" />
+  <circle cx="-34" cy="-128" r="17" fill="#1A1A1A" /><circle cx="-28" cy="-134" r="5.5" fill="#FFF" />
+  <circle cx="34" cy="-128" r="17" fill="#1A1A1A" /><circle cx="40" cy="-134" r="5.5" fill="#FFF" />
+  <circle cx="-56" cy="-98" r="9" fill="#F7A65A" /><circle cx="56" cy="-98" r="9" fill="#F7A65A" />
+  <path d="M -18 -90 Q 0 -72 18 -90" fill="none" stroke="#7A3A0A" stroke-width="5" stroke-linecap="round" />
+</g>
+<g transform="translate(1268.4514661277228 356.62780223161997) rotate(6)"><rect x="0" y="0" width="200" height="140" rx="10" fill="#3D7DD8" stroke="#24589F" stroke-width="5" /><path d="M 25 105 L 25 55 L 100 25 L 175 55 L 175 105 Z" fill="none" stroke="#FFFFFF" stroke-width="5" /><path d="M 50 105 L 50 70 L 85 70 L 85 105" fill="none" stroke="#FFFFFF" stroke-width="5" /><path d="M 115 70 L 150 70" stroke="#FFFFFF" stroke-width="5" /></g>
+</svg></div>
+<p class="narration">最神奇的在这儿：掉在树下的苹果，被霉菌、细菌和蚯蚓一点点拆开，变成泥土里的养分。</p>
+<button class="read-button" type="button" data-read="8">读给我听</button><p class="speech-status" role="status"></p></section><section hidden class="page story" aria-label="正文第 7 页">
+<p class="eyebrow">第三章 · 拆下来的材料去哪了</p><div class="picture"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 1024" width="1536" height="1024" preserveAspectRatio="xMidYMid meet" role="img" aria-label="绘本画面">
+<rect width="1536" height="1024" fill="#CFEAFB" />
+<circle cx="1360" cy="150" r="80" fill="#FFE27A" />
+<rect x="0" y="560" width="1536" height="464" fill="#C98F5E" />
+<rect x="0" y="540" width="1536" height="44" rx="10" fill="#6DBE5A" />
+<rect x="230" y="250" width="70" height="320" rx="20" fill="#A0673A" />
+<circle cx="265" cy="230" r="190" fill="#6DBE5A" stroke="#3F8F3A" stroke-width="8" />
+<circle cx="190" cy="180" r="24" fill="#E2463A" stroke="#B5302A" stroke-width="5" />
+<circle cx="330" cy="250" r="24" fill="#E2463A" stroke="#B5302A" stroke-width="5" />
+<circle cx="240" cy="320" r="24" fill="#E2463A" stroke="#B5302A" stroke-width="5" />
+<circle cx="370" cy="150" r="24" fill="#E2463A" stroke="#B5302A" stroke-width="5" />
+<ellipse cx="120" cy="760" rx="25.2" ry="18" fill="#A8703F" />
+<ellipse cx="620" cy="900" rx="19.599999999999998" ry="14" fill="#A8703F" />
+<ellipse cx="1420" cy="820" rx="28.0" ry="20" fill="#A8703F" />
+<ellipse cx="1000" cy="960" rx="22.4" ry="16" fill="#A8703F" />
+<ellipse cx="360" cy="940" rx="16.799999999999997" ry="12" fill="#A8703F" />
+<ellipse cx="860" cy="600" rx="190" ry="60" fill="#8A5A35" />
+<ellipse cx="860" cy="650" rx="230" ry="110" fill="#9C6A3E" opacity="0.55" />
+<path d="M 860 590 C 862 540, 852 500, 860 450" fill="none" stroke="#3F8F3A" stroke-width="12" stroke-linecap="round" />
+<path d="M 860 470 C 820 430, 780 440, 770 460 C 800 490, 840 490, 860 470 Z" fill="#6DBE5A" stroke="#3F8F3A" stroke-width="5" />
+<path d="M 860 455 C 900 410, 950 420, 960 440 C 930 475, 890 475, 860 455 Z" fill="#6DBE5A" stroke="#3F8F3A" stroke-width="5" />
+<ellipse cx="860" cy="600" rx="22" ry="12" fill="#7C4A26" />
+<rect x="731" y="500" width="18" height="100" rx="5" fill="#D9A066" stroke="#A8703F" stroke-width="4" />
+<rect x="781" y="500" width="18" height="100" rx="5" fill="#D9A066" stroke="#A8703F" stroke-width="4" />
+<rect x="921" y="500" width="18" height="100" rx="5" fill="#D9A066" stroke="#A8703F" stroke-width="4" />
+<rect x="971" y="500" width="18" height="100" rx="5" fill="#D9A066" stroke="#A8703F" stroke-width="4" />
+<rect x="730" y="525" width="70" height="14" rx="5" fill="#D9A066" stroke="#A8703F" stroke-width="3" />
+<rect x="920" y="525" width="70" height="14" rx="5" fill="#D9A066" stroke="#A8703F" stroke-width="3" />
+<path d="M 1050 580 L 1070 520 L 1190 520 L 1210 580 Z" fill="#1F4E8C" stroke="#163A69" stroke-width="5" />
+<rect x="1090" y="480" width="12" height="50" rx="5" fill="#9AA5B1" /><rect x="1140" y="470" width="16" height="60" rx="5" fill="#D9A066" />
+<g transform="translate(1350 590) scale(1.1 1.1)">
+  <ellipse cx="0" cy="4" rx="95" ry="12" fill="#000" opacity="0.10" />
+  <rect x="48" y="-176" width="66" height="96" rx="14" fill="#1F4E8C" stroke="#163A69" stroke-width="4" />
+  <rect x="84" y="-214" width="12" height="44" rx="6" fill="#9AA5B1" stroke="#6B7785" stroke-width="3" />
+  <circle cx="90" cy="-216" r="13" fill="none" stroke="#6B7785" stroke-width="7" />
+  <rect x="56" y="-120" width="50" height="10" rx="5" fill="#163A69" />
+  <rect x="-56" y="-26" width="40" height="28" rx="10" fill="#C0661A" />
+  <rect x="16" y="-26" width="40" height="28" rx="10" fill="#C0661A" />
+  <rect x="-80" y="-192" width="160" height="172" rx="22" fill="#F28C28" stroke="#C0661A" stroke-width="6" />
+  <rect x="-62" y="-192" width="16" height="36" rx="6" fill="#1F4E8C" />
+  <rect x="46" y="-192" width="16" height="36" rx="6" fill="#1F4E8C" />
+  <g transform="rotate(110 -80 -130)"><rect x="-108" y="-138" width="30" height="72" rx="15" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4" /><circle cx="-93" cy="-64" r="17" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4" /></g><g transform="rotate(-15 80 -130)"><rect x="78" y="-138" width="30" height="72" rx="15" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4" /><circle cx="93" cy="-64" r="17" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4" /></g>
+  <path d="M -72 -192 A 74 64 0 0 1 72 -192 Z" fill="#FFD23F" stroke="#D9A800" stroke-width="5" />
+  <rect x="-11" y="-252" width="22" height="58" rx="9" fill="#FFE27A" stroke="#D9A800" stroke-width="3" />
+  <rect x="-98" y="-204" width="196" height="22" rx="11" fill="#FFD23F" stroke="#D9A800" stroke-width="5" />
+  <circle cx="-34" cy="-128" r="17" fill="#1A1A1A" /><circle cx="-28" cy="-134" r="5.5" fill="#FFF" />
+  <circle cx="34" cy="-128" r="17" fill="#1A1A1A" /><circle cx="40" cy="-134" r="5.5" fill="#FFF" />
+  <circle cx="-56" cy="-98" r="9" fill="#F7A65A" /><circle cx="56" cy="-98" r="9" fill="#F7A65A" />
+  <path d="M -18 -90 Q 0 -72 18 -90" fill="none" stroke="#7A3A0A" stroke-width="5" stroke-linecap="round" />
+</g>
+<g transform="translate(1187.576344433756 419.9120046486071) rotate(-30)"><rect x="-8" y="-70" width="16" height="80" rx="6" fill="#D9A066" stroke="#A8703F" stroke-width="3" /><rect x="-34" y="-92" width="68" height="30" rx="8" fill="#9AA5B1" stroke="#6B7785" stroke-width="4" /></g>
+</svg></div>
+<p class="narration">泥土变肥了，苹果里的种子也许会发芽。烂苹果没有不见，它变成了长出新东西的材料。</p>
+<button class="read-button" type="button" data-read="9">读给我听</button><p class="speech-status" role="status"></p></section><section hidden class="page story" aria-label="正文第 8 页">
+<p class="eyebrow">第三章 · 拆下来的材料去哪了</p><div class="picture"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 1024" width="1536" height="1024" preserveAspectRatio="xMidYMid meet" role="img" aria-label="绘本画面">
+<rect width="1536" height="1024" fill="#FFF7EA" />
+<rect x="620" y="90" width="300" height="220" rx="18" fill="#CFEAFB" stroke="#E2C9A6" stroke-width="16" /><rect x="764.0" y="90" width="12" height="220" fill="#E2C9A6" /><rect x="620" y="194.0" width="300" height="12" fill="#E2C9A6" /><circle cx="845.0" cy="149.4" r="26.4" fill="#FFE27A" />
+<rect x="0" y="700" width="1536" height="324" fill="#E9C9A0" />
+<rect x="0" y="688" width="1536" height="24" fill="#D4A373" />
+<rect x="40" y="170" width="300" height="530" rx="30" fill="#BFE0F5" stroke="#8DBFE0" stroke-width="8" /><path d="M 40 380 L 340 380" stroke="#8DBFE0" stroke-width="8" /><rect x="290" y="230" width="18" height="100" rx="8" fill="#8DBFE0" /><rect x="290" y="420" width="18" height="140" rx="8" fill="#8DBFE0" />
+<path d="M 520 546.8 C 495.5 531.4, 446.5 539.8, 448.6 603.5 C 450.0 652.5, 488.5 671.4, 520 664.4 C 551.5 671.4, 590.0 652.5, 591.4 603.5 C 593.5 539.8, 544.5 531.4, 520 546.8 Z" fill="#E2463A" stroke="#B5302A" stroke-width="8" stroke-linejoin="round" />
+<rect x="511" y="518.8" width="18" height="26.6" rx="8" fill="#7C4A26" />
+<path d="M 526 531.4 C 537.5 510.4, 558.5 518.8, 563.4 524.4 C 551.5 538.4, 534.0 538.4, 526 531.4 Z" fill="#6DBE5A" stroke="#3F8F3A" stroke-width="5" />
+<ellipse cx="486.4" cy="582.5" rx="9.8" ry="18.2" fill="#FFFFFF" opacity="0.45" transform="rotate(20 486.4 582.5)" />
+<path d="M 640 556.8 C 615.5 541.4, 566.5 549.8, 568.6 613.5 C 570.0 662.5, 608.5 681.4, 640 674.4 C 671.5 681.4, 710.0 662.5, 711.4 613.5 C 713.5 549.8, 664.5 541.4, 640 556.8 Z" fill="#E2463A" stroke="#B5302A" stroke-width="8" stroke-linejoin="round" />
+<rect x="631" y="528.8" width="18" height="26.6" rx="8" fill="#7C4A26" />
+<path d="M 646 541.4 C 657.5 520.4, 678.5 528.8, 683.4 534.4 C 671.5 548.4, 654.0 548.4, 646 541.4 Z" fill="#6DBE5A" stroke="#3F8F3A" stroke-width="5" />
+<ellipse cx="606.4" cy="592.5" rx="9.8" ry="18.2" fill="#FFFFFF" opacity="0.45" transform="rotate(20 606.4 592.5)" />
+<path d="M 400 640 L 760 640 C 750 720, 690 750, 580 750 C 470 750, 410 720, 400 640 Z" fill="#FFFFFF" stroke="#D4A373" stroke-width="8" />
+<path d="M 585 389.84000000000003 C 561.9 375.32, 515.7 383.24, 517.68 443.3 C 519.0 489.5, 555.3 507.32, 585 500.72 C 614.7 507.32, 651.0 489.5, 652.32 443.3 C 654.3 383.24, 608.1 375.32, 585 389.84000000000003 Z" fill="#E2463A" stroke="#B5302A" stroke-width="8" stroke-linejoin="round" />
+<rect x="576" y="363.44" width="18" height="25.080000000000002" rx="8" fill="#7C4A26" />
+<path d="M 591 375.32 C 601.5 355.52, 621.3 363.44, 625.92 368.72 C 614.7 381.92, 598.2 381.92, 591 375.32 Z" fill="#6DBE5A" stroke="#3F8F3A" stroke-width="5" />
+<ellipse cx="553.32" cy="423.5" rx="9.24" ry="17.16" fill="#FFFFFF" opacity="0.45" transform="rotate(20 553.32 423.5)" />
+<path d="M 470 230 L 560 360" stroke="#5B8DD6" stroke-width="70" stroke-linecap="round" />
+<path d="M 540 330 C 600 330, 650 370, 640 410 C 630 430, 600 420, 590 400 C 560 400, 530 380, 525 360 Z" fill="#F5CBA7" stroke="#D9A07A" stroke-width="5" />
+<g transform="translate(900 860) scale(1.05 1.05)">
+  <ellipse cx="0" cy="4" rx="95" ry="12" fill="#000" opacity="0.10" />
+  <rect x="48" y="-176" width="66" height="96" rx="14" fill="#1F4E8C" stroke="#163A69" stroke-width="4" />
+  <rect x="84" y="-214" width="12" height="44" rx="6" fill="#9AA5B1" stroke="#6B7785" stroke-width="3" />
+  <circle cx="90" cy="-216" r="13" fill="none" stroke="#6B7785" stroke-width="7" />
+  <rect x="56" y="-120" width="50" height="10" rx="5" fill="#163A69" />
+  <rect x="-56" y="-26" width="40" height="28" rx="10" fill="#C0661A" />
+  <rect x="16" y="-26" width="40" height="28" rx="10" fill="#C0661A" />
+  <rect x="-80" y="-192" width="160" height="172" rx="22" fill="#F28C28" stroke="#C0661A" stroke-width="6" />
+  <rect x="-62" y="-192" width="16" height="36" rx="6" fill="#1F4E8C" />
+  <rect x="46" y="-192" width="16" height="36" rx="6" fill="#1F4E8C" />
+  <g transform="rotate(5 -80 -130)"><rect x="-108" y="-138" width="30" height="72" rx="15" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4" /><circle cx="-93" cy="-64" r="17" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4" /></g><g transform="rotate(-150 80 -130)"><rect x="78" y="-138" width="30" height="72" rx="15" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4" /><circle cx="93" cy="-64" r="17" fill="#2F7DD1" stroke="#1F5FA8" stroke-width="4" /></g>
+  <path d="M -72 -192 A 74 64 0 0 1 72 -192 Z" fill="#FFD23F" stroke="#D9A800" stroke-width="5" />
+  <rect x="-11" y="-252" width="22" height="58" rx="9" fill="#FFE27A" stroke="#D9A800" stroke-width="3" />
+  <rect x="-98" y="-204" width="196" height="22" rx="11" fill="#FFD23F" stroke="#D9A800" stroke-width="5" />
+  <circle cx="-34" cy="-128" r="17" fill="#1A1A1A" /><circle cx="-28" cy="-134" r="5.5" fill="#FFF" />
+  <circle cx="34" cy="-128" r="17" fill="#1A1A1A" /><circle cx="40" cy="-134" r="5.5" fill="#FFF" />
+  <circle cx="-56" cy="-98" r="9" fill="#F7A65A" /><circle cx="56" cy="-98" r="9" fill="#F7A65A" />
+  <path d="M -18 -90 Q 0 -72 18 -90" fill="none" stroke="#7A3A0A" stroke-width="5" stroke-linecap="round" />
+</g>
+<rect x="1150" y="560" width="260" height="300" rx="26" fill="#9BBFA8" stroke="#6E9A7E" stroke-width="8" />
+<rect x="1140" y="526" width="280" height="36" rx="14" fill="#9BBFA8" stroke="#6E9A7E" stroke-width="8" transform="rotate(80 1420 560)" />
+<path d="M 1280 470 C 1240 470, 1225 520, 1250 560 C 1265 585, 1295 585, 1310 560 C 1335 520, 1320 470, 1280 470 Z" fill="#E2463A" stroke="#B5302A" stroke-width="5" />
+<path d="M 1255 470 L 1280 452 L 1305 470 L 1280 480 Z" fill="#6DBE5A" />
+<circle cx="1260" cy="505" r="11" fill="#E8F1E4" stroke="#B6CBB0" stroke-width="3" />
+<circle cx="1285" cy="520" r="11" fill="#E8F1E4" stroke="#B6CBB0" stroke-width="3" />
+<circle cx="1300" cy="495" r="11" fill="#E8F1E4" stroke="#B6CBB0" stroke-width="3" />
+<circle cx="1272" cy="540" r="11" fill="#E8F1E4" stroke="#B6CBB0" stroke-width="3" />
+<circle cx="1295" cy="548" r="11" fill="#E8F1E4" stroke="#B6CBB0" stroke-width="3" />
+<circle cx="1250" cy="530" r="11" fill="#E8F1E4" stroke="#B6CBB0" stroke-width="3" />
+<path d="M 1280 420 L 1280 380" stroke="#3A2A1E" stroke-width="8" stroke-linecap="round" /><path d="M 1262 400 L 1280 430 L 1298 400" fill="none" stroke="#3A2A1E" stroke-width="8" stroke-linecap="round" />
+<circle cx="1080" cy="210" r="95" fill="#FFFFFF" stroke="#D93A3A" stroke-width="14" />
+<path d="M 1075 155 C 1070 200, 1040 230, 1050 245 C 1060 260, 1100 260, 1110 245" fill="#F5CBA7" stroke="#C98B62" stroke-width="7" stroke-linejoin="round" />
+<path d="M 1135 185 q -8 -8 -16 0 t -16 0" fill="none" stroke="#7FA37A" stroke-width="6" stroke-linecap="round" />
+<path d="M 1135 215 q -8 -8 -16 0 t -16 0" fill="none" stroke="#7FA37A" stroke-width="6" stroke-linecap="round" />
+<path d="M 1135 245 q -8 -8 -16 0 t -16 0" fill="none" stroke="#7FA37A" stroke-width="6" stroke-linecap="round" />
+<path d="M 1013 143 L 1147 277" stroke="#D93A3A" stroke-width="14" stroke-linecap="round" />
+</svg></div>
+<p class="narration">回到家里：苹果要轻拿轻放，别碰破外墙，放在凉快的地方。长了毛的软水果整个扔掉，别凑近闻。</p>
+<button class="read-button" type="button" data-read="10">读给我听</button><p class="speech-status" role="status"></p></section><section hidden class="page follow-up" aria-label="追问口">
+<p class="eyebrow">追问口 · 第三章 · 拆下来的材料去哪了</p><div class="follow-symbol" aria-hidden="true">?</div>
+<h2>霉菌长出来的毛毛是什么？</h2><p>这个问题，也让你好奇吗？</p>
+<button class="follow-button" type="button" data-follow="2" aria-pressed="false">我也想知道这个！</button>
+<p class="hint">把好奇心留在这里，下次再一起看看。</p></section><section hidden class="page child-page" aria-label="留给孩子的一页">
+<p class="eyebrow">这一页，留给你</p><h2>你还想知道什么？说给爸爸妈妈听，他们帮你记下来。</h2>
+<label class="field-label" for="child-words">孩子的原话（爸爸妈妈帮忙写）</label>
+<textarea id="child-words" rows="5" placeholder="把孩子说的话，原样记在这里……"></textarea>
+<fieldset><legend>家长记录：孩子这次的反应</legend><div class="reactions"><label><input type="radio" name="reaction" value="loved">喜欢</label><label><input type="radio" name="reaction" value="ok">一般</label><label><input type="radio" name="reaction" value="bored">没兴趣</label><label><input type="radio" name="reaction" value="scared">害怕了</label><label><input type="radio" name="reaction" value="confused">没听懂</label></div></fieldset>
+<label class="field-label" for="parent-note">家长补充</label><textarea id="parent-note" rows="3"></textarea>
+<button type="button" id="export-feedback">保存这次的反馈</button><p id="save-status" role="status"></p>
+<details class="parent-card" >
+<summary>家长卡（给大人看）</summary>
+<h3>核心原理 · hard_notes</h3><ul><li>水果腐烂主要是微生物（以霉菌等真菌为主，也有细菌和酵母）在果肉里生长造成的：它们分泌果胶酶等胞外酶，分解把细胞粘在一起的果胶和细胞壁，果肉于是变软、出水、变色，微生物借此获得糖和水分。</li><li>果皮表皮和蜡质角质层是第一道屏障，多数致腐微生物是「弱病原」，要从碰伤、裂口、果柄采摘伤口进入；少数真菌能直接穿透完好果皮，或在开花期就潜伏进果实、成熟后才发作。</li><li>水果成熟、衰老后自身防御（伤口愈合、抗真菌的酚类物质）减弱，果肉变软，最容易开始腐烂；温度高、表面有水会大大加快，低温冷藏能减慢。多数水果偏酸，抑制了很多细菌，所以水果腐烂以霉菌为主。</li></ul>
+<h3>参考来源 · sources</h3><ul><li><strong>Barth, Hankinson, Zhuang &amp; Breidt, Microbiological Spoilage of Fruits and Vegetables, in Sperber &amp; Doyle (eds.) Compendium of the Microbiological Spoilage of Foods and Beverages, Springer 2009</strong><br><a href="https://www.ars.usda.gov/ARSUserFiles/60701000/Pickle%20Pubs/p363.pdf" target="_blank" rel="noopener noreferrer">https://www.ars.usda.gov/ARSUserFiles/60701000/Pickle%20Pubs/p363.pdf</a><p>用于：果胶酶分解细胞壁、果皮蜡质屏障、碰伤裂口是入口、水果偏酸所以以霉菌为主、成熟衰老期最易腐烂、高温加速</p></li><li><strong>How infection occurs — Postharvest Management of Vegetables（澳大利亚采后管理资料站）</strong><br><a href="https://www.postharvest.net.au/postharvest-fundamentals/controlling-microbes/how-infection-occurs/" target="_blank" rel="noopener noreferrer">https://www.postharvest.net.au/postharvest-fundamentals/controlling-microbes/how-infection-occurs/</a><p>用于：多数致腐微生物从伤口进入、少数真菌可穿透完好果皮、开花期潜伏感染、孢子随风传播</p></li><li><strong>Handling Food with Mold, UConn Extension, EXT063, April 2024</strong><br><a href="https://extension.uconn.edu/publication/handling-food-with-mold/" target="_blank" rel="noopener noreferrer">https://extension.uconn.edu/publication/handling-food-with-mold/</a><p>用于：霉菌是微小的真菌；软水果（草莓、番茄）发霉要整个扔掉；干燥和冷藏减慢霉菌生长</p></li><li><strong>Decomposers — National Geographic Education（百科词条）</strong><br><a href="https://education.nationalgeographic.org/resource/decomposers/" target="_blank" rel="noopener noreferrer">https://education.nationalgeographic.org/resource/decomposers/</a><p>用于：细菌、真菌、蚯蚓等分解者把有机物分解，养分回到土壤供植物生长</p></li><li><strong>Fruit and vegetables: enzymic browning — Institute of Food Science and Technology (IFST)</strong><br><a href="https://www.ifst.org/lovefoodlovescience/resources/fruit-and-vegetables-enzymic-browning" target="_blank" rel="noopener noreferrer">https://www.ifst.org/lovefoodlovescience/resources/fruit-and-vegetables-enzymic-browning</a><p>用于：第一章追问口：切开的苹果变褐是酶和氧气的反应（酶促褐变），不是腐烂</p></li></ul>
+<h3>不确定与简化 · uncertain</h3><ul><li>书里只说「外墙一碰破，它们就钻进去」。真实情况里少数真菌能直接穿过完好的果皮，有的在开花期就潜伏在果实里、等成熟后才发作；所以完好的苹果也会烂，只是慢得多。</li><li>「把粘住小房间的胶水化开」是对果胶酶分解果胶和细胞壁的简化；「小房间」就是细胞。水果自己成熟时也会分泌酶让果肉变软，书里把这部分简化成「变老、城墙没那么结实」，没有细分「水果自己变软」和「微生物让它烂」。</li><li>书里说「霉菌和细菌」，但对多数水果来说，主角是霉菌（真菌）；细菌更多造成蔬菜的软腐，因为水果偏酸。画面上没有区分两者。</li><li>「种子也许会发芽」用了「也许」：不是每颗种子都会发芽，腐烂也不是「为了」种子。书里没有给腐烂加上意图。</li><li>第三页的「变老」指成熟后的衰老过程。书里刻意没有用「死」这个字（见 sensitive）。</li><li>所有来源都是英文资料，打开核对过原文；没有找到合适的中文权威来源。美国农业部 FSIS 的霉菌食品安全页面本想引用，但抓取时被拒绝（403），没有打开，所以没有列入来源。</li></ul>
+<h3>敏感提醒 · sensitive</h3><p>级别：提醒家长；涉及：死亡、恐惧</p>
+<p>这本书的主题不是死亡，但腐烂、分解和「生命结束」相邻，而档案里「死亡」是家长先看的话题，所以标 notice 提醒您。书里没有用「死」「死掉」，把腐烂讲成看不见的小生物在吃苹果、把材料拆开回到土里；第三章落在「烂苹果没有不见，变成了长新东西的材料」。如果孩子读完追问「苹果会死吗」「人会不会烂」，那就进入死亡题，按规则会先来问您打算怎么讲。另外豆豆怕黑：全书画面都是明亮的白天和室内光，苹果里面也画成亮的；霉菌细菌画成没有脸的小圆点，不画成怪物，也不说它们「坏」，避免让孩子害怕吃水果。</p>
+<h3>周末小实验 · weekend_project</h3><p>两颗草莓赛跑：把两颗差不多的草莓分别装进两个透明的密封袋（或带盖透明盒），一袋放冰箱冷藏，一袋放桌上。每天和孩子隔着袋子看一次、画一画哪颗先变软、先长毛。全程不打开袋子、不凑近闻；观察 4–5 天后，连袋子一起扔进带盖垃圾桶。想多玩一组，可以再加一颗被轻轻捏过的草莓放桌上，看看「外墙碰破」的会不会更快。</p>
+<h3>家长放行 · approval</h3><p>家长已放行（approved）</p>
+<p>家长翻过全书，放行</p><p>2026-10-11</p>
+</details></section></main>
+<footer aria-label="翻页"><button type="button" id="previous" disabled>← 上一页</button><span id="page-count" aria-live="polite">1 / 13</span><button type="button" id="next">下一页 →</button></footer>
+</div>
+<script id="book-data" type="application/json">{"title": "苹果城堡怎么变软了？", "question": "水果为什么会腐烂？", "followUps": ["切开的苹果一会儿就变黄了，也是烂了吗？", "那放进冰箱的苹果，为什么坏得慢？", "霉菌长出来的毛毛是什么？"], "narrations": {"1": [{"text": "桌上的苹果放了好多天，身上冒出一块软软的褐色斑。小方说：「戴好安全帽，我们进去看看！」", "lang": "zh-CN"}], "2": [{"text": "原来苹果像一座城堡：果皮是外墙，外墙上涂着一层亮亮的蜡；里面是好多小房间，装满甜甜的果汁。", "lang": "zh-CN"}], "4": [{"text": "苹果放久了，会慢慢变老，城墙也变得没那么结实。这时候，看不见的小客人来了：霉菌和细菌。", "lang": "zh-CN"}], "5": [{"text": "它们小得看不见，在空气里飘，在果皮上躺着。外墙结实，它们进不去；外墙一碰破，就从破口钻进去。", "lang": "zh-CN"}], "6": [{"text": "霉菌伸出细细的丝，一边喝甜果汁，一边把粘住小房间的「胶水」化开。房间一间间塌软，苹果就烂了。", "lang": "zh-CN"}], "8": [{"text": "最神奇的在这儿：掉在树下的苹果，被霉菌、细菌和蚯蚓一点点拆开，变成泥土里的养分。", "lang": "zh-CN"}], "9": [{"text": "泥土变肥了，苹果里的种子也许会发芽。烂苹果没有不见，它变成了长出新东西的材料。", "lang": "zh-CN"}], "10": [{"text": "回到家里：苹果要轻拿轻放，别碰破外墙，放在凉快的地方。长了毛的软水果整个扔掉，别凑近闻。", "lang": "zh-CN"}]}, "storageKey": "curiosity-book-3674c1059362c4fe380e32d4444a84818db50597f83904c790f49c5271aea904"}</script>
+<script>
+(() => {
+  'use strict';
+  const book = JSON.parse(document.getElementById('book-data').textContent);
+  const pages = [...document.querySelectorAll('.page')];
+  const previous = document.getElementById('previous'), next = document.getElementById('next');
+  const childWords = document.getElementById('child-words'), parentNote = document.getElementById('parent-note');
+  let current = 0, selected = new Set();
+  function fitStory() {
+    const page = pages[current], picture = page.querySelector('.picture');
+    if (!picture) return;
+    if (window.innerWidth < 768 || window.innerHeight < 680) {
+      picture.style.removeProperty('--picture-width'); return;
+    }
+    // Measure the text and controls at their full content width. Only the
+    // illustration shrinks, keeping its 3:2 ratio and both navigation buttons.
+    const rect = page.getBoundingClientRect();
+    const otherHeight = rect.height - picture.getBoundingClientRect().height;
+    const footerHeight = document.querySelector('footer').getBoundingClientRect().height;
+    const availableHeight = window.innerHeight - (rect.top + window.scrollY) - otherHeight - footerHeight - 2;
+    picture.style.setProperty('--picture-width', `${Math.max(0, availableHeight) * 1.5}px`);
+  }
+  window.addEventListener('resize', fitStory);
+  if ('ResizeObserver' in window) {
+    // Narration, speech status and preview banner can change after a page turn.
+    const observer = new ResizeObserver(fitStory);
+    document.querySelectorAll('.narration,.speech-status,.eyebrow,.read-button,.site-header,footer').forEach(element => observer.observe(element));
+  }
+  try {
+    const stored = JSON.parse(localStorage.getItem(book.storageKey) || '{}');
+    if (Array.isArray(stored.followUps)) selected = new Set(stored.followUps.filter(i => Number.isInteger(i) && i >= 0 && i < book.followUps.length));
+    if (typeof stored.childWords === 'string') childWords.value = stored.childWords;
+    if (typeof stored.parentNote === 'string') parentNote.value = stored.parentNote;
+    document.querySelectorAll('input[name="reaction"]').forEach(radio => { radio.checked = stored.reaction === radio.value; });
+  } catch (_) { /* Some file:// browsers deny storage; reading and export still work. */ }
+  function reaction() { return document.querySelector('input[name="reaction"]:checked')?.value || ''; }
+  function persist() {
+    try { localStorage.setItem(book.storageKey, JSON.stringify({followUps: [...selected], childWords: childWords.value, reaction: reaction(), parentNote: parentNote.value})); }
+    catch (_) { /* Keep the current session usable if storage is unavailable. */ }
+  }
+  function updateFollowButtons() {
+    document.querySelectorAll('[data-follow]').forEach(button => {
+      const tapped = selected.has(Number(button.dataset.follow));
+      button.setAttribute('aria-pressed', String(tapped));
+      button.textContent = tapped ? '已选 · 我也想知道这个！' : '我也想知道这个！';
+    });
+  }
+  updateFollowButtons();
+  document.querySelectorAll('[data-follow]').forEach(button => button.addEventListener('click', () => {
+    selected.add(Number(button.dataset.follow)); updateFollowButtons(); persist();
+  }));
+  function go(index) {
+    if (index < 0 || index >= pages.length || index === current) return;
+    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+    pages[current].hidden = true; current = index; pages[current].hidden = false;
+    previous.disabled = current === 0; next.disabled = current === pages.length - 1;
+    document.getElementById('page-count').textContent = `${current + 1} / ${pages.length}`;
+    fitStory();
+    window.scrollTo({top: 0, behavior: 'instant'});
+  }
+  previous.addEventListener('click', () => go(current - 1));
+  next.addEventListener('click', () => go(current + 1));
+  document.addEventListener('keydown', event => {
+    if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey ||
+        event.target.closest('input,textarea,select,[contenteditable]')) return;
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+      event.preventDefault(); go(current + (event.key === 'ArrowRight' ? 1 : -1));
+    }
+  });
+  let touchStart = null;
+  const main = document.getElementById('book-pages');
+  main.addEventListener('touchstart', event => {
+    touchStart = event.touches.length === 1 && !event.target.closest('textarea,input,button,a,summary')
+      ? {x: event.touches[0].clientX, y: event.touches[0].clientY} : null;
+  }, {passive: true});
+  main.addEventListener('touchend', event => {
+    if (!touchStart || !event.changedTouches.length) return;
+    const dx = event.changedTouches[0].clientX - touchStart.x, dy = event.changedTouches[0].clientY - touchStart.y;
+    touchStart = null;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) go(current + (dx < 0 ? 1 : -1));
+  }, {passive: true});
+  main.addEventListener('touchcancel', () => { touchStart = null; }, {passive: true});
+  document.querySelectorAll('[data-read]').forEach(button => button.addEventListener('click', () => {
+    const status = button.nextElementSibling;
+    if (!('speechSynthesis' in window) || !('SpeechSynthesisUtterance' in window)) {
+      status.textContent = '这个浏览器暂不支持朗读，可以请爸爸妈妈读给你听。'; return;
+    }
+    window.speechSynthesis.cancel();
+    const lines = book.narrations[button.dataset.read];
+    function speak(index) {
+      const line = lines[index];
+      const utterance = new SpeechSynthesisUtterance(line.text);
+      utterance.lang = line.lang; utterance.rate = 0.9;
+      const voices = window.speechSynthesis.getVoices();
+      const voice = voices.find(v => v.lang.replace('_', '-').toLowerCase() === line.lang.toLowerCase());
+      if (voice) utterance.voice = voice;
+      utterance.onstart = () => { status.textContent = '正在读给你听……'; };
+      utterance.onend = () => { if (index + 1 < lines.length) speak(index + 1); else status.textContent = ''; };
+      utterance.onerror = event => { status.textContent = ['canceled','interrupted'].includes(event.error) ? '' : '朗读暂时不可用，请检查系统语音。'; };
+      window.speechSynthesis.speak(utterance);
+    }
+    speak(0);
+  }));
+  childWords.addEventListener('input', persist); parentNote.addEventListener('input', persist);
+  document.querySelectorAll('input[name="reaction"]').forEach(radio => radio.addEventListener('change', persist));
+  document.getElementById('export-feedback').addEventListener('click', () => {
+    persist(); const today = new Date();
+    const date = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
+    const feedback = {book_title: book.title, question: book.question, date,
+      follow_ups_tapped: book.followUps.filter((_, i) => selected.has(i)), child_words: childWords.value,
+      reaction: reaction(), parent_note: parentNote.value};
+    const url = URL.createObjectURL(new Blob([JSON.stringify(feedback, null, 2)], {type:'application/json;charset=utf-8'}));
+    const link = document.createElement('a'); link.href = url; link.download = 'feedback.json';
+    document.body.appendChild(link); link.click(); link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 10000);
+    document.getElementById('save-status').textContent = '反馈已导出为 feedback.json。';
+  });
+  const banner = document.getElementById('preview-banner');
+  if (banner) {
+    const resize = () => {
+      document.documentElement.style.setProperty('--banner-height', `${banner.getBoundingClientRect().height}px`);
+      fitStory();
+    };
+    resize(); if ('ResizeObserver' in window) new ResizeObserver(resize).observe(banner);
+    else window.addEventListener('resize', resize);
+  }
+  fitStory();
+})();
+</script>
+</body>
+</html>
