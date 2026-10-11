@@ -89,3 +89,35 @@ node scripts/test_book_layout.js /tmp/curiosity-fix1.html
 ```
 
 验收脚本第二个参数可指定 Chrome 可执行文件路径，也支持 `CHROME_BIN` 环境变量。脚本加载本地单文件 HTML，不依赖网络；生产渲染与校验脚本仍只用 Python 标准库。本次只改 `scripts/`、`assets/book_template.html` 和按任务要求追加本说明；未改只读输入、未读取 `_runs/`、未 commit/push。
+
+## fix2
+
+### 修改与选择理由
+
+- **1、9 · SVG**：统一使用 `<img src="data:image/svg+xml;base64,...">`，不再把 SVG XML 内联进 HTML DOM。选择图片嵌入，是因为浏览器的 SVG 图片模式隔离脚本执行并禁用外部资源，无需依赖容易漏掉标签、属性大小写或命名空间的过滤规则。SVG 原始字节保留，`xlink:href` 仍在 XML 图片上下文中正确解释，不再被 ElementTree 序列化成 `ns1:href`；每张图片拥有独立的 ID 空间，无需改写引用。PNG/JPG 继续 base64 嵌入，模板现有 `object-fit:contain` 负责完整显示。
+- **2 · 路径**：新增校验器和渲染器共用的 `resolve_book_image`。拒绝绝对路径（含 Windows 盘符、UNC）、会越出书目录的 `..`；用 `Path.resolve(strict=True)` 获取真实路径，再用 `relative_to` 检查文件位于书目录内，因此外部文件及外部目录的符号链接均拒绝。允许书目录内的符号链接和不越界的 `images/../local.svg`。渲染器读取图片前独立执行此检查，直接调用 `render_book()` 也不能绕过；角色 `reference_image` 的非空路径同样校验。
+- **4 · 陪伴话术**：对 `title`、`guide.catchphrase`、`child_page.prompt`、每章 `follow_up.question`、每页 `narration` / `narration_en` / `visual.description` 检查完整禁词表，大小写不敏感。`question.original` 和 `child_page.child_words` 不做陪伴话术检查，家长说明也不在此检查范围。
+- **5 · 必填内容**：schema 仅增加 `minLength` 约束，未增删字段、改字段名或改原有 `required` / `x-rules`。校验器对有正数 `minLength` 的字符串额外检查去空白后非空，覆盖书名、角色描述/口头禅、旁白、画面说明、指令、追问、来源、原理条目等；`child_words` 仍允许留空。向导及可选主角的 `image_anchor` 必须为 15–30 个英文单词（纯数字不计，词内撇号或连字符计作一个词）。
+- **10 · 双语**：`language=bilingual` 时逐页要求 `narration_en` 存在且为非空字符串；缺失、null、空字符串或全空白均报准确的页字段路径。英文旁白的 40 词上限继续生效。
+- **16 · 运行版本**：本次支持的最低 Python 版本明确为 **Python 3.9**，实际自测使用 Python 3.9.6。旧 SVG 分支的 `removesuffix()` 已随内联逻辑移除。生产脚本仍只用 Python 标准库；Node.js 仅用于已有交互测试，本次使用 v24.14.0。
+
+### 自测结果
+
+- `PYTHONDONTWRITEBYTECODE=1 python3 scripts/test_book_tools.py`：**17 项全部通过，退出码 0**。针对第 1、2、4、5、10 条各新增了可复现的回归测试，另新增四本现有书的 CLI 校验/渲染回归。SVG 测试重现大写 `SCRIPT`、小写 `foreignobject`、混合大小写事件属性及外部引用，并用 HTMLParser 确认产物只含数据图片、没有新增活动 DOM；base64 解码后与原始 SVG 完全一致，含仅有 `xlink:href` 的引用。
+- 路径测试覆盖绝对路径、`../` 越界、外部文件/目录符号链接，同时验证合法本地文件和内部符号链接可渲染；非法路径在 CLI 校验、CLI 渲染和直接渲染调用中都被拒绝，CLI 不产生 HTML。
+- 文案测试覆盖七类字段的中文和大写英文禁词及孩子原话豁免；空白测试覆盖空字符串、空格、制表、换行和全角空格；锚句测试覆盖 0/14/15/30/31 词及纯数字。双语测试覆盖每一页的缺失/空/null/全空白，并确认合法双语渲染逐页包含英文旁白。
+
+| 现有书 | 校验 | 渲染 |
+| --- | --- | --- |
+| `assets/sample_book.json` | 通过，3 章 7 页 | 退出码 0 |
+| `examples/t10_claude-code_代码画图/book.json` | 通过，3 章 8 页 | 退出码 0 |
+| `examples/t10_codex_图片书/book.json` | 通过，3 章 7 页 | 退出码 0 |
+| `examples/t10_zcode_代码画图/book.json` | 通过，3 章 7 页 | 退出码 0 |
+
+四本书另行逐本运行 CLI，HTML 输出到系统临时目录，未覆盖仓库内示例。样例另保留一份 `/tmp/curiosity-fix2.html`，运行 `node scripts/test_book_interactions.js /tmp/curiosity-fix2.html` 退出码 0：翻页、朗读参数、追问、存储和反馈导出逻辑均通过。对比 Git 中原 schema 的结构确认差异仅为 `minLength`；`git diff --check` 通过。
+
+### 范围与限制
+
+本节取代前文关于 SVG 黑名单/ID 改写及「双语英文可缺省」的旧说明。SVG 在图片中显示，依赖外部资源的内容不会加载；本次检查的是产物结构、引用字节和脚本逻辑，没有新增真实浏览器截图、实际听音或下载验收。
+
+本次仅修改 `scripts/validate_book.py`、`scripts/render_book.py`、`scripts/test_book_tools.py`、`assets/book.schema.json` 的校验约束，并追加本节。未修改样例、examples、blocklist、模板、README、SKILL 或 references；未读取 `_runs/`，未安装包，未 commit/push，未写 Codex 记忆、设置或密钥。

@@ -4,10 +4,46 @@
 import argparse
 import json
 import re
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 
 ASSETS = Path(__file__).resolve().parent.parent / "assets"
 WORD = re.compile(r"[A-Za-z0-9]+(?:['’\-][A-Za-z0-9]+)*")
+ENGLISH_WORD = re.compile(r"[A-Za-z]+(?:['’\-][A-Za-z]+)*")
+
+
+def resolve_book_image(filename, book_path):
+    """Resolve an image within the book directory, including symlink targets."""
+    relative = Path(filename)
+    windows = PureWindowsPath(filename)
+    if relative.is_absolute() or windows.drive or windows.root:
+        raise ValueError("图片路径必须是书目录内的相对路径，不允许绝对路径")
+    depth = 0
+    for part in relative.parts:
+        if part == "..":
+            depth -= 1
+            if depth < 0:
+                raise ValueError("图片路径不能通过 ../ 越出书目录")
+        elif part != ".":
+            depth += 1
+    try:
+        directory = Path(book_path).resolve().parent
+        resolved = (directory / relative).resolve(strict=True)
+        resolved.relative_to(directory)
+    except ValueError as exc:
+        raise ValueError("图片真实路径必须位于书目录内（不允许外部符号链接）") from exc
+    except (OSError, RuntimeError) as exc:
+        raise ValueError(f"图片文件不存在或无法解析：{filename}") from exc
+    if not resolved.is_file():
+        raise ValueError(f"图片路径不是文件：{filename}")
+    return resolved
+
+
+def child_facing_strings(book):
+    """AI-written child-facing fields; children's verbatim quotes are excluded."""
+    for path, value in strings(book):
+        if path in ("title", "guide.catchphrase", "child_page.prompt") or re.fullmatch(
+                r"chapters\[\d+\]\.(?:follow_up\.question|pages\[\d+\]\.(?:narration(?:_en)?|visual\.description))", path):
+            yield path, value
 
 
 def word_count(value):
@@ -82,6 +118,8 @@ def validate_schema(value, schema, path, errors):
             for index, item in enumerate(value):
                 validate_schema(item, schema["items"], f"{path}[{index}]", errors)
     elif isinstance(value, str):
+        if schema.get("minLength", 0) > 0 and not value.strip():
+            error("字符串去掉空白后不能为空")
         if len(value) < schema.get("minLength", 0):
             error(f"字符串至少 {schema['minLength']} 个字符")
         if len(value) > schema.get("maxLength", len(value)):
@@ -126,7 +164,20 @@ def validate_book(book, book_path):
             error("continues_from", "mode=follow_up 时必须填写非空的上一本书名或文件夹名")
     guide = obj.get("guide")
     anchor = guide.get("image_anchor") if isinstance(guide, dict) else None
+    if isinstance(anchor, str):
+        count = len(ENGLISH_WORD.findall(anchor))
+        if not 15 <= count <= 30:
+            error("guide.image_anchor", f"角色锚句必须为 15–30 个英文单词，实际 {count} 词")
+    protagonist = obj.get("protagonist")
+    if isinstance(protagonist, dict) and isinstance(protagonist.get("image_anchor"), str):
+        count = len(ENGLISH_WORD.findall(protagonist["image_anchor"]))
+        if not 15 <= count <= 30:
+            error("protagonist.image_anchor", f"角色锚句必须为 15–30 个英文单词，实际 {count} 词")
     companions = blocklist("companion_blocklist.txt")
+    for path, value in child_facing_strings(book):
+        for phrase in companions:
+            if phrase.casefold() in value.casefold():
+                error(path, f"儿童文案含禁用陪伴话术「{phrase}」")
     for path, page in pages:
         if not isinstance(page, dict):
             continue
@@ -138,10 +189,9 @@ def validate_book(book, book_path):
                     error(path + ".narration", f"中文旁白去掉空白后不得超过 60 个字符，实际 {length} 个")
             elif obj.get("language") == "en" and word_count(narration) > 40:
                 error(path + ".narration", f"英文旁白不得超过 40 词，实际 {word_count(narration)} 词")
-            for phrase in companions:
-                if phrase.casefold() in narration.casefold():
-                    error(path + ".narration", f"旁白含禁用陪伴话术「{phrase}」")
         english = page.get("narration_en")
+        if obj.get("language") == "bilingual" and (not isinstance(english, str) or not english.strip()):
+            error(path + ".narration_en", "language=bilingual 时每页必须填写非空英文旁白")
         if isinstance(english, str) and word_count(english) > 40:
             error(path + ".narration_en", f"英文旁白不得超过 40 词，实际 {word_count(english)} 词")
         visual = page.get("visual")
@@ -157,11 +207,16 @@ def validate_book(book, book_path):
         filename = visual.get("image")
         if isinstance(filename, str) and filename:
             try:
-                exists = (Path(book_path).resolve().parent / filename).is_file()
-            except (OSError, ValueError):
-                exists = False
-            if not exists:
-                error(path + ".visual.image", f"图片文件不存在：{filename}（相对书的 JSON 所在目录）")
+                resolve_book_image(filename, book_path)
+            except ValueError as exc:
+                error(path + ".visual.image", str(exc))
+    for name, character in (("guide", guide), ("protagonist", protagonist)):
+        filename = character.get("reference_image") if isinstance(character, dict) else None
+        if isinstance(filename, str) and filename:
+            try:
+                resolve_book_image(filename, book_path)
+            except ValueError as exc:
+                error(name + ".reference_image", str(exc))
     ips = blocklist("ip_blocklist.txt")
     for path, value in strings(book):
         for term in ips:

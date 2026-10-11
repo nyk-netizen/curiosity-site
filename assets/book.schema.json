@@ -23,8 +23,8 @@
       "required": ["original", "age"],
       "additionalProperties": false,
       "properties": {
-        "original": { "type": "string", "description": "孩子的原话，照录，不改写；no_question 模式下写 agent 替他出的题" },
-        "age": { "type": "string", "description": "例如「5岁」「4岁8个月」" },
+        "original": { "type": "string", "minLength": 1, "description": "孩子的原话，照录，不改写；no_question 模式下写 agent 替他出的题" },
+        "age": { "type": "string", "minLength": 1, "description": "例如「5岁」「4岁8个月」" },
         "understood_as": { "type": "string", "description": "原话有口误或歧义时，agent 理解成什么" }
       }
     },
@@ -34,11 +34,11 @@
       "required": ["name", "look", "colors", "catchphrase", "image_anchor"],
       "additionalProperties": false,
       "properties": {
-        "name": { "type": "string" },
-        "look": { "type": "string", "description": "中文外形描述" },
-        "colors": { "type": "array", "items": { "type": "string" }, "minItems": 1, "maxItems": 6 },
-        "catchphrase": { "type": "string" },
-        "image_anchor": { "type": "string", "description": "英文外形锚句，每页 image_prompt 都必须原样包含" },
+        "name": { "type": "string", "minLength": 1 },
+        "look": { "type": "string", "minLength": 1, "description": "中文外形描述" },
+        "colors": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1, "maxItems": 6 },
+        "catchphrase": { "type": "string", "minLength": 1 },
+        "image_anchor": { "type": "string", "minLength": 1, "description": "英文外形锚句，每页 image_prompt 都必须原样包含" },
         "reference_image": { "type": ["string", "null"], "description": "角色参考图的相对路径：生图路线用 .png，代码画图路线用角色 SVG" }
       }
     },
@@ -48,9 +48,9 @@
       "required": ["name", "look", "image_anchor", "consent"],
       "additionalProperties": false,
       "properties": {
-        "name": { "type": "string", "description": "书里怎么称呼主角：小名、昵称或「你」，不写真名" },
-        "look": { "type": "string", "description": "中文外形描述" },
-        "image_anchor": { "type": "string", "description": "英文外形锚句；主角出现的页面，image_prompt 要原样包含" },
+        "name": { "type": "string", "minLength": 1, "description": "书里怎么称呼主角：小名、昵称或「你」，不写真名" },
+        "look": { "type": "string", "minLength": 1, "description": "中文外形描述" },
+        "image_anchor": { "type": "string", "minLength": 1, "description": "英文外形锚句；主角出现的页面，image_prompt 要原样包含" },
         "reference_image": { "type": ["string", "null"], "description": "主角参考图（卡通形象）的相对路径" },
         "consent": {
           "enum": ["family_only", "public_ok"],
@@ -77,7 +77,7 @@
         "required": ["name", "role", "pages", "follow_up"],
         "additionalProperties": false,
         "properties": {
-          "name": { "type": "string" },
+          "name": { "type": "string", "minLength": 1 },
           "role": {
             "enum": ["discover", "structure", "magic"],
             "description": "建筑师拆解法三章：discover=发现与走进去；structure=结构与它怎么工作；magic=魔法时刻与回到生活"
@@ -91,15 +91,15 @@
               "required": ["narration", "visual"],
               "additionalProperties": false,
               "properties": {
-                "narration": { "type": "string", "description": "旁白。中文不超过 60 字；英文不超过 40 词" },
-                "narration_en": { "type": "string", "description": "language=bilingual 时的英文旁白，不超过 40 词" },
+                "narration": { "type": "string", "minLength": 1, "description": "旁白。中文不超过 60 字；英文不超过 40 词" },
+                "narration_en": { "type": "string", "minLength": 1, "description": "language=bilingual 时的英文旁白，不超过 40 词" },
                 "visual": {
                   "type": "object",
                   "required": ["description", "image_prompt"],
                   "additionalProperties": false,
                   "properties": {
-                    "description": { "type": "string", "description": "中文画面说明：画面里有什么、向导在做什么" },
-                    "image_prompt": { "type": "string", "description": "英文生图指令，30–80 词，必须包含 guide.image_anchor" },
+                    "description": { "type": "string", "minLength": 1, "description": "中文画面说明：画面里有什么、向导在做什么" },
+                    "image_prompt": { "type": "string", "minLength": 1, "description": "英文生图指令，30–80 词，必须包含 guide.image_anchor" },
                     "image": { "type": ["string", "null"], "description": "渲染好的画面文件（.png/.jpg/.svg）相对 book.json 的路径" }
                   }
                 }
@@ -111,7 +111,7 @@
             "required": ["question"],
             "additionalProperties": false,
             "properties": {
-              "question": { "type": "string", "description": "孩子口吻的追问，例如「那冰箱里的水果为什么不坏？」" },
+              "question": { "type": "string", "minLength": 1, "description": "孩子口吻的追问，例如「那冰箱里的水果为什么不坏？」" },
               "why": { "type": "string", "description": "给家长看：这个追问通向什么" }
             }
           }
@@ -124,7 +124,7 @@
       "required": ["prompt", "child_words"],
       "additionalProperties": false,
       "properties": {
-        "prompt": { "type": "string", "description": "例如「你还想知道什么？」" },
+        "prompt": { "type": "string", "minLength": 1, "description": "例如「你还想知道什么？」" },
         "child_words": { "type": "string", "description": "孩子自己说的追问或结尾，原话照录；还没读时为空字符串" }
       }
     },
@@ -134,7 +134,7 @@
       "required": ["hard_notes", "sources", "uncertain", "sensitive", "weekend_project", "approval"],
       "additionalProperties": false,
       "properties": {
-        "hard_notes": { "type": "array", "items": { "type": "string" }, "minItems": 1, "maxItems": 4, "description": "核心原理，2–3 句" },
+        "hard_notes": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1, "maxItems": 4, "description": "核心原理，2–3 句" },
         "sources": {
           "type": "array",
           "minItems": 1,
@@ -143,13 +143,13 @@
             "required": ["title", "where"],
             "additionalProperties": false,
             "properties": {
-              "title": { "type": "string" },
-              "where": { "type": "string", "description": "网址、书名页码，或「模型自有知识，未联网核对」" },
+              "title": { "type": "string", "minLength": 1 },
+              "where": { "type": "string", "minLength": 1, "description": "网址、书名页码，或「模型自有知识，未联网核对」" },
               "used_for": { "type": "string" }
             }
           }
         },
-        "uncertain": { "type": "array", "items": { "type": "string" }, "description": "拿不准、或为了讲给孩子而简化过头的地方。没有就写空数组，但 agent 要先认真想过" },
+        "uncertain": { "type": "array", "items": { "type": "string", "minLength": 1 }, "description": "拿不准、或为了讲给孩子而简化过头的地方。没有就写空数组，但 agent 要先认真想过" },
         "sensitive": {
           "type": "object",
           "required": ["level", "topics", "how_handled"],
@@ -157,10 +157,10 @@
           "properties": {
             "level": { "enum": ["none", "notice", "parent_first"], "description": "none=无；notice=家长卡里提醒；parent_first=家长先看并放行后孩子才能看" },
             "topics": { "type": "array", "items": { "enum": ["death", "body", "fear", "religion", "family_change", "disaster", "other"] } },
-            "how_handled": { "type": "string" }
+            "how_handled": { "type": "string", "minLength": 1 }
           }
         },
-        "weekend_project": { "type": "string", "description": "一个在家能做的小实验或观察" },
+        "weekend_project": { "type": "string", "minLength": 1, "description": "一个在家能做的小实验或观察" },
         "approval": {
           "type": "object",
           "required": ["status"],

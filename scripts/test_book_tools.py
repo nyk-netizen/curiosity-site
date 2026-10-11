@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 """Stdlib regression checks, including section 4's six invalid copies."""
 
+import base64
 import copy
 import json
 import subprocess
 import sys
 import tempfile
-import unittest
+from html.parser import HTMLParser
 from pathlib import Path
+import unittest
 
 from render_book import render_book
 from validate_book import validate_book, validate_schema
@@ -195,17 +197,184 @@ class BookToolsTests(unittest.TestCase):
         self.book["question"]["original"] = '</script><script>alert("bad")</script>'
         self.assertTrue(validate_book(self.book, self.input)["ok"])
         document = render_book(self.book, self.input)
-        self.assertIn('<svg ', document)
-        self.assertIn('id="art3-warm"', document)
-        self.assertIn('url(#art3-warm)', document)
+        self.assertNotIn('<svg ', document)
+        self.assertIn('data:image/svg+xml;base64,' + base64.b64encode(svg.encode()).decode(), document)
         self.assertIn('data:image/png;base64,', document)
         self.assertIn('data:image/jpeg;base64,', document)
         self.assertNotIn('<script>alert', document)
         self.assertNotIn('<img alt="画面" src="images/', document)
-        for dangerous in ('<script/>', '<image href="https://example.com/a.png"/>', '<rect onclick="alert(1)"/>'):
-            (self.directory / "images/art.svg").write_text('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2">' + dangerous + '</svg>')
-            with self.assertRaises(ValueError):
-                render_book(self.book, self.input)
+
+    def test_svg_xss_isolated_as_image_and_xlink_preserved(self):
+        # Reproduce the uppercase SCRIPT / lowercase foreignobject bypasses.
+        svg = '''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 300 200">
+<SCRIPT>alert(1)</SCRIPT><foreignobject><div onclick="alert(2)">bad</div></foreignobject>
+<rect oNLoAd="alert(3)"/><image href="https://example.com/external.png"/>
+<defs><rect id="guide" width="20" height="20"/></defs><use xlink:href="#guide"/></svg>'''
+        (self.directory / "art.svg").write_text(svg, encoding="utf-8")
+        self.book["chapters"][0]["pages"][0]["visual"]["image"] = "art.svg"
+        self.write()
+        output = self.directory / "safe.html"
+        result = self.run_cli("render_book.py", self.input, output)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
+        class Tags(HTMLParser):
+            def __init__(self):
+                super().__init__()
+                self.tags = []
+
+            def handle_starttag(self, tag, attrs):
+                self.tags.append((tag, dict(attrs)))
+
+        parser = Tags()
+        parser.feed(output.read_text(encoding="utf-8"))
+        self.assertFalse(any(tag in ("svg", "foreignobject", "use", "rect") for tag, _ in parser.tags))
+        self.assertEqual(sum(tag == "script" for tag, _ in parser.tags), 2)  # Trusted template only.
+        self.assertFalse(any(key.lower().startswith("on") for _, attrs in parser.tags for key in attrs))
+        images = [attrs["src"] for tag, attrs in parser.tags if tag == "img"]
+        self.assertEqual(len(images), 1)
+        self.assertTrue(images[0].startswith("data:image/svg+xml;base64,"))
+        self.assertEqual(base64.b64decode(images[0].split(",", 1)[1]).decode(), svg)
+        self.assertIn('xlink:href="#guide"', svg)  # No ns1 rewrite or cross-page ID collisions.
+
+    def test_image_paths_cannot_leave_book_directory(self):
+        outside = self.directory / "outside.svg"
+        outside.write_text('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"/>')
+        book_directory = self.directory / "book"
+        book_directory.mkdir()
+        self.input = book_directory / "book.json"
+        (book_directory / "linked.svg").symlink_to(outside)
+        (book_directory / "linked-dir").symlink_to(self.directory, target_is_directory=True)
+        (book_directory / "images").mkdir()
+        cases = [str(outside), "../outside.svg", "images/../../outside.svg",
+                 "../book/../outside.svg", "linked.svg", "linked-dir/outside.svg",
+                 "C:\\private\\outside.svg", "\\\\server\\share\\outside.svg"]
+        output = self.directory / "rejected.html"
+        for filename in cases:
+            with self.subTest(filename=filename):
+                self.book["chapters"][0]["pages"][0]["visual"]["image"] = filename
+                self.write()
+                result = self.run_cli("validate_book.py", self.input, "--json")
+                self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+                self.assertIn("chapters[0].pages[0].visual.image",
+                              [e["path"] for e in json.loads(result.stdout)["errors"]])
+                result = self.run_cli("render_book.py", self.input, output)
+                self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+                self.assertFalse(output.exists())
+                # Direct render must independently enforce confinement, too.
+                with self.assertRaises(ValueError):
+                    render_book(self.book, self.input)
+        (book_directory / "local.svg").write_bytes(outside.read_bytes())
+        (book_directory / "local-link.svg").symlink_to(book_directory / "local.svg")
+        for filename in ("local.svg", "local-link.svg", "images/../local.svg"):
+            self.book["chapters"][0]["pages"][0]["visual"]["image"] = filename
+            self.assertTrue(validate_book(self.book, self.input)["ok"])
+            self.assertIn("data:image/svg+xml;base64,", render_book(self.book, self.input))
+        self.book["guide"]["reference_image"] = "linked.svg"
+        self.assertIn("guide.reference_image", [e["path"] for e in validate_book(self.book, self.input)["errors"]])
+
+    def test_companion_phrases_in_all_child_facing_ai_fields(self):
+        fields = [("title", self.book, "title"),
+                  ("guide.catchphrase", self.book["guide"], "catchphrase"),
+                  ("child_page.prompt", self.book["child_page"], "prompt"),
+                  ("chapters[0].follow_up.question", self.book["chapters"][0]["follow_up"], "question"),
+                  ("chapters[0].pages[0].narration", self.book["chapters"][0]["pages"][0], "narration"),
+                  ("chapters[0].pages[0].narration_en", self.book["chapters"][0]["pages"][0], "narration_en"),
+                  ("chapters[0].pages[0].visual.description", self.book["chapters"][0]["pages"][0]["visual"], "description")]
+        for path, container, key in fields:
+            for phrase in ("别告诉爸爸妈妈", "I AM YOUR BEST FRIEND"):
+                with self.subTest(path=path, phrase=phrase):
+                    previous = container.get(key)
+                    container[key] = phrase
+                    errors = validate_book(self.book, self.input)["errors"]
+                    self.assertTrue(any(e["path"] == path and "陪伴话术" in e["message"] for e in errors), errors)
+                    if previous is None:
+                        container.pop(key)
+                    else:
+                        container[key] = previous
+        self.book["question"]["original"] = "别告诉爸爸妈妈"
+        self.book["child_page"]["child_words"] = "I am your best friend"
+        self.book["parent_card"]["hard_notes"][0] = "不要写「我永远陪着你」"
+        self.assertTrue(validate_book(self.book, self.input)["ok"])
+
+    def test_required_strings_not_blank_and_anchor_word_limits(self):
+        fields = [("title", self.book, "title"),
+                  ("guide.image_anchor", self.book["guide"], "image_anchor"),
+                  ("guide.catchphrase", self.book["guide"], "catchphrase"),
+                  ("question.original", self.book["question"], "original"),
+                  ("question.age", self.book["question"], "age"),
+                  ("chapters[0].name", self.book["chapters"][0], "name"),
+                  ("chapters[0].pages[0].narration", self.book["chapters"][0]["pages"][0], "narration"),
+                  ("chapters[0].pages[0].visual.description", self.book["chapters"][0]["pages"][0]["visual"], "description"),
+                  ("chapters[0].pages[0].visual.image_prompt", self.book["chapters"][0]["pages"][0]["visual"], "image_prompt"),
+                  ("chapters[0].follow_up.question", self.book["chapters"][0]["follow_up"], "question"),
+                  ("child_page.prompt", self.book["child_page"], "prompt"),
+                  ("parent_card.sources[0].title", self.book["parent_card"]["sources"][0], "title"),
+                  ("parent_card.sources[0].where", self.book["parent_card"]["sources"][0], "where"),
+                  ("parent_card.hard_notes[0]", self.book["parent_card"]["hard_notes"], 0),
+                  ("guide.colors[0]", self.book["guide"]["colors"], 0),
+                  ("parent_card.sensitive.how_handled", self.book["parent_card"]["sensitive"], "how_handled"),
+                  ("parent_card.weekend_project", self.book["parent_card"], "weekend_project")]
+        for path, container, key in fields:
+            for blank in ("", " \t\n\u3000"):
+                with self.subTest(path=path, blank=blank):
+                    previous = container[key]
+                    container[key] = blank
+                    errors = validate_book(self.book, self.input)["errors"]
+                    self.assertTrue(any(e["path"] == path and "不能为空" in e["message"] for e in errors), errors)
+                    container[key] = previous
+        for count in (0, 14, 15, 30, 31):
+            with self.subTest(anchor_words=count):
+                anchor = " ".join(["word"] * count)
+                self.book["guide"]["image_anchor"] = anchor
+                for chapter in self.book["chapters"]:
+                    for page in chapter["pages"]:
+                        page["visual"]["image_prompt"] = anchor + " " + "detail " * 30
+                errors = validate_book(self.book, self.input)["errors"]
+                self.assertEqual(any(e["path"] == "guide.image_anchor" for e in errors), count not in (15, 30))
+        self.book["guide"]["image_anchor"] = "123 " * 15
+        self.assertIn("guide.image_anchor", [e["path"] for e in validate_book(self.book, self.input)["errors"]])
+
+    def test_bilingual_requires_nonempty_english_on_every_page(self):
+        self.book["language"] = "bilingual"
+        all_pages = [(f"chapters[{ci}].pages[{pi}].narration_en", page)
+                     for ci, chapter in enumerate(self.book["chapters"])
+                     for pi, page in enumerate(chapter["pages"])]
+        errors = validate_book(self.book, self.input)["errors"]
+        self.assertEqual({e["path"] for e in errors}, {path for path, _ in all_pages})
+        for _, page in all_pages:
+            page["narration_en"] = "Let's discover how thunder works."
+        self.assertTrue(validate_book(self.book, self.input)["ok"])
+        self.write()
+        complete = self.directory / "bilingual.html"
+        result = self.run_cli("render_book.py", self.input, complete)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertEqual(complete.read_text(encoding="utf-8").count('class="narration english"'), len(all_pages))
+        for path, page in all_pages:
+            for invalid in (None, "", " \t\n\u3000"):
+                with self.subTest(path=path, invalid=invalid):
+                    page["narration_en"] = invalid
+                    errors = validate_book(self.book, self.input)["errors"]
+                    self.assertTrue(any(e["path"] == path and "bilingual" in e["message"] for e in errors), errors)
+                    page["narration_en"] = "Let's discover how thunder works."
+        self.book["chapters"][2]["pages"][-1].pop("narration_en")
+        self.write()
+        output = self.directory / "missing-english.html"
+        self.assertEqual(self.run_cli("render_book.py", self.input, output).returncode, 1)
+        self.assertFalse(output.exists())
+        self.book["language"] = "zh"
+        self.assertTrue(validate_book(self.book, self.input)["ok"])
+
+    def test_existing_four_books_validate_and_render(self):
+        books = [SAMPLE, *sorted((ROOT / "examples").glob("*/book.json"))]
+        self.assertEqual(len(books), 4)
+        for index, book_path in enumerate(books):
+            with self.subTest(book=str(book_path.relative_to(ROOT))):
+                result = self.run_cli("validate_book.py", book_path, "--json")
+                self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+                output = self.directory / f"existing-{index}.html"
+                result = self.run_cli("render_book.py", book_path, output)
+                self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+                self.assertTrue(output.is_file())
 
 
 if __name__ == "__main__":

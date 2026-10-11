@@ -12,7 +12,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 import xml.etree.ElementTree as ET
 
-from validate_book import load_book, print_result, validate_book
+from validate_book import load_book, print_result, resolve_book_image, validate_book
 
 ASSETS = Path(__file__).resolve().parent.parent / "assets"
 TOPICS = {"death": "死亡", "body": "身体", "fear": "恐惧", "religion": "宗教",
@@ -23,8 +23,8 @@ def esc(value):
     return html.escape(str(value), quote=True)
 
 
-def inline_image(filename, book_path, index):
-    path = Path(book_path).resolve().parent / filename
+def inline_image(filename, book_path):
+    path = resolve_book_image(filename, book_path)
     suffix = path.suffix.lower()
     data = path.read_bytes()
     if suffix in (".png", ".jpg", ".jpeg"):
@@ -35,41 +35,10 @@ def inline_image(filename, book_path, index):
     root = ET.fromstring(data)
     if root.tag != "{http://www.w3.org/2000/svg}svg" and root.tag != "svg":
         raise ValueError(f"图片不是 SVG：{filename}")
-    # Reject executable/external content so embedding cannot undo offline behavior.
-    for element in root.iter():
-        tag = element.tag.rsplit("}", 1)[-1]
-        if tag in ("script", "foreignObject", "style", "animate", "animateMotion", "animateTransform", "set"):
-            raise ValueError(f"SVG 含不支持的活动内容 {tag}：{filename}")
-        for key, value in element.attrib.items():
-            attribute = key.rsplit("}", 1)[-1].lower()
-            if attribute.startswith("on") or (attribute in ("href", "src") and not value.startswith("#")):
-                raise ValueError(f"SVG 含脚本或外部引用：{filename}")
-            if re.search(r"url\(\s*['\"]?(?!#)[^\s'\"]", value, re.I) or "@import" in value.lower():
-                raise ValueError(f"SVG 含外部样式引用：{filename}")
-    # Isolate each illustration's ids (gradients, masks, and use references).
-    ids = {element.attrib["id"]: f"art{index}-{element.attrib['id']}"
-           for element in root.iter() if "id" in element.attrib}
-    for element in root.iter():
-        for key, value in list(element.attrib.items()):
-            if key == "id":
-                element.set(key, ids[value])
-            else:
-                if value.startswith("#") and value[1:] in ids:
-                    value = "#" + ids[value[1:]]
-                value = re.sub(r"url\(\s*(['\"]?)#([^)'\"\s]+)\1\s*\)",
-                               lambda m: "url(#" + ids.get(m[2], m[2]) + ")", value)
-                element.set(key, value)
-    if "viewBox" not in root.attrib:
-        width, height = root.get("width", ""), root.get("height", "")
-        if re.fullmatch(r"\d+(?:\.\d+)?(?:px)?", width) and re.fullmatch(r"\d+(?:\.\d+)?(?:px)?", height):
-            root.set("viewBox", f"0 0 {width.removesuffix('px')} {height.removesuffix('px')}")
-        else:
-            raise ValueError(f"SVG 需要 viewBox 或数值宽高，才能完整缩放：{filename}")
-    root.set("preserveAspectRatio", "xMidYMid meet")
-    root.set("role", "img")
-    root.set("aria-label", "绘本画面")
-    ET.register_namespace("", "http://www.w3.org/2000/svg")
-    return ET.tostring(root, encoding="unicode")
+    # Browser SVG image mode disables scripts and external resources. Keep the
+    # original XML bytes so XLink namespaces and local references remain intact;
+    # never insert untrusted SVG elements into the HTML document's DOM.
+    return f'<img alt="画面" src="data:image/svg+xml;base64,{base64.b64encode(data).decode("ascii")}">'
 
 
 def list_html(items):
@@ -133,7 +102,7 @@ def render_book(book, book_path):
         for page in chapter["pages"]:
             art_index += 1
             visual = page["visual"]
-            illustration = (inline_image(visual["image"], book_path, art_index) if visual.get("image")
+            illustration = (inline_image(visual["image"], book_path) if visual.get("image")
                             else f'<div class="placeholder"><span>画面想象</span><p>{esc(visual["description"])}</p></div>')
             number = len(pages)
             narrations[str(number)] = [{"text": page["narration"], "lang": "en-US" if book["language"] == "en" else "zh-CN"}]
