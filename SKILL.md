@@ -87,9 +87,10 @@ metadata:
 - 按 `assets/book.schema.json` 写 `book.json`，填上 `age_band`，`approval.status` 先填 `pending`
 - 跑 `python3 <本 skill 目录>/scripts/validate_book.py book.json`，有错就改，直到通过
 
-### 第 6 步 · 出画面并渲染（`references/06_呈现适配.md`）
+### 第 6 步 · 出画面并渲染（`references/06_呈现适配.md`、`references/08_画风.md`）
 - 生图路线：先出角色参考图，之后每页都带着它出图
-- 代码画图路线：每页一个 SVG（1536×1024），统一的「积木画风」
+- 画风按家庭选的那一种（`references/08_画风.md`，默认生图 A1、SVG B1）；主角按书的画风重画
+- 代码画图路线：每页一个 SVG（1536×1024）
 - 图片路径写回 `visual.image`，再跑 `python3 <本 skill 目录>/scripts/render_book.py book.json book.html`
 
 ### 第 7 步 · 家长审核（`references/05_家长卡与敏感题.md`）
@@ -128,6 +129,7 @@ metadata:
 | `references/05_家长卡与敏感题.md` | 第 2 步敏感检查；第 4 步共读卡；第 7 步 |
 | `references/06_呈现适配.md` | 第 0 步判断路线；第 6 步 |
 | `references/07_示例.md` | 拿不准格式时看一个完整样例 |
+| `references/08_画风.md` | 第 1 步问画风；第 6 步出画面之前 |
 | `assets/book.schema.json` | 第 5 步 |
 | `assets/sample_book.json` | 第 5 步对照 |
 

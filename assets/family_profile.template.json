@@ -37,6 +37,7 @@
   },
   "reading_mode": "家长读",
   "output": "看当前 agent 能做什么",
+  "style": "A1 淡彩手绘图纸（生图默认）/ B1 线稿淡彩（SVG 默认）",
   "length": "standard",
   "approval": "every_book",
   "sharing": "family_only",
