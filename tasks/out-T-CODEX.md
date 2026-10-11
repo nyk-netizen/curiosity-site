@@ -57,3 +57,35 @@ node scripts/test_book_interactions.js /tmp/sample.html
 只新增/修改了 `scripts/`、可写的 `assets/` 产出及本说明。未修改 schema、样例、两个 blocklist、SKILL.md、references/、README.md；未读取 `_runs/`，未安装包，未 commit/push，未写任何 key、Codex 记忆或设置。验收用的临时 JSON/HTML 在 `/tmp/`，由样例复制生成。
 
 以上范围描述本任务执行的写入。交付时 `git status` 也显示 SKILL.md、sample_book.json 等其他工作区变动；这些文件不在本任务写入范围，我没有修改或还原它们。
+
+## fix1
+
+### 修改
+
+- `assets/book_template.html`：在宽度 ≥ 768、高度 ≥ 680 时，测量当前正文卡片中画面之外的实际高度，加上页顶位置和底部翻页栏高度，按剩余高度 × 1.5 限制画面宽度；同时限制内容宽度和 880px，保持原有 3:2 比例并水平居中。未使用画面 `max-height`、固定定位遮盖或隐藏正文溢出来强行通过验收。翻页、窗口调整、旁白/朗读提示及预览横幅尺寸变化时重新计算；包含页面滚动位置，避免从已滚动页面翻页时计算过大。375×812 不触发该规则，沿用原手机样式。
+- `scripts/render_book.py`：封面 `new` 显示「你问：……」；`follow_up` 显示「你接着问：……」及下面的小字「接着《continues_from》」；`no_question` 显示「今天我们来想一想：……」及小字「今天没有问题，这一题是替你出的」。来源书名仍经过 HTML 转义。
+- `scripts/test_book_tools.py`：增加三种 mode 的 CLI 渲染检查及来源标题转义检查。`scripts/test_book_interactions.js`：补齐 DOM 替身的查询与窗口事件接口。
+- `scripts/test_book_layout.js`：新增使用 Node.js 标准库、通过 Chromium DevTools pipe 测量实际页面的验收脚本，无需安装依赖。覆盖任务指定五种视口，另加 768×680 和 375×812；断言页面高度、读给我听按钮底边、翻页栏、画面比例及手机无横向溢出，并将截图和数值存入临时目录。
+
+### 自测结果
+
+| 项目 | 本次实际结果 |
+| --- | --- |
+| 样例校验、单文件 HTML 渲染 | 退出码均为 0，生成 `/tmp/curiosity-fix1.html`。 |
+| Python 回归 | 11 项全部通过，退出码 0；含三种 mode 文案、小字及来源标题转义。 |
+| JavaScript 交互回归 | 退出码 0；翻页、朗读调用、追问选择、存储及反馈导出逻辑通过。 |
+| 浏览器验收脚本语法 | `node --check scripts/test_book_layout.js` 退出码 0。 |
+| 1280×800、1366×768、1440×900、1920×1080、768×1024 的真实布局验收 | **未完成**。已运行验收脚本，但本机 Chrome 启动后立即以 `SIGABRT` 退出，脚本退出码 1，未取得任何视口数值或截图；直接启动和已有 Playwright 启动也遇到相同退出。 |
+| 375×812 手机实际布局 | **未完成**，同一浏览器启动阻碍；不能将保留手机 CSS 等同于实际无溢出验证。 |
+
+浏览器备用通道同样不可用：Chrome CUA 报 `native pipe is closed`，内置浏览器报 `Browser is not available: iab`。因此本次没有声称满足实际浏览器几何验收，仍需在可启动 Chrome 的环境运行下面的最后一条命令。没有安装包、修改系统权限或绕过环境限制。
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/validate_book.py assets/sample_book.json
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/render_book.py assets/sample_book.json /tmp/curiosity-fix1.html
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/test_book_tools.py
+node scripts/test_book_interactions.js /tmp/curiosity-fix1.html
+node scripts/test_book_layout.js /tmp/curiosity-fix1.html
+```
+
+验收脚本第二个参数可指定 Chrome 可执行文件路径，也支持 `CHROME_BIN` 环境变量。脚本加载本地单文件 HTML，不依赖网络；生产渲染与校验脚本仍只用 Python 标准库。本次只改 `scripts/`、`assets/book_template.html` 和按任务要求追加本说明；未改只读输入、未读取 `_runs/`、未 commit/push。
