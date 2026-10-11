@@ -42,6 +42,22 @@
         "reference_image": { "type": ["string", "null"], "description": "生图路线：角色参考图的相对路径" }
       }
     },
+    "protagonist": {
+      "type": ["object", "null"],
+      "description": "可选：孩子本人当主角（向导带着孩子本人去探险）。用孩子形象生成的卡通形象，不用真实照片；不写真名",
+      "required": ["name", "look", "image_anchor", "consent"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "description": "书里怎么称呼主角：小名、昵称或「你」，不写真名" },
+        "look": { "type": "string", "description": "中文外形描述" },
+        "image_anchor": { "type": "string", "description": "英文外形锚句；主角出现的页面，image_prompt 要原样包含" },
+        "reference_image": { "type": ["string", "null"], "description": "主角参考图（卡通形象）的相对路径" },
+        "consent": {
+          "enum": ["family_only", "public_ok"],
+          "description": "家长的分享授权：family_only=只在家里/发给家人；public_ok=家长明确同意可以公开（仍不写真名）"
+        }
+      }
+    },
     "render": {
       "type": "object",
       "required": ["route"],

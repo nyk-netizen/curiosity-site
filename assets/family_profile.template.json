@@ -6,9 +6,14 @@
     "language": "zh",
     "reading": "不认字"
   },
-  "interests": ["车与工程机械"],
+  "interests": [
+    "车与工程机械"
+  ],
   "fears": [],
-  "parent_first_topics": ["death", "body"],
+  "parent_first_topics": [
+    "death",
+    "body"
+  ],
   "guide": {
     "name": "",
     "look": "",
@@ -19,6 +24,14 @@
     "made_with_child": true,
     "child_words": "孩子描述角色时的原话，照录",
     "created": "YYYY-MM-DD"
+  },
+  "protagonist": {
+    "enabled": false,
+    "name": "小名或「你」，不写真名",
+    "look": "",
+    "image_anchor": "",
+    "reference_image": null,
+    "consent": "family_only"
   },
   "reading_mode": "家长读",
   "output": "看当前 agent 能做什么",
