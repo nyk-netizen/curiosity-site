@@ -3,7 +3,7 @@
 家长对你说：「孩子今天问我：水果为什么会腐烂？」
 
 规则：
-1. 所有产出只写到 /Users/yk/Desktop/构建个人ai助手/09_黑客松_AIforKids_20261011/curiosity-site/_runs/v3-zcode/ 这一个文件夹里（它就是输出根目录；里面的 _family/ 和书的子文件夹照 SKILL.md 建，别的文件夹不要建）。不要打开仓库里的 _runs/ 其他文件夹、examples/ 或任何其他成品，只能参考 assets/sample_book.json 和 assets/styles/。
+1. 所有产出只写到 <仓库>/_runs/v3-zcode/ 这一个文件夹里（它就是输出根目录；里面的 _family/ 和书的子文件夹照 SKILL.md 建，别的文件夹不要建）。不要打开仓库里的 _runs/ 其他文件夹、examples/ 或任何其他成品，只能参考 assets/sample_book.json 和 assets/styles/。
 2. 先按「先接住 · 当场回应」写 当场回应.md。然后假设家长回答：「他听完又问为什么冰箱里的不容易坏，做成书吧。」继续。
 3. 家长已经填过问卷，直接整理成 _family/profile.json，不用再问（以下全是虚构的测试数据）：
    - 孩子：5 岁（大班档），中文，不认字，小名「豆豆」；家长：建筑师
