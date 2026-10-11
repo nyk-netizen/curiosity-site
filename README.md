@@ -180,6 +180,10 @@ tasks/                   当天给各个 agent 派的任务包和它们的交付
 
 派给 agent 的任务包、Codex 的交付说明和公开前的审查报告都在 [`tasks/`](tasks/)；三个平台实跑的书和它们的交付说明整理在 [`examples/`](examples/)。各平台实跑后指出的「SKILL.md 哪里让我犹豫」，当天就改进了说明书。
 
+## 姊妹项目
+
+**[果果闯关 · 今天的字](https://github.com/nyk-netizen/guoguo-chuangguan)**（[在线玩](https://nyk-netizen.github.io/guoguo-chuangguan/)）：给 4–6 岁孩子的认字复习游戏。好奇心工地接住孩子的「为什么」，果果闯关复习孩子今天学的字；同一套做法：AI 生成，家长放行，结束在现实里。
+
 ## License
 
 MIT
