@@ -182,8 +182,10 @@ tasks/                   当天给各个 agent 派的任务包和它们的交付
 
 ## 姊妹项目
 
-**[果果闯关 · 今天的字](https://github.com/nyk-netizen/guoguo-chuangguan)**（[在线玩](https://nyk-netizen.github.io/guoguo-chuangguan/)）：给 4–6 岁孩子的认字复习游戏。好奇心工地接住孩子的「为什么」，果果闯关复习孩子今天学的字；同一套做法：AI 生成，家长放行，结束在现实里。
+**[果果闯关 · 今天的字](https://github.com/nyk-netizen/guoguo-chuangguan)**（[在线玩](https://nyk-netizen.github.io/guoguo-chuangguan/)）：给 4–6 岁孩子的认字复习游戏。家长点 3–5 个今天学的字，生成一局像素闯关；终点在现实里。
 
-## License
+两个项目是同一套做法的两种形态：好奇心工地接住孩子的问题，果果闯关复习孩子今天学的字。AI 负责生成，家长看过才放行；不用现成的 IP 角色；结束在现实里，读完去问新问题，玩完去外面找字。
 
-MIT
+---
+
+2026-10-11 Ship it Sunday #014「AI for Kids」黑客松上做的。作者是一位建筑师爸爸，和 Claude Code、Codex、ZCode 一起做。MIT License。
