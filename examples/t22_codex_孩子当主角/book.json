@@ -1,0 +1,157 @@
+{
+  "schema_version": "1.0",
+  "title": "红屁股的皮肤小工地",
+  "mode": "new",
+  "language": "zh",
+  "question": {
+    "original": "猴子屁股为何会是红的？是因为不擦屁股，在地上磨蹭的原因吗",
+    "age": "5岁",
+    "understood_as": "为什么一些猴子的臀部皮肤呈红色？是否由不擦屁股或摩擦地面造成？没有提供所见猴子的照片或物种，本书明确用猕猴举例，不把答案泛化到所有猴子。"
+  },
+  "guide": {
+    "name": "小方",
+    "look": "一个橙色的方块小工人，戴黄色安全帽，圆圆的黑眼睛，两只短短的蓝胳膊，背着一个工具包",
+    "colors": [
+      "橙色",
+      "黄色",
+      "蓝色"
+    ],
+    "catchphrase": "戴好安全帽，我们进去看看！",
+    "image_anchor": "a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag",
+    "reference_image": "images/guide_ref.jpg"
+  },
+  "protagonist": {
+    "name": "你",
+    "look": "一个 3D 动画风格的小男孩，圆脸、深棕色大眼睛、短黑碎刘海，珊瑚红短袖 T 恤（胸前一个青蓝色圆形图案）叠穿浅灰印花长袖，深藏蓝长裤",
+    "image_anchor": "a cheerful 3D animated little boy with big brown eyes, short black wispy hair, a coral red T-shirt with a turquoise round graphic, and navy pants",
+    "reference_image": "images/protagonist_ref.jpg",
+    "consent": "public_ok"
+  },
+  "render": {
+    "route": "image",
+    "style": "明亮柔和的原创 3D 动画绘本；皮肤小工地模型；横向 3:2",
+    "agent": "Codex · 内置 image_gen"
+  },
+  "chapters": [
+    {
+      "name": "第一章 · 发现与走进去",
+      "role": "discover",
+      "pages": [
+        {
+          "narration": "你猜：“是在地上蹭红的吗？”小方说：“这个猜法有道理。戴好安全帽，我们进去看看！”",
+          "visual": {
+            "description": "明亮的动物观察步道，主角和小方站在低栏杆外。棕灰色猕猴侧后方走在草地上，红色臀部皮肤自然完整，没有伤口或污物。主角好奇地指向猕猴，小方拿着放大镜准备带路。",
+            "image_prompt": "a cheerful 3D animated little boy with big brown eyes, short black wispy hair, a coral red T-shirt with a turquoise round graphic, and navy pants; a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag; observe a rhesus macaque, naturally red rump, sunny habitat. Soft 3D, 3:2, no text.",
+            "image": "images/p01.jpg"
+          }
+        },
+        {
+          "narration": "不是每种猴子都有红屁股。看这只猕猴：红的是皮肤，不是脏东西，也不是在地上蹭出来的。",
+          "visual": {
+            "description": "主角弯腰观察，小方举起放大镜。猕猴侧后方的红色臀部皮肤在放大镜圆形示意窗里放大，边缘是棕灰色毛；示意窗与实景明确分开，无污物，无擦伤，无生殖器细节。",
+            "image_prompt": "a cheerful 3D animated little boy with big brown eyes, short black wispy hair, a coral red T-shirt with a turquoise round graphic, and navy pants; a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag; inspect hairless red macaque rump through magnifier; intact skin, daylight. Soft 3D, 3:2, no text.",
+            "image": "images/p02.jpg"
+          }
+        }
+      ],
+      "follow_up": {
+        "question": "那猴子的脸也会红吗？",
+        "why": "建议追问，通向同一动物不同裸露皮肤区域的颜色；不是孩子已说的话。"
+      }
+    },
+    {
+      "name": "第二章 · 结构与它怎么工作",
+      "role": "structure",
+      "pages": [
+        {
+          "narration": "把皮肤想成工地的外墙。墙下面有细细的血管，像小管道，里面流着红色的血液。",
+          "visual": {
+            "description": "明亮的模型工作台上，一块完整的皮肤模型像工地外墙，皮肤下有细细的分支管道，管道内是红色血液。主角在旁边观察，小方用蓝胳膊指示。模型不是实际切开的动物身体，没有血液流出。",
+            "image_prompt": "a cheerful 3D animated little boy with big brown eyes, short black wispy hair, a coral red T-shirt with a turquoise round graphic, and navy pants; a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag; examine toy skin cutaway, branching vessels underneath carrying red blood. Soft 3D, 3:2, no text.",
+            "image": "images/p03.jpg"
+          }
+        },
+        {
+          "narration": "这块皮肤没有毛挡住，血液的红色就容易透出来。哦，颜色的线索藏在皮肤里面！",
+          "visual": {
+            "description": "同一个皮肤模型的红色表层与下方血管上下对应，左边毛覆盖皮肤，右边裸露皮肤透出淡红色。主角指着裸露的一侧，小方指向下方血管，明亮柔和，模型图不画真实创口。",
+            "image_prompt": "a cheerful 3D animated little boy with big brown eyes, short black wispy hair, a coral red T-shirt with a turquoise round graphic, and navy pants; a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag; compare furry and hairless toy skin panels; underlying vessels visible. Soft 3D, 3:2, no text.",
+            "image": "images/p04.jpg"
+          }
+        }
+      ],
+      "follow_up": {
+        "question": "血管里的血一直在流吗？",
+        "why": "建议追问，通向血液循环和心脏；本书不展开，也不把血管画成不通的储罐。"
+      }
+    },
+    {
+      "name": "第三章 · 魔法时刻与回到生活",
+      "role": "magic",
+      "pages": [
+        {
+          "narration": "有些猴子的红色还会深浅变化，像工地的信号牌，能让同伴得到一些身体的消息。",
+          "visual": {
+            "description": "观察台上摆着从浅粉到红色的三块小信号色卡，用来比喻猴子的颜色变化。后面是两个自然观察姿态的猕猴；主角拿着浅粉色卡，小方指示较红色卡。不画交通灯，不表示红色等于停止，不画猴子故意开关颜色。",
+            "image_prompt": "a cheerful 3D animated little boy with big brown eyes, short black wispy hair, a coral red T-shirt with a turquoise round graphic, and navy pants; a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag; hold pink-to-red swatches, watching macaques; colors suggest bodily signals. Soft 3D, 3:2, no text.",
+            "image": "images/p05.jpg"
+          }
+        },
+        {
+          "narration": "红屁股不是脏，也不是蹭红的。回到步道，你找找：猴子哪儿有毛，哪儿没毛？只看，不打扰它。",
+          "visual": {
+            "description": "回到同一条晴朗观察步道，主角和小方从栏杆外观察猕猴，主角手拿观察本但本子不画文字。猕猴完整自然地坐在远处石头上，红色皮肤和棕灰色毛可区分。小方收起工具，故事行程结束。",
+            "image_prompt": "a cheerful 3D animated little boy with big brown eyes, short black wispy hair, a coral red T-shirt with a turquoise round graphic, and navy pants; a small orange cube-shaped builder with a yellow hard hat, round black eyes, short blue arms and a tiny tool bag; return to sunny observation path, observe macaque quietly from barrier. Soft 3D, 3:2, no text.",
+            "image": "images/p06.jpg"
+          }
+        }
+      ],
+      "follow_up": {
+        "question": "别的动物也会用颜色传消息吗？",
+        "why": "建议追问，通向动物视觉信号；实际追问等孩子读后原话记录。"
+      }
+    }
+  ],
+  "child_page": {
+    "prompt": "你还想知道什么？也可以画一画你发现的猴子。",
+    "child_words": ""
+  },
+  "parent_card": {
+    "hard_notes": [
+      "本书以猕猴的正常臀部红色为例：少毛或裸露的局部皮肤中，血液的颜色及局部灌流参与可见红色的形成；这不是粪便染色或地面摩擦造成的正常特征。",
+      "猕猴局部皮肤的颜色变化与血流及激素调节有关；某些灵长类红色可参与社会或繁殖信号，但具体含义因物种、性别与情境而异，不能说所有红屁股都表示排卵或生育。",
+      "“皮肤外墙、血管管道、信号色卡”用于说明位置和可见颜色；动物没有工地，血管也不是水管，皮肤不会主动亮灯。"
+    ],
+    "sources": [
+      {
+        "title": "Higham 等（2013）Signaling in multiple modalities in male rhesus macaques",
+        "where": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4084859/",
+        "used_for": "已打开全文并核对 Introduction：猕猴面部、臀部裸露皮肤可红，红色与局部血流及雌激素受体作用有关；Abstract 与 Discussion 提醒该研究中雄性信号功能仍不明确。"
+      },
+      {
+        "title": "京都大学（2019）A study in scarlet Japanese macaques",
+        "where": "https://www.kyoto-u.ac.jp/en/research-news/2019-07-04",
+        "used_for": "已打开研究机构发布的原研究说明：雌性日本猕猴臀部红暗程度与社会等级相关，未发现颜色与排卵时点或生育力相关；支持不将红色解释为统一繁殖消息。"
+      }
+    ],
+    "uncertain": [
+      "孩子未提供所见猴子的物种；不能确认他看到的是猕猴、狒狒还是其他种类。本书采用猕猴案例，不对所有猴子下结论。",
+      "“血液的红色容易透出来”省略了血红蛋白、血氧、局部灌流、皮肤色素和光学效应；不是所有无毛皮肤都会红，毛少只是让颜色容易看见的一项条件。",
+      "“身体的消息”是信号功能的年龄适配简化；不为色卡规定一条具体消息，实际信息随物种与情境变化，部分信号功能尚不明确。",
+      "本书讨论正常红色，不判断摩擦损伤或疾病；模型和猕猴插画用于理解，不是可用于物种识别或诊断的解剖图。"
+    ],
+    "sensitive": {
+      "level": "parent_first",
+      "topics": [
+        "body"
+      ],
+      "how_handled": "涉及动物身体，按家庭偏好从严标记。家长本次已明确指定此问题、角色与生成流程，授权制作至第7步；制作授权不等于成书放行。平静讲皮肤与血液，不讲成人性行为，不画真人裸露、生殖器细节、创口或流血；场景全程明亮，照顾怕黑。最终仍须家长先看。"
+    },
+    "weekend_project": "家长用现有红色纸片或红色积木作模型，在它上面盖一层半透明薄纸（家里没有就只画图），再在部分表面盖上几条纸条当“毛”。一起看哪里更容易看见红色。说清：这只是看颜色的模型，血液不在皮肤外面，不证明真实皮肤一定呈红色。最后可隔着动物园栏杆观察毛和皮肤，不靠近、不触摸。",
+    "approval": {
+      "status": "approved",
+      "note": "家长翻过全书，放行",
+      "date": "2026-10-11"
+    }
+  }
+}
