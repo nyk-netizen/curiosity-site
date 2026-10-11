@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "files": {
+    "p01.mp3": {
+      "text_hash": "2607e347bbc664e36028f1d5ba8fedd6d04500ec32f3a8c82d08246cc4ecd943",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-5%",
+      "audio_hash": "d59b49a8c17e61f0973233bb6eb666e6e2651a17adb5ce3eac9d47a556a26c5e"
+    },
+    "p02.mp3": {
+      "text_hash": "b930f0a0a3252d66a77356c7e12d831ad3823220cd61ff273e3a583bdf17718c",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-5%",
+      "audio_hash": "39e661eef4dccff98430cf3ff9e6d680cdbfbe091eb201d6d296369760a7cb1b"
+    },
+    "p03.mp3": {
+      "text_hash": "f92c82ad784cd9df406a202d3a34097bd8c4e503e9444de7b1d21fff206b04b8",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-5%",
+      "audio_hash": "219330ef016be983d8e002880fc735a8f931b4213f2b53b61254a16fdd43a0b6"
+    },
+    "p04.mp3": {
+      "text_hash": "5d046a115d74edd1f56cbd294ac5ad08a17041ce55239501cd162190cfac22f1",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-5%",
+      "audio_hash": "4329374131d8ca6372c540ba7660f6e5d7dabb4a053a8a356a2e2943d37fa15c"
+    },
+    "p05.mp3": {
+      "text_hash": "6ea5734c0156fa168fd5d2ecb92b9a9dfba33c8c1d8975306470940b97667aa5",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-5%",
+      "audio_hash": "a83450487d59e844d2a7c7a3a1c22bd6d519b4f202212e6f6cb1e15f675f2133"
+    },
+    "p06.mp3": {
+      "text_hash": "90ba3e6b3bbaf7f8ca56d4b8c9736fa0f8d6fa2f36b36a5769f1c33ae51e13b0",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-5%",
+      "audio_hash": "ee855fbea33be661921f0eb2e206db6d3634819e4177196663c5f940b64830be"
+    },
+    "p07.mp3": {
+      "text_hash": "77068b0e3999e4ab40ffb68707631e4b858c5f94d0e65d8024d31b163f303994",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-5%",
+      "audio_hash": "234e9c12677641e1a8e78269e8d6458dd9a139653ed237932c8bf0a3e6293850"
+    },
+    "p08.mp3": {
+      "text_hash": "2d0f5af24f4ed850956efecdd6d1bcf178b0055298e4a75c7a82facc208ac172",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-5%",
+      "audio_hash": "6c471c01d37190119ac6fc47480bdd7bc497aeabbd4fd9e7bea4b84b64118278"
+    }
+  }
+}

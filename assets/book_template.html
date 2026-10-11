@@ -82,7 +82,7 @@ button,input,textarea{font:inherit}button{border:1px solid #b15837;border-radius
   }));
   function go(index) {
     if (index < 0 || index >= pages.length || index === current) return;
-    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+    stopReading();
     pages[current].hidden = true; current = index; pages[current].hidden = false;
     previous.disabled = current === 0; next.disabled = current === pages.length - 1;
     document.getElementById('page-count').textContent = `${current + 1} / ${pages.length}`;
@@ -111,26 +111,74 @@ button,input,textarea{font:inherit}button{border:1px solid #b15837;border-radius
     if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) go(current + (dx < 0 ? 1 : -1));
   }, {passive: true});
   main.addEventListener('touchcancel', () => { touchStart = null; }, {passive: true});
-  document.querySelectorAll('[data-read]').forEach(button => button.addEventListener('click', () => {
-    const status = button.nextElementSibling;
-    if (!('speechSynthesis' in window) || !('SpeechSynthesisUtterance' in window)) {
-      status.textContent = '这个浏览器暂不支持朗读，可以请爸爸妈妈读给你听。'; return;
+  let readingButton = null, recording = null, readingToken = 0;
+  function stopReading() {
+    // Invalidate callbacks before cancel/pause: late completion must never
+    // start the next bilingual line after stopping or changing the page.
+    readingToken++;
+    if (recording) {
+      recording.onended = recording.onerror = null;
+      recording.pause(); recording.currentTime = 0; recording = null;
     }
-    window.speechSynthesis.cancel();
+    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+    if (readingButton) {
+      readingButton.textContent = '读给我听';
+      readingButton.nextElementSibling.textContent = '';
+      readingButton = null;
+    }
+  }
+  document.querySelectorAll('[data-read]').forEach(button => button.addEventListener('click', () => {
+    if (readingButton === button) { stopReading(); return; }
+    stopReading(); readingButton = button; button.textContent = '停止朗读';
+    const status = button.nextElementSibling, token = readingToken;
     const lines = book.narrations[button.dataset.read];
+    const active = () => token === readingToken && readingButton === button;
+    function finish(message = '') {
+      if (!active()) return;
+      stopReading(); status.textContent = message; fitStory();
+    }
+    function read(index) {
+      if (!active()) return;
+      if (index >= lines.length) { finish(); return; }
+      const line = lines[index];
+      if (line.audio && 'Audio' in window) {
+        const audio = new window.Audio(line.audio); recording = audio;
+        let fellBack = false;
+        function fallback() {
+          if (!active() || fellBack) return;
+          fellBack = true; audio.onended = audio.onerror = null;
+          audio.pause(); recording = null; speak(index);
+        }
+        audio.onended = () => { if (active() && !fellBack) { recording = null; read(index + 1); } };
+        audio.onerror = fallback;
+        status.textContent = '正在读给你听……';
+        try {
+          const playing = audio.play();
+          if (playing && playing.catch) playing.catch(fallback);
+        } catch (_) { fallback(); }
+        return;
+      }
+      speak(index);
+    }
     function speak(index) {
+      if (!active()) return;
+      if (!('speechSynthesis' in window) || !('SpeechSynthesisUtterance' in window)) {
+        finish('这个浏览器暂不支持朗读，可以请爸爸妈妈读给你听。'); return;
+      }
       const line = lines[index];
       const utterance = new SpeechSynthesisUtterance(line.text);
       utterance.lang = line.lang; utterance.rate = 0.9;
       const voices = window.speechSynthesis.getVoices();
-      const voice = voices.find(v => v.lang.replace('_', '-').toLowerCase() === line.lang.toLowerCase());
+      const matching = voices.filter(v => v.lang.replace(/_/g, '-').toLowerCase().startsWith(line.lang === 'zh-CN' ? 'zh' : 'en'));
+      const voice = (line.lang === 'zh-CN' && matching.find(v => /Xiaoxiao|晓晓|Tingting|婷婷/i.test(v.name))) ||
+        matching.find(v => v.lang.replace(/_/g, '-').toLowerCase() === line.lang.toLowerCase()) || matching[0];
       if (voice) utterance.voice = voice;
-      utterance.onstart = () => { status.textContent = '正在读给你听……'; };
-      utterance.onend = () => { if (index + 1 < lines.length) speak(index + 1); else status.textContent = ''; };
-      utterance.onerror = event => { status.textContent = ['canceled','interrupted'].includes(event.error) ? '' : '朗读暂时不可用，请检查系统语音。'; };
+      utterance.onstart = () => { if (active()) status.textContent = '正在读给你听……'; };
+      utterance.onend = () => { if (active()) read(index + 1); };
+      utterance.onerror = event => { if (active()) finish(['canceled','interrupted'].includes(event.error) ? '' : '朗读暂时不可用，请检查系统语音。'); };
       window.speechSynthesis.speak(utterance);
     }
-    speak(0);
+    read(0);
   }));
   childWords.addEventListener('input', persist); parentNote.addEventListener('input', persist);
   document.querySelectorAll('input[name="reaction"]').forEach(radio => radio.addEventListener('change', persist));

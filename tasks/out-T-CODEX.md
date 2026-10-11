@@ -207,3 +207,56 @@ node scripts/test_book_layout.js /tmp/curiosity-fix4-books/co-reading-pending.ht
 ### 范围
 
 本次仅写入 `scripts/validate_book.py`、`scripts/render_book.py`、`scripts/test_book_tools.py`、`scripts/test_book_layout.js`、`assets/book_template.html` 和本交付记录。`assets/book.schema.json` 在开始前已修改，本任务未编辑；期间另有 `SKILL.md` 变动，也非本任务写入。未修改任何现有书 JSON、README、references 或 blocklist；未读取 `_runs/`，未安装包，未 commit/push。
+
+
+## fix5
+
+### 修改
+
+- 新增 `scripts/make_audio.py`：按跨章正文顺序生成 `audio/p01.mp3` 等文件。中文默认 `zh-CN-XiaoxiaoNeural`（晓晓），英文默认 `en-US-AnaNeural`，双语英文另存 `pNN_en.mp3`；支持 `--voice` 和 `--rate -5%`（默认 -5%）。先校验书，优先使用已有 Python `edge_tts`，没有库则使用已有 `edge-tts` CLI；均不可用时提示环境选择并非 0 退出，不安装依赖。
+- `audio/manifest.json` 缓存旁白 SHA-256、voice、rate 和音频 SHA-256：文本及参数不变且 MP3 完整时直接复用，全部命中时不调用 Edge TTS，不联网。缺失、损坏、文本/声音/语速变化时重生成；音频和清单原子写入。逐页失败报告正文页码、字段、文件及异常，返回非 0；成功页可保留并在下次复用。失效旧录音会移除，避免失败后播放改稿前的内容；每段请求限时 120 秒。
+- `scripts/render_book.py`：存在且非空的 MP3 以 `data:audio/mpeg;base64,...` 内嵌，双语两段各自独立支持录音或浏览器朗读；页码依据正文顺序，不受家长预览页影响。新增 `--with-audio`，用当前 Python 自动执行生成脚本，失败或无法启动时警告并继续渲染；缺录音的页面保留 speechSynthesis。
+- `assets/book_template.html`：有录音优先播放，再点同一按钮停止；翻页取消录音和浏览器朗读，并阻止过期完成/错误回调继续读下一段。双语依次读中文、英文；录音播放出错也回退浏览器朗读。中文浏览器声音优先匹配 Xiaoxiao / 晓晓 / Tingting / 婷婷，保留语速 0.9；不自动播放。
+- 新增 `scripts/audio_paths.py`：音频读取及生成共用路径检查，拒绝绝对路径、../ 越界、外部文件/目录符号链接（含尚不存在的输出目标）；书目录内符号链接可读取。生成时另外拒绝通过内部符号链接覆盖输入 JSON。
+- 新增 `scripts/test_audio.py`，扩充 `scripts/test_book_interactions.js`。已有回归夹具去除样例后来增加的可选 age_band/co_reading，再由各专项测试自行添加，避免缩减正文时被无关共读页码影响；真实样例仍单独逐本 CLI 校验、渲染。没有修改样例。
+
+### 自测结果
+
+- `PYTHONDONTWRITEBYTECODE=1 python3 scripts/test_audio.py`：**10 项全部通过**。mock Edge TTS，覆盖逐页缓存、文本/voice/rate 变化、文件删除或损坏、清单损坏、英文/双语默认声音、Python 库优先/CLI 回退/依赖缺失非 0、负百分比参数、逐页网络失败与失效录音移除、无/部分/空录音渲染、预览页索引、自动生成成功/失败/启动错误、音频路径越界与符号链接保护。
+- `PYTHONDONTWRITEBYTECODE=1 python3 scripts/test_book_tools.py`：**22 项全部通过**。
+- 对实际有音频 HTML `/tmp/curiosity-fix5-audio.html` 和清理后的无音频 HTML `/tmp/curiosity-fix5-no-audio.html` 分别运行 JavaScript 交互回归，均通过。新增 mock Audio 检查录音优先、无 speechSynthesis 时录音可播、点击停止、翻页停止、双语录音与混合回退、迟到回调隔离、四种中文声音名称优选、play 抛错/Promise 拒绝/音频 error 回退且不重复朗读。该测试检查逻辑，不代表人工实际听音。
+- 样例及全部 5 本 examples（共 6 本）逐本 CLI 校验、渲染和 JavaScript 交互回归通过，输出到 `/tmp/curiosity-fix5-books/`；没有覆盖示例 HTML。
+- `node --check scripts/test_book_interactions.js`、`git diff --check` 通过。
+
+### 真实联网生成与大小、耗时
+
+实际执行 `PYTHONDONTWRITEBYTECODE=1 python3.11 scripts/make_audio.py assets/sample_book.json`，使用本机已安装 `edge_tts 7.2.8`、晓晓、-5%，退出码 0：新生成 7 段，失败 0 段，**整本串行生成耗时 51.77 秒**。这是一次实测，其他书的文本长度及网络状况会影响耗时。
+
+| 正文页 | MP3 字节数 | 音频时长 |
+| --- | ---: | ---: |
+| 1 | 59,616 | 9.936 秒 |
+| 2 | 52,704 | 8.784 秒 |
+| 3 | 47,232 | 7.872 秒 |
+| 4 | 46,368 | 7.728 秒 |
+| 5 | 55,008 | 9.168 秒 |
+| 6 | 51,120 | 8.520 秒 |
+| 7 | 50,832 | 8.472 秒 |
+| 合计 | **362,880** | **60.480 秒** |
+
+每页约 **45.3–58.2 KiB**，平均 50.6 KiB；MP3 总计 **354.4 KiB**（362.9 kB）。`file` 和 `ffprobe` 确认全部为可解析 MP3，48 kbps、24 kHz、单声道。真实执行 `python3.11 scripts/render_book.py assets/sample_book.json /tmp/curiosity-fix5-audio.html --with-audio`，7 段全部命中缓存、无新生成，脚本计时 0.00 秒（四舍五入）；解码 HTML 的 base64 后，7 段与原 MP3 逐字节一致。录音 HTML 为 512,108 字节，无录音 HTML 为 28,016 字节，差额 484,092 字节（含 base64 和 JSON 字段开销）。
+
+检查完成后已删除此次生成的 **assets/audio/ 全部 7 段 MP3、manifest.json 及目录**，没有把测试音频留在仓库。带录音的单文件 HTML 仅留在 `/tmp/`。
+
+### 运行与范围
+
+```sh
+python3.11 scripts/make_audio.py path/to/book.json --voice zh-CN-XiaoxiaoNeural --rate -5%
+python3.11 scripts/render_book.py path/to/book.json /tmp/book.html --with-audio
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/test_audio.py
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/test_book_tools.py
+node scripts/test_book_interactions.js /tmp/book.html
+```
+
+生成需要联网；嵌入录音后的 HTML 可离线播放。未录音页的回退依赖浏览器及系统语音。生产工具最低 Python 3.9，实际生成使用 Python 3.11；除任务明确要求的已有 Edge TTS 库/CLI 外，只用标准库，没有 pip install。本次没有做真实浏览器人工听音或新增布局截图验收。
+
+本次只修改 `scripts/`、`assets/book_template.html`，并按任务要求追加本节；未修改 schema、任何 book.json、README、SKILL、references 或 blocklist；未读取 `_runs/`，未 commit/push，未写密钥或 Codex 设置。

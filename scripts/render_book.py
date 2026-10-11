@@ -7,12 +7,14 @@ import hashlib
 import html
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 from urllib.parse import urlsplit
 import xml.etree.ElementTree as ET
 
 from validate_book import load_book, print_result, resolve_book_image, validate_book
+from audio_paths import resolve_book_audio
 
 ASSETS = Path(__file__).resolve().parent.parent / "assets"
 TOPICS = {"death": "死亡", "body": "身体", "fear": "恐惧", "religion": "宗教",
@@ -44,6 +46,24 @@ def inline_image(filename, book_path):
 
 def list_html(items):
     return '<ul>' + ''.join(f'<li>{esc(item)}</li>' for item in items) + '</ul>' if items else '<p>无</p>'
+
+
+def inline_audio(filename, book_path):
+    path = resolve_book_audio(filename, book_path)
+    if not path.exists():
+        return None
+    if not path.is_file():
+        raise ValueError(f"音频路径不是文件：{filename}")
+    data = path.read_bytes()
+    return 'data:audio/mpeg;base64,' + base64.b64encode(data).decode('ascii') if data else None
+
+
+def narration_line(text, lang, filename, book_path):
+    line = {"text": text, "lang": lang}
+    audio = inline_audio(filename, book_path)
+    if audio:
+        line["audio"] = audio
+    return line
 
 
 def parent_card(book, opened=False):
@@ -118,11 +138,13 @@ def render_book(book, book_path):
             illustration = (inline_image(visual["image"], book_path) if visual.get("image")
                             else f'<div class="placeholder"><span>画面想象</span><p>{esc(visual["description"])}</p></div>')
             number = len(pages)
-            narrations[str(number)] = [{"text": page["narration"], "lang": "en-US" if book["language"] == "en" else "zh-CN"}]
+            narrations[str(number)] = [narration_line(page["narration"], "en-US" if book["language"] == "en" else "zh-CN",
+                                                     f"audio/p{art_index:02d}.mp3", book_path)]
             english = ''
             if book["language"] == "bilingual" and page.get("narration_en"):
                 english = f'<p class="narration english" lang="en">{esc(page["narration_en"])}</p>'
-                narrations[str(number)].append({"text": page["narration_en"], "lang": "en-US"})
+                narrations[str(number)].append(narration_line(page["narration_en"], "en-US",
+                                                             f"audio/p{art_index:02d}_en.mp3", book_path))
             parent_hint = ''.join(f'<p class="co-reading-hint">家长可以停下来问：{esc(ask)}</p>'
                                   for ask in pauses_by_page.get(art_index, []))
             pages.append(f'''<section class="page story" aria-label="正文第 {art_index} 页">
@@ -162,6 +184,7 @@ def main():
     parser = argparse.ArgumentParser(description="渲染为离线单文件 HTML 绘本")
     parser.add_argument("book", type=Path)
     parser.add_argument("output", type=Path)
+    parser.add_argument("--with-audio", action="store_true", help="渲染前生成 Edge TTS 音频；失败仍渲染")
     args = parser.parse_args()
     book, result = load_book(args.book)
     try:
@@ -172,6 +195,13 @@ def main():
             return 1
         if args.output.resolve() == args.book.resolve():
             raise ValueError("输出 HTML 不能覆盖输入 JSON")
+        if args.with_audio:
+            try:
+                result_audio = subprocess.run([sys.executable, str(Path(__file__).with_name("make_audio.py")), str(args.book)])
+                if result_audio.returncode:
+                    print("警告：音频生成失败，缺少录音的页面将退回浏览器朗读，继续渲染。", file=sys.stderr)
+            except OSError as exc:
+                print(f"警告：无法运行音频生成：{exc}；缺少录音的页面将退回浏览器朗读，继续渲染。", file=sys.stderr)
         document = render_book(book, args.book)
         args.output.write_text(document, encoding="utf-8")
     except (OSError, ValueError, ET.ParseError) as exc:

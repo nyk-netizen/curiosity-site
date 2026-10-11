@@ -41,7 +41,8 @@ class Element {
   click() { this.fire('click'); }
   remove() {}
 }
-function start({saved = {}, deniedStorage = false, data = payload} = {}) {
+function start({saved = {}, deniedStorage = false, data = payload, audioSupport = false,
+    voices = [], noSpeech = false, rejectPlayback = false, throwPlayback = false} = {}) {
   const ids = Object.fromEntries(['previous','next','child-words','parent-note','page-count','book-pages','export-feedback','save-status','book-data'].map(id => [id, new Element()]));
   ids['book-data'].textContent = JSON.stringify(data);
   ids.previous.disabled = true;
@@ -51,7 +52,8 @@ function start({saved = {}, deniedStorage = false, data = payload} = {}) {
   const reads = Object.keys(data.narrations).map(index => { const e = new Element(); e.dataset.read = index; e.nextElementSibling = new Element(); return e; });
   const radios = ['loved','ok','bored','scared','confused'].map(value => { const e = new Element(); e.value = value; return e; });
   const storage = new Map(Object.entries(saved));
-  const spoken = [], downloads = [];
+  const spoken = [], downloads = [], recordings = [];
+  let canceled = 0;
   const doc = new Element();
   doc.getElementById = id => ids[id] || null;
   doc.querySelectorAll = selector => ({'.page': pages, '[data-follow]': follows, '[data-read]': reads, 'input[name="reaction"]': radios}[selector]);
@@ -60,14 +62,25 @@ function start({saved = {}, deniedStorage = false, data = payload} = {}) {
   doc.body = {appendChild() {}};
   doc.documentElement = {style: {setProperty() {}}};
   let blob;
-  const context = {document: doc, window: {speechSynthesis: {cancel() {}, getVoices: () => [], speak: u => spoken.push(u)}, scrollTo() {}, addEventListener() {}},
+  const context = {document: doc, window: {speechSynthesis: {cancel() { canceled++; }, getVoices: () => voices, speak: u => spoken.push(u)}, scrollTo() {}, addEventListener() {}},
     SpeechSynthesisUtterance: class { constructor(text) { this.text = text; } },
     localStorage: {getItem: key => { if (deniedStorage) throw Error('unavailable'); return storage.get(key); },
       setItem: (key, value) => { if (deniedStorage) throw Error('unavailable'); storage.set(key, value); }},
     URL: {createObjectURL: value => { blob = value; return 'blob:test'; }, revokeObjectURL() {}}, Blob, setTimeout() {}, Date};
   context.window.SpeechSynthesisUtterance = context.SpeechSynthesisUtterance;
+  if (noSpeech) { delete context.window.speechSynthesis; delete context.window.SpeechSynthesisUtterance; }
+  if (audioSupport) context.window.Audio = class {
+    constructor(src) { this.src = src; this.currentTime = 0; this.played = 0; this.paused = 0; recordings.push(this); }
+    play() {
+      this.played++;
+      if (throwPlayback) throw Error('play failed');
+      return rejectPlayback ? Promise.reject(Error('play rejected')) : Promise.resolve();
+    }
+    pause() { this.paused++; }
+  };
   vm.runInNewContext(source, context);
-  return {ids, pages, follows, reads, radios, storage, spoken, downloads, doc, feedback: async () => JSON.parse(await blob.text())};
+  return {ids, pages, follows, reads, radios, storage, spoken, downloads, recordings, doc,
+    canceled: () => canceled, feedback: async () => JSON.parse(await blob.text())};
 }
 (async () => {
   const test = start();
@@ -121,6 +134,65 @@ function start({saved = {}, deniedStorage = false, data = payload} = {}) {
   english.reads[0].click(); assert.equal(english.spoken[0].lang, 'en-US');
   const bilingual = start({data: {...payload, narrations: {'1': [{text:'你好', lang:'zh-CN'}, {text:'Hello', lang:'en-US'}]}}});
   bilingual.reads[0].click(); bilingual.spoken[0].onend(); assert.equal(bilingual.spoken[1].lang, 'en-US');
+  const zh = {text:'你好', lang:'zh-CN'}, en = {text:'Hello', lang:'en-US'};
+  const zhAudio = {...zh, audio:'data:audio/mpeg;base64,SUQz'}, enAudio = {...en, audio:'data:audio/mpeg;base64,SUQzZW4='};
+  const speechData = lines => ({...payload, narrations: {'1': lines}});
+  // Recordings play even on browsers without speechSynthesis; no auto-play.
+  const audio = start({data:speechData([zhAudio, enAudio]), audioSupport:true, noSpeech:true});
+  assert.equal(audio.recordings.length, 0);
+  audio.reads[0].click();
+  assert.equal(audio.recordings[0].src, zhAudio.audio);
+  assert.equal(audio.recordings[0].played, 1);
+  assert.equal(audio.spoken.length, 0);
+  assert.equal(audio.reads[0].textContent, '停止朗读');
+  const lateEnd = audio.recordings[0].onended;
+  audio.recordings[0].currentTime = 3;
+  audio.reads[0].click();
+  assert.equal(audio.recordings[0].paused, 1);
+  assert.equal(audio.recordings[0].currentTime, 0);
+  assert.equal(audio.reads[0].textContent, '读给我听');
+  lateEnd(); assert.equal(audio.recordings.length, 1, 'Stopped callbacks cannot play English');
+  audio.reads[0].click(); audio.recordings[1].onended();
+  assert.equal(audio.recordings[2].src, enAudio.audio, 'Bilingual recordings play in order');
+  audio.recordings[2].onended(); assert.equal(audio.reads[0].textContent, '读给我听');
+  audio.reads[0].click();
+  const pageEnd = audio.recordings[3].onended;
+  audio.ids.next.click();
+  assert.equal(audio.recordings[3].paused, 1);
+  pageEnd(); assert.equal(audio.recordings.length, 4, 'Page change cancels the bilingual sequence');
+  const stoppedSpeech = start({data:speechData([zh, en])});
+  stoppedSpeech.reads[0].click(); const speechEnd = stoppedSpeech.spoken[0].onend;
+  stoppedSpeech.reads[0].click(); speechEnd();
+  assert.equal(stoppedSpeech.spoken.length, 1);
+  assert.equal(stoppedSpeech.canceled(), 2);
+  stoppedSpeech.reads[0].click(); const speechPageEnd = stoppedSpeech.spoken[1].onend;
+  stoppedSpeech.ids.next.click(); speechPageEnd(); assert.equal(stoppedSpeech.spoken.length, 2);
+  for (const name of ['Microsoft Xiaoxiao Online', '晓晓', 'Tingting', '婷婷']) {
+    const preferred = {name, lang:'zh_CN'};
+    const voiceTest = start({data:speechData([zh]), voices:[{name:'Default',lang:'zh-CN'}, {name:'English Xiaoxiao',lang:'en-US'}, preferred]});
+    voiceTest.reads[0].click(); assert.equal(voiceTest.spoken[0].voice, preferred);
+  }
+  const mixed = start({data:speechData([zhAudio, en]), audioSupport:true});
+  mixed.reads[0].click(); mixed.recordings[0].onended(); assert.equal(mixed.spoken[0].lang, 'en-US');
+  const mixedReverse = start({data:speechData([zh, enAudio]), audioSupport:true});
+  mixedReverse.reads[0].click(); mixedReverse.spoken[0].onend(); assert.equal(mixedReverse.recordings[0].src, enAudio.audio);
+  for (const options of [{rejectPlayback:true}, {throwPlayback:true}, {}]) {
+    const fallback = start({data:speechData([zhAudio]), audioSupport:true, ...options});
+    fallback.reads[0].click();
+    if (!options.rejectPlayback && !options.throwPlayback) {
+      const failure = fallback.recordings[0].onerror; failure(); failure();
+    }
+    await Promise.resolve();
+    assert.equal(fallback.spoken.length, 1, 'Recording failure falls back exactly once');
+    assert.equal(fallback.spoken[0].text, zh.text);
+  }
+  const lateRejection = start({data:speechData([zhAudio, enAudio]), audioSupport:true, rejectPlayback:true});
+  lateRejection.reads[0].click(); lateRejection.ids.next.click(); await Promise.resolve();
+  assert.equal(lateRejection.spoken.length, 0, 'Late play rejection cannot start speech after changing page');
+  const unavailable = start({data:speechData([zh]), noSpeech:true});
+  unavailable.reads[0].click(); assert.match(unavailable.reads[0].nextElementSibling.textContent, /暂不支持朗读/);
+  assert.equal(unavailable.reads[0].textContent, '读给我听');
   console.log('通过：翻页、键盘/输入框、滑动、无自动朗读、zh/en/双语朗读参数、追问去重、localStorage 恢复、反馈全部字段、存储被禁用时导出。');
   console.log('独立 DOM 替身测试；不代表真实浏览器截图或实际听到声音。');
+  console.log('通过：录音优先、点击停止、翻页取消、双语录音/混合回退、过期回调隔离、中文声音优选、录音失败回退。');
 })().catch(error => { console.error(error); process.exitCode = 1; });

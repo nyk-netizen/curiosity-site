@@ -21,6 +21,10 @@ SAMPLE = ROOT / "assets/sample_book.json"
 class BookToolsTests(unittest.TestCase):
     def setUp(self):
         self.book = json.loads(SAMPLE.read_text(encoding="utf-8"))
+        # Boundary tests construct their own page counts and optional features.
+        # The real sample (including these fields) is covered by CLI tests.
+        self.book.pop("age_band", None)
+        self.book["parent_card"].pop("co_reading", None)
         self.temp = tempfile.TemporaryDirectory(prefix="curiosity-tests-")
         self.addCleanup(self.temp.cleanup)
         self.directory = Path(self.temp.name)

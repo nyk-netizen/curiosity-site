@@ -127,7 +127,7 @@ git clone https://github.com/nyk-netizen/curiosity-site.git ~/.claude/skills/cur
 
 然后在 agent 里说：「孩子问我水果为什么会腐烂，帮我做一本绘本」。第一次会先问你 10 个问题建家庭档案，以后不再问。
 
-需要 Python 3.9 或更新版本（只用标准库）。代码画图路线检查画面时建议装 `rsvg-convert`（`brew install librsvg`）。
+需要 Python 3.9 或更新版本（只用标准库）。想要更自然的朗读，装 `edge-tts`（`pip install edge-tts`），渲染时加 `--with-audio`，每页旁白会生成「晓晓」的录音嵌进书里，生成后断网也能播。代码画图路线检查画面时建议装 `rsvg-convert`（`brew install librsvg`）。
 
 ## 改给其他平台用（Kimi、WorkBuddy、豆包……）
 
@@ -145,6 +145,7 @@ git clone https://github.com/nyk-netizen/curiosity-site.git ~/.claude/skills/cur
 |---|---|---|
 | Codex 生图 | 每页的生图提示词、角色参考图 | OpenAI；另外 Codex 会在 `~/.codex/generated_images/` 自己缓存一份原图，不受输出文件夹控制 |
 | ZCode 检查画面 | 它自己渲染的画面图片 | 实测检查画面时把图片上传到了智谱的服务器 |
+| 朗读录音（可选，`scripts/make_audio.py`） | 每页旁白的文字 | 微软的语音服务（edge-tts，默认「晓晓」声音）；不生成录音时，书用浏览器自带的朗读，不联网 |
 | 所有平台 | 孩子的问题、家庭档案里的内容 | 你所用的模型服务商 |
 
 所以：

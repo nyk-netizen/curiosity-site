@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "files": {
+    "p01.mp3": {
+      "text_hash": "3775d3b84434b369bee2c6d2c211d40889fd625465eafa1d5b0d2ac22bd45ad4",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-5%",
+      "audio_hash": "0bf7d7c3d8dbbd921a4ef32c7b4b639779456a9e53343a3b53d3d40c540de76e"
+    },
+    "p02.mp3": {
+      "text_hash": "f36b5603a00bb4f27f5bc601305ddfc5c5571e1a8d011ff0b88b3e1b334b264c",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-5%",
+      "audio_hash": "1d632a0ded93c7b8a9bef1fb5c1bc8f31346401b311dab1e41a4ed3de7184744"
+    },
+    "p03.mp3": {
+      "text_hash": "e87ff973c31fa0b714ad49e6ec2e3abba5692649fc7e20cb96059765e9503a91",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-5%",
+      "audio_hash": "be3bb0abe15e40ba44863fccbb29142490ded3c098ba218985bc9f601decd997"
+    },
+    "p04.mp3": {
+      "text_hash": "9b6f7724d9f994c15bc46c87021b2c480822a739e48e69c38b23c95eb54fd616",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-5%",
+      "audio_hash": "3c7da4f7123c59ac64343255d3d64ae2e79b3db4a9c6047b9e3680fe5d28323f"
+    },
+    "p05.mp3": {
+      "text_hash": "163491315d5735d5b4f62daf8670166c8c82df092933e6d3bfe5adf0592d4a04",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-5%",
+      "audio_hash": "70c7fcf4f9be59850a59ba247a900f62edc0270f6a6f13c9a1975207ab9ee5af"
+    },
+    "p06.mp3": {
+      "text_hash": "79eea1efecf07c6de42d9acd369b252b8290360c6e0701230b2a69588ce2c341",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-5%",
+      "audio_hash": "4f3031cd1aff5a80d34d11a16d7fb57b8cc2ad9a7b5c74680c8a0b5a00e83bdf"
+    },
+    "p07.mp3": {
+      "text_hash": "8055530192dac4880f34475ebf8ec2caa6d18b714b3b746ec85c605f0ce585e0",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-5%",
+      "audio_hash": "c6b169a7c66c17ac2c1af3ee37a1c77f87a50dfa45b0aaba9de692449c7f0126"
+    }
+  }
+}
